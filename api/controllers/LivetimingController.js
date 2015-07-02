@@ -158,7 +158,7 @@ module.exports = {
                 });
             }
         },function (err, results) {
-            return res.view('livetiming/bestlaps',{
+            return res.view('Livetiming/bestlaps',{
                 drivers: results.drivers,
                 tracks: results.tracks,
                 cars: results.cars,
@@ -231,7 +231,7 @@ module.exports = {
                 });
             }
         },function (err, results) {
-            return res.view('livetiming/stats',{
+            return res.view('Livetiming/stats',{
                 drivers: results.drivers,
                 tracks: results.tracks,
                 cars: results.cars,
@@ -245,7 +245,7 @@ module.exports = {
 
     resultsIndex: function (req, res) {
         ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, results) {
-            return res.view('result/index',{
+            return res.view('Result/index',{
                 sessions: results
             });
         });
@@ -260,7 +260,7 @@ module.exports = {
             var filename = result.id+'.json';
             var folder = '../project-cars/LogResults/';
             fs.readJson(folder+filename, function (err, file) {
-                return res.view('result/view',{
+                return res.view('Result/view',{
                     file: file,
                     Incidents: result.incidents.length
                 });
