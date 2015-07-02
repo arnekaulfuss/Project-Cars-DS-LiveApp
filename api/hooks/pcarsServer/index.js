@@ -752,12 +752,12 @@ module.exports = function enableServer(sails) {
             session: Session,
             owner: player.driver,
             group: player.car.group,
-            Events: Session.Events
+            //Events: Session.Events
         }).exec(function (err, lapstored) {
             if (err) {
                 console.log('Lap error:' + err);
             } else {
-                if (Session.Events.length > 0) {
+                /*if (Session.Events.length > 0) {
                     lapstored.Events.add(Session.Events);
                     lapstored.save(function(err, res){
                         if (err) {
@@ -768,7 +768,7 @@ module.exports = function enableServer(sails) {
                         }
                     });
 
-                }
+                }*/
 
                 console.log('Lap ' + lapstored.CurrentLap + ' by: ' + player.driver.name);
             }
