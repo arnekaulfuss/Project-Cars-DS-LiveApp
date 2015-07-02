@@ -1,0 +1,69 @@
+.panel {
+  .panel-heading {
+    text-align: center;
+    a{
+      color: #f9f9f9;
+
+      &:hover {
+        color:#fff;
+        text-decoration: none;
+      }
+    }
+  }
+  .panel-footer {
+    background-color: transparent;
+    border-top: 1px #d5d5d5 dashed;
+  }
+}
+.panel-default {
+  .panel-heading {
+    a {
+      color: @primary_color;
+      &:hover {
+        color: @primary_color;
+      }
+    }
+  }
+}
+.panel-danger {
+  .panel-heading {
+    h4 {
+      color: @grey_light;
+    }
+  }
+}
+
+.panel-warning {
+  .panel-heading {
+    h4 {
+      color: @grey_light;
+    }
+  }
+}
+
+.panel-primary {
+  .panel-heading {
+    h4 {
+      color: @grey_light;
+    }
+  }
+}
+
+
+.panel-info {
+  .panel-heading {
+    h4 {
+      color: @grey_light;
+    }
+  }
+}
+
+.panel-default {
+  .panel-heading {
+    background-color: transparent;
+    border-bottom: @panel_border_size @panel_border_type @panel_border_color;
+    h4 {
+      color: @primary_color;
+    }
+  }
+}

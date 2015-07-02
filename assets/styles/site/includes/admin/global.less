@@ -1,0 +1,48 @@
+#admin-content {
+  margin-top: 75px;
+  h1, .h1 {
+    font-size: 34px;
+  }
+  #admin-sidebar {
+    padding: 0;
+    text-align: center;
+    #admin-menu_container{
+      display: inline-block;
+    }
+    ul {
+      li {
+        &:first-child {
+          border-top: 0;
+        }
+        &:last-child {
+          border-bottom: 0;
+          line-height: 49px;
+          &:hover{
+            background-color: transparent;
+          }
+        }
+        &:hover {
+          background-color: @primary_color;
+        }
+        border-right: 0;
+        border-left: 0;
+
+        a {
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #444444;
+          font-size: 16px;
+          width: 100%;
+          display: block;
+          text-align: center;
+          &:hover {
+            background-color: @primary_color;
+            color: #fff;
+          }
+        }
+
+      }
+    }
+  }
+
+}

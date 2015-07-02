@@ -1,0 +1,48 @@
+{
+  "name": "project-cars-ds-webapp",
+  "private": false,
+  "version": "0.0.5",
+  "description": "A web app to listen Project-Cars Dedicated Server, and store all data from it. There are some statistique, livetiming, all laps, events, and more to come.",
+  "keywords": ["Project-cars", "Pcars", "Pcars Dedicated Server", "Sails Js"],
+  "dependencies": {
+    "async": "^1.0.0",
+    "bcrypt-nodejs": "0.0.3",
+    "ejs": "~0.8.4",
+    "fs-extra": "^0.18.4",
+    "grunt": "0.4.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.10.1",
+    "grunt-contrib-concat": "gi~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-jst": "~0.6.0",
+    "grunt-contrib-less": "0.11.1",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-sails-linker": "~0.9.5",
+    "grunt-sync": "~0.0.4",
+    "include-all": "~0.1.3",
+    "mustache": "^2.0.0",
+    "rc": "~0.5.0",
+    "render-mustache": "sailjs/render-mustache",
+    "request-json": "^0.5.3",
+    "sails": "~0.11.0",
+    "sails-disk": "~0.10.0",
+    "sails-memory": "^0.10.4",
+    "sails-mongo": "^0.11.2",
+    "sails-mysql": "~0.10.2",
+    "sails-postgresql": "^0.10.15",
+    "skipper-disk": "^0.5.4"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node app.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JcPires/Project-Cars-DS-LiveApp"
+  },
+  "author": "jc pires <djyss@live.fr>",
+  "license": "MIT"
+}

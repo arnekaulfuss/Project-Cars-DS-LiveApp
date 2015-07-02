@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Drivers</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Laps</th>
+                        <th>Results</th>
+                        <th>Incidents</th>
+                        <th>Last connection</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for(i in drivers) { %>
+                    <tr>
+                        <td><%- drivers[i].name %></td>
+                        <td><%- drivers[i].laps.length %></td>
+                        <td><%- drivers[i].Results.length %></td>
+                        <td><%- drivers[i].incidents.length %></td>
+                        <td class="global--time"><%- drivers[i].updatedAt %></td>
+                        <td>
+                            <a class="btn btn-danger pull-right" href="/admin/driver/edit/<%- drivers[i].id %>"><i class="fa fa-pencil"></i> </a>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

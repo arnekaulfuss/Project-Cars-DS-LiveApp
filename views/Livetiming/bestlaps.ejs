@@ -1,0 +1,143 @@
+<div class="container-fluid" id="bestlaps_wrapper">
+    <div class="row">
+        <h1>Show Bestlaps</h1>
+        <div class="col-md-12" id="track_target">
+            <div class="panel panel-primary" id="track_infos">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <img src="{{ thumb }}" alt="track-image" width="250" height="200"/>
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td>Location</td>
+                                <td>{{ location }}</td>
+                            </tr>
+                            <tr>
+                                <td>Distance</td>
+                                <td>{{ distance }} m</td>
+                            </tr>
+                            <tr>
+                                <td>Laps done</td>
+                                <td>{{ laps }}</td>
+                            </tr>
+                            <tr>
+                                <td>Session done</td>
+                                <td>{{ sessions }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" id="bestlaps_form_wrapper">
+                <div class="panel-body">
+                    <form action="/bst" class="form-inline">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <select name="tracks" id="Tracks-form" class="form-control">
+                                    <option> Select a Track</option>
+                                    <% for (var i=0; i < tracks.length; i++) { %>
+                                    <option value="<%= tracks[i].id %>"><%= tracks[i].name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="Group" id="Group-form" class="form-control">
+                                    <option> Select a Group</option>
+                                    <% for (var i=0; i < groups.length; i++) { %>
+                                    <option value="<%= groups[i].id %>"><%= groups[i].name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="Vehicle" id="Cars-form" class="form-control">
+                                    <option> Select a Car</option>
+                                    <% for (var i=0; i < cars.length; i++) { %>
+                                    <option value="<%= cars[i].id %>"><%= cars[i].name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <select name="Drivers" id="Drivers-form" class="form-control">
+                                    <option> Select a Driver</option>
+                                    <% for (var i=0; i < drivers.length; i++) { %>
+                                    <option value="<%= drivers[i].id %>"><%= drivers[i].name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="Event" id="Event-form" class="form-control">
+                                    <option value="all"> Select an Event</option>
+                                    <% for (var i=0; i < events.length; i++) { %>
+                                    <option value="<%= events[i].id %>"><%= events[i].name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="SessionStage" id="SessionStage-form" class="form-control">
+                                    <option> Select a State</option>
+                                    <option value="1"> Practice1 </option>
+                                    <option value="2"> Practice2 </option>
+                                    <option value="3"> Qualify </option>
+                                    <option value="4"> Warmup </option>
+                                    <option value="5"> Race1 </option>
+                                    <option value="6"> Race2 </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top:15px;">
+                                <input type="submit" value="Get bestlaps" class="btn btn-danger pull-right" id="getBst"/>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" id="bestlaps_results">
+            <div class="panel panel-danger" id="bestlaps_results_panel">
+                <div class="panel-heading" id="bestlaps_results_panel-heading">
+                    <h4>Results</h4>
+                </div>
+                <div class="panel-body" id="bestlaps_results_panel-body">
+                    <table class="table table-hover table-bst" id="bestlaps_results_table">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Event</td>
+                            <td>Group</td>
+                            <td>Car</td>
+                            <td>Track</td>
+                            <td>Session</td>
+                            <td>Sector 1</td>
+                            <td>Sector 2</td>
+                            <td>Sector 3</td>
+                            <td>lap time</td>
+                            <td>distance</td>
+                        </tr>
+                        </thead>
+                        <tbody id="bst_target">
+                        <tr  id="bst_row">
+                            <td class="bst-name">{{ owner.name }}</td>
+                            <td class="bst-name">{{ Events.name }}</td>
+                            <td class="bst-car">{{ group.name }}</td>
+                            <td class="bst-car">{{ Car.name }}</td>
+                            <td class="bst-track">{{ Track.name }}</td>
+                            <td class="bst-car">{{ SessionStage }}</td>
+                            <td class="bst-s1">{{ Sector1Time }}</td>
+                            <td class="bst-s2">{{ Sector2Time }}</td>
+                            <td class="bst-s3">{{ Sector3Time }}</td>
+                            <td class="bst-bes">{{ LapTime }}</td>
+                            <td class="bst-bes">{{ DistanceTravelled }}m</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

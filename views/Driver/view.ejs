@@ -1,0 +1,158 @@
+<style>
+    .jumbotron-stats {
+        height:350px;
+        background-image: url(<%- driver.avatar %>);
+        background-attachment:fixed;
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-size:cover;
+    }
+    .jumbotron-stats h1 {
+        line-height: 200px;
+    }
+</style>
+
+<div class="jumbotron jumbotron-stats">
+    <div class="mask"></div>
+    <div class="container content">
+        <h1><%- driver.name %></h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+
+                        <div class="col-md-4">
+                            <% if (driver.avatar) { %>
+                            <img src="<%- driver.avatar %>" alt="driver avatar" width="215" height="215" class="thumbnail" style="display: block; margin: 0 auto; margin-bottom: 25px;"/>
+                            <% } else { %>
+                            <div class="not-uploaded">
+                                No thumbnail uploaded !
+                            </div>
+                            <% } %>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.sessions.length %></span>
+                                        Sessions participated:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.lapsDone.length %></span>
+                                        Laps done:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.incidents.length %></span>
+                                        Incidents caused:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.collided.length %></span>
+                                        Incidents victim:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge global--time"><%- driver.updatedAt %></span>
+                                        Last seen:
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.pole_count %></span>
+                                        Pole:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.first_count %></span>
+                                        First Place:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.second_count %></span>
+                                        Second Place:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.third_count %></span>
+                                        Third place:
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span class="badge"><%- driver.top_10 %></span>
+                                        Top 10:
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12" >
+        <div id="PlayerStat" style="margin-top:50px;"></div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">50 last sessions played</div>
+                <div class="panel-body">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Track</th>
+                            <th>Group</th>
+                            <th>Driver</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (var i in driver.sessions) { %>
+                        <tr>
+                            <td><%- driver.sessions[i].name %></td>
+                            <td class="global--time"> <%- driver.sessions[i].createdAt %></td>
+                            <td><%- driver.sessions[i].Track.name %></td>
+                            <td><%- driver.sessions[i].group.name %></td>
+                            <td><%- driver.sessions[i].Drivers.length %></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">50 last Laps</div>
+                <div class="panel-body">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Session</th>
+                            <th>Car</th>
+                            <th>Time</th>
+                            <th>Count</th>
+                            <th>Session</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (var i in driver.lapsDone) { %>
+                        <tr>
+                            <td class="global--time"><%- driver.lapsDone[i].createdAt %></td>
+                            <td><%- driver.lapsDone[i].session.name %></td>
+                            <td><%- driver.lapsDone[i].Car.name %></td>
+                            <td class="admin_Driver--LapTime"><%- driver.lapsDone[i].LapTime %></td>
+                            <td><%- driver.lapsDone[i].CountThisLapTimes %></td>
+                            <td><%- driver.lapsDone[i].SessionStage %></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

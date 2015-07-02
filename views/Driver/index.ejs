@@ -1,0 +1,43 @@
+<div class="jumbotron jumbotron-drivers">
+    <div class="mask"></div>
+    <div class="container content">
+        <h1>Drivers</h1>
+        <p>Here there are all the drivers that have been connected to the server, and their stats !</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-danger">
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>Laps</th>
+                            <th>Sessions</th>
+                            <th>Incidents</th>
+                            <th>Last connection</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(i in drivers) { %>
+                    <tr>
+                        <td><img src="<%- drivers[i].avatar %>" width="50" height="50" class="img-circle"></td>
+                        <td><%- drivers[i].name %></td>
+                        <td><%- drivers[i].laps.length %></td>
+                        <td><%- drivers[i].sessionsplayed.length %></td>
+                        <td><%- drivers[i].incidents.length %></td>
+                        <td class="global--time"><%- drivers[i].updatedAt %></td>
+                        <td>
+                            <a class="btn btn-danger" href="/driver/<%- drivers[i].id %>">Show</a>
+                        </td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

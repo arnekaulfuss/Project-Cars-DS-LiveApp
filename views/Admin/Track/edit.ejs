@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit <%- track.name %> <a class="btn btn-danger pull-right" href="/admin/tracks"><i class="fa fa-arrow-left"></i> Back to track list</a></h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-danger panel_track_edit">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <form action="/admin/tracks/<%- track.id %>" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" value="<%- track.name %>"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location:</label>
+                                <input type="text" name="location" class="form-control" value="<%- track.location %>"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="distance">Distance:</label>
+                                <input type="number" name="distance" class="form-control" value="<%- track.distance %>"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="thumbnail">Thumbnail:</label>
+                                <input type="file" id="fileInput" name="thumbnail"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit"  id="track_btn_update" class="btn btn-danger btn-block" value="Update"/>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <% if (track.thumb) { %>
+                        <img src="<%- track.thumb %>" alt="track image" class="img-responsive"/>
+                        <% } else { %>
+                        <div class="not-uploaded">
+                            No thumbnail uploaded !
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

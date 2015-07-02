@@ -1,0 +1,236 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Edit: <%- event.name%> <a class="btn btn-danger pull-right" href="/admin/events"><i class="fa fa-arrow-left"></i> Back to events list</a></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="content-text">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <form action="/admin/events/edit" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <!-- <div class="col-md-6"> -->
+                            <input type="hidden" name="id-val" value="<%- event.id %>"/>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label for="name">Name:</label>
+                                        <input type="text" name="name" class="form-control" value="<%- event.name %>"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="dateIngame">Date Ingame</label>
+                                        <input type="date" name="dateIngame" class="form-control datepicker" value="<%- event.dateIngame.toISOString().slice(0, 10).replace('T', ' ') %>"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="timeIngame">Time Ingame</label>
+                                        <input type="time" name="timeIngame" class="form-control timepicker" value="<%- event.dateIngame.toTimeString().slice(0, 8)%>"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label for="RaceLength">Practice Length:</label>
+                                        <input type="number" name="PracticeLength" class="form-control"  value="<%- event.PracticeLength %>"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="RaceLength">Qualify Length:</label>
+                                        <input type="number" name="QualifyLength" class="form-control"  value="<%- event.QualifyLength %>"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="RaceLength">Race Length:</label>
+                                        <input type="number" name="RaceLength" class="form-control"  value="<%- event.RaceLength %>"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--
+                            <div class="form-group">
+                                <label for="Flags">Flags:</label>
+                                <select name="Flags" class="form-control" multiple="true">
+                                    <option value="1">AI Allowed</option>
+                                    <option value="2">Force identical vehicles</option>
+                                    <option value="4">Force identical setup</option>
+                                    <option value="8">Allow custom setup</option>
+                                    <option value="16">Force realistic driving aids</option>
+                                    <option value="32">ABS Allowed</option>
+                                    <option value="64">SC Allowed</option>
+                                    <option value="128">TC Allowed</option>
+                                    <option value="256">Force manual</option>
+                                    <option value="512">Rolling starts</option>
+                                    <option value="512">Rolling starts</option>
+                                    <option value="1024">Force same vehicle group</option>
+                                    <option value="2048">Force same track</option>
+                                    <option value="4096">Force track style</option>
+                                    <option value="8192">Force handling style</option>
+                                    <option value="16384">Force lobby name</option>
+                                    <option value="32768">Force game mode</option>
+                                    <option value="65536">Force game length desc.</option>
+                                    <option value="131072">Fill session with AI</option>
+                                    <option value="262144">Mechanical failures</option>
+                                    <option value="524288">Auto start engine</option>
+                                </select>
+                            </div>
+                            -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-3">
+                                        <label for="DamageType">Damage:</label>
+                                        <select name="DamageType" class="form-control">
+                                            <option value="0" <% if(event.DamageType === 0){%> <%- "selected"%> <% } %> > Off</option>
+                                            <option value="1" <% if(event.DamageType === 1){%> <%- "selected"%> <% } %> > Visual Only</option>
+                                            <option value="2" <% if(event.DamageType === 2){%> <%- "selected"%> <% } %> > Performance Impacting</option>
+                                            <option value="3" <% if(event.DamageType === 3){%> <%- "selected"%> <% } %> > Full</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="TireWearType">Tire Wear:</label>
+                                        <select name="TireWearType" class="form-control">
+                                            <option value="6" <% if(event.TireWearType === 6){%> <%- "selected"%> <% } %> >Standard</option>
+                                            <option value="7" <% if(event.TireWearType === 7){%> <%- "selected"%> <% } %> >Slow</option>
+                                            <option value="8" <% if(event.TireWearType === 8){%> <%- "selected"%> <% } %> >Off</option>
+                                            <option value="5" <% if(event.TireWearType === 5){%> <%- "selected"%> <% } %> >x2</option>
+                                            <option value="4" <% if(event.TireWearType === 4){%> <%- "selected"%> <% } %> >x3</option>
+                                            <option value="3" <% if(event.TireWearType === 3){%> <%- "selected"%> <% } %> >x4</option>
+                                            <option value="2" <% if(event.TireWearType === 2){%> <%- "selected"%> <% } %> >x5</option>
+                                            <option value="1" <% if(event.TireWearType === 1){%> <%- "selected"%> <% } %> >X6</option>
+                                            <option value="0" <% if(event.TireWearType === 0){%> <%- "selected"%> <% } %> >x7</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="FuelUsageType">Fuel Usage:</label>
+                                        <select name="FuelUsageType" class="form-control">
+                                            <option value="0" <% if(event.FuelUsageType === 0){%> <%- "selected"%> <% } %> >Standard</option>
+                                            <option value="1" <% if(event.FuelUsageType === 1){%> <%- "selected"%> <% } %> >Slow</option>
+                                            <option value="2" <% if(event.FuelUsageType === 2){%> <%- "selected"%> <% } %> >Off</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="PenaltiesType">Penalties:</label>
+                                        <select name="PenaltiesType" class="form-control">
+                                            <option value="0" <% if(event.PenaltiesType === 0){%> <%- "selected"%> <% } %> >None</option>
+                                            <option value="1" <% if(event.PenaltiesType === 1){%> <%- "selected"%> <% } %> >Full</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label for="AllowedViews">Allowed Views:</label>
+                                        <select name="AllowedViews" class="form-control">
+                                            <option value="0" <% if(event.AllowedViews === 0){%> <%- "selected"%> <% } %> >Any</option>
+                                            <option value="1" <% if(event.AllowedViews === 1){%> <%- "selected"%> <% } %> >All</option>
+                                            <option value="2" <% if(event.AllowedViews === 2){%> <%- "selected"%> <% } %> >Cockpit + Helmet</option>
+                                            <option value="3" <% if(event.AllowedViews === 3){%> <%- "selected"%> <% } %> >Cockpit</option>
+                                            <option value="4" <% if(event.AllowedViews === 4){%> <%- "selected"%> <% } %> >Helmet</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="DateProgression">Date Progression:</label>
+                                        <input type="number" name="DateProgression" class="form-control" value="<%- event.DateProgression %>"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="ForecastProgression">Forecast Progression:</label>
+                                        <input type="number" name="ForecastProgression" class="form-control" value="<%- event.ForecastProgression %>"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-3">
+                                        <label for="WeatherSlot1">Weather Slot1:</label>
+                                        <select name="WeatherSlot1" class="form-control">
+                                            <option value="0" <% if(event.WeatherSlot1 === 0){%> <%- "selected"%> <% } %> > Select a weather</option>
+                                            <option value="-934211870" <% if(event.WeatherSlot1 === -934211870){%> <%- "selected"%> <% } %> >Sunny</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="WeatherSlot2">Weather Slot2:</label>
+                                        <select name="WeatherSlot2" class="form-control">
+                                            <option value="0" <% if(event.WeatherSlot2 === 0){%> <%- "selected"%> <% } %> > Select a weather</option>
+                                            <option value="-934211870" <% if(event.WeatherSlot2 === -934211870){%> <%- "selected"%> <% } %> >Sunny</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="WeatherSlot3">Weather Slot3:</label>
+                                        <select name="WeatherSlot3" class="form-control">
+                                            <option value="0" <% if(event.WeatherSlot3 === 0){%> <%- "selected"%> <% } %> > Select a weather</option>
+                                            <option value="-934211870" <% if(event.WeatherSlot3 === -934211870){%> <%- "selected"%> <% } %> >Sunny</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="WeatherSlot4">Weather Slot4:</label>
+                                        <select name="WeatherSlot4" class="form-control">
+                                            <option value="0" <% if(event.WeatherSlot4 === 0){%> <%- "selected"%> <% } %> > Select a weather</option>
+                                            <option value="-934211870" <% if(event.WeatherSlot4 === -934211870){%> <%- "selected"%> <% } %> >Sunny</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="start">start:</label>
+                                        <input type="date" name="start" class="form-control datepicker" value="<%- event.start.toISOString().slice(0, 10).replace('T', ' ') %>"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="end">end:</label>
+                                        <input type="date" name="end" class="form-control datepicker" value="<%- event.end.toISOString().slice(0, 10).replace('T', ' ') %>"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label for="track">track:</label>
+                                        <select name="track" id="track-form" class="form-control">
+                                            <option value="0"> Select a track</option>
+                                            <% for (var i=0; i<tracks.length; i++) { %>
+                                            <option value="<%= tracks[i].id %>" <% if(event.track === tracks[i].id){%> <%- "selected"%> <% } %> ><%= tracks[i].name %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="group">group:</label>
+                                        <select name="group" id="group-form" class="form-control">
+                                            <option value="0"> Select a group</option>
+                                            <% for (var i=0; i<groups.length; i++) { %>
+                                            <option value="<%= groups[i].id %>" <% if(event.group === groups[i].id){%> <%- "selected"%> <% } %> ><%= groups[i].name %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="car">Car:</label>
+                                        <select name="car" id="car-form" class="form-control">
+                                            <option value="0"> Select a car</option>
+                                            <% for (var i=0; i<cars.length; i++) { %>
+                                            <option value="<%= cars[i].id %>" <% if(event.car === cars[i].id){%> <%- "selected"%> <% } %> ><%= cars[i].name %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="content"><%- event.content%></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="file" id="fileInput" name="thumbnail"/>
+                                </div>
+                            </div>
+                            <input type="submit" value="Edit" class="btn btn-danger btn-block" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

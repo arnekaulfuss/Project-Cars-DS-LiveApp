@@ -1,0 +1,142 @@
+::selection{
+  color: #FFF;
+  background-color: rgba(203, 23, 30, 0.90);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(203, 23, 30, 0.90);
+}
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+.site {
+  padding-top: 65px;
+  box-sizing: border-box;
+}
+
+.navbar-header {
+  .navbar-brand {
+    text-transform: uppercase;
+    font-weight: bold; 
+    color: @primary_color;
+    transition: color 0.3s;
+    &:hover {
+      color: #34495E;
+    }
+  }
+}
+
+.jumbotron-home {
+  margin-top:65px;
+  background-image: url(/images/jumbo-car.jpg);
+  position:relative;
+  min-height: 350px;
+  .mask{
+    position: absolute;
+    height:100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(65, 2, 0, 0.45);
+  }
+  .content {
+    position:relative;
+  }
+}
+.jumbotron-drivers {
+  margin-top:65px;
+  background-image: url(/images/jumbo-driver.jpg);
+  position:relative;
+  min-height: 350px;
+  .mask{
+    position: absolute;
+    height:100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 55, 136, 0.45);
+  }
+  .content {
+    position:relative;
+  }
+}
+
+.jumbotron-stats {
+  margin-top:65px;
+  background-image: url(/images/jumbo-stats.jpg);
+  position:relative;
+  min-height: 350px;
+  .mask{
+    position: absolute;
+    height:100%;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 55, 136, 0.45);
+  }
+  .content {
+    position:relative;
+  }
+}
+
+#user-menu_tab {
+  //width: 65px;
+  text-align: center;
+  font-size: 18px;
+  background-color: transparent;
+}
+
+.main-error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  .mask {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(136, 0, 8, 0.85);
+
+    //background-position:right bottom;
+  }
+  .content {
+    vertical-align: middle;
+    position: relative;
+    h1 {
+      //height: 100%;
+      line-height: 450px;
+      font-size: 250px;
+      color: #fff;
+      margin-top: 150px;
+
+    }
+    h2 {
+      color: #fff;
+    }
+  }
+}
+
+.Main404 {
+  background-image: url(/images/404.jpeg);
+}
+
+.Main500 {
+  background-image: url(/images/500.jpg);
+}
+.Main403 {
+  background-image: url(/images/403.png);
+}

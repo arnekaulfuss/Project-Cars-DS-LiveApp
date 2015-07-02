@@ -1,0 +1,115 @@
+<div class="jumbotron jumbotron-stats">
+    <div class="mask"></div>
+    <div class="container content">
+        <h1><%- event.name %></h1>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-8">
+        <div class="panel panel-danger">
+            <img src="<%- event.thumb %>" alt="event thumbnail" class="img-responsive"/>
+
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="event--infos">
+                        <i class="fa fa-calendar"></i> <b><%- event.start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- event.end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- event.track.name %> </b> <br/>
+                        <i class="fa fa-car"></i> <b><%- event.group.name %></b> - <b><%- event.car.name %></b>
+                    </div>
+                    <%- event.content %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 events--sidebar">
+        <div class="panel panel-danger">
+            <div class="panel-heading">Race Conditions</div>
+            <div class="panel-body event--weather">
+                <table class="table table-condensed ">
+                    <tbody>
+                    <tr>
+                        <td class="infos_weather" data-weather="<%- event.WeatherSlot1 %>"><%- event.WeatherSlot1%></td>
+                        <td class="infos_weather" data-weather="<%- event.WeatherSlot2 %>"><%- event.WeatherSlot2%></td>
+                        <td class="infos_weather" data-weather="<%- event.WeatherSlot3 %>"><%- event.WeatherSlot3%></td>
+                        <td class="infos_weather" data-weather="<%- event.WeatherSlot4 %>"><%- event.WeatherSlot4%></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">Race Length</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.PracticeLength%> min.</span>
+                        Practice Length:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.QualifyLength%> min.</span>
+                        Qualify Length:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.RaceLength%> laps</span>
+                        Race Length:
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">Conditions</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.dateIngame.toISOString().slice(0, 10).replace('T', ' ')  %></span>
+                        Date Ingame
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.DamageType %></span>
+                        Damage Type:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.TireWearType %></span>
+                        Tire wear :
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.FuelUsageType %></span>
+                        Fuel usage:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.PenaltiesType %></span>
+                        Penalties:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.AllowedViews %></span>
+                        Allowed views:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.DateProgression %></span>
+                        Date Progression:
+                    </li>
+                    <li class="list-group-item">
+                        <span class="badge"><%- event.ForecastProgression %></span>
+                        Weather Progression:
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Laps registred
+            </div>
+            <div class="panel-body"></div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Results
+            </div>
+            <div class="panel-body"></div>
+        </div>
+    </div>
+</div>

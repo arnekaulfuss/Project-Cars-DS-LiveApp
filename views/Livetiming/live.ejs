@@ -1,0 +1,248 @@
+<div id="live_page_wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="infos">
+                    <div id="server_infos">
+                        <div id="server_infos_wrapper">
+                            <div class="server_infos_data">
+                                <h4 id="server_infos_data--status">Status: {{ SessionState }} </h4>
+                                <div class="col-md-8">
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default panel-status">
+                                            <div class="panel-body panel-status--body">
+                                                <table class="table panel-status--table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Joinable Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td id="server_infos_data--Name">{{name}}</td>
+                                                        <td id="server_infos_data--Privacy">{{ Privacy }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default panel-combo">
+                                            <div class="panel-body panel-combo--body">
+                                                <table class="table panel-combo--table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Track</th>
+                                                        <th>Car Group</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td id="server_infos_data--Track">{{ Track.name }}</td>
+                                                        <td id="server_infos_data--CarGroup">{{ CarGroup.name }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default panel-conditions">
+                                            <div class="panel-body panel-conditions--body">
+                                                <table class="table panel-conditions--table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Stage</th>
+                                                        <th>Connected</th>
+                                                        <th>Game date</th>
+                                                        <th>Date Progression</th>
+                                                        <th>Forecast Progession</th>
+                                                        <th>Flag rules</th>
+                                                        <th>Penalties rules</th>
+                                                        <th>Damage rules</th>
+                                                        <th>Drivers DNF</th>
+                                                        <th>Drivers DSQ</th>
+                                                        <th>Drivers finished</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td id="server_infos_data--SessionStage">{{ SessionStage }}</td>
+                                                        <td id="server_infos_data--Connected">{{ NumParticipantsValid }} / {{ MaxPlayers }}</td>
+                                                        <td id="server_infos_data--Date">{{ DateYear }}/{{ DateMonth }}/{{ DateDay }} {{ DateHour }}:{{ DateMinute }}</td>
+                                                        <td id="server_infos_data--DayProgression">{{ DateProgression }}x</td>
+                                                        <td id="server_infos_data--ForecastProgression">{{ ForecastProgression }}x</td>
+                                                        <td id="server_infos_data--Flags">{{ Flags }}</td>
+                                                        <td id="server_infos_data--Penalties">{{ PenaltiesType }}</td>
+                                                        <td id="server_infos_data--Damage">{{ DamageType }}</td>
+                                                        <td id="server_infos_data--DNF">{{ NumParticipantsDNF }} / {{ NumParticipantsValid }}</td>
+                                                        <td id="server_infos_data--DSQ">{{ NumParticipantsDisqualified }} / {{ NumParticipantsValid }}</td>
+                                                        <td id="server_infos_data--Finished">{{ NumParticipantsFinished }} / {{ NumParticipantsValid }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default panel-weather">
+                                        <div class="panel-body panel-weather--body">
+                                            <table class="table panel-weather--table">
+                                                <thead class="panel-weather--thead">
+                                                <tr>
+                                                    <th>Slot 1</th>
+                                                    <th>Slot 2</th>
+                                                    <th>Slot 3</th>
+                                                    <th>Slot 4</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="panel-weather--tbody">
+                                                <tr>
+                                                    <td id="server_infos_data--WSlot1">{{{ WeatherSlot1 }}}</td>
+                                                    <td id="server_infos_data--WSlot2">{{{ WeatherSlot2 }}}</td>
+                                                    <td id="server_infos_data--WSlot3">{{{ WeatherSlot3 }}}</td>
+                                                    <td id="server_infos_data--WSLot4">{{{ WeatherSlot4 }}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default panel-length">
+                                        <div class="panel-body panel-length--body">
+                                            <table class="table panel-length--table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Practice 1</th>
+                                                    <th>Practice 2</th>
+                                                    <th>Qualify</th>
+                                                    <th>Warmup</th>
+                                                    <th>Race 1</th>
+                                                    <th>Race 2</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td id="server_infos_data--P1Length">{{ Practice1Length }} min</td>
+                                                    <td id="server_infos_data--P2Length">{{ Practice2Length }} min</td>
+                                                    <td id="server_infos_data--QLength">{{ QualifyLength }} min</td>
+                                                    <td id="server_infos_data--WLength">{{ WarmupLength }} min</td>
+                                                    <td id="server_infos_data--Race1Length">{{ Race1Length }} laps</td>
+                                                    <td id="server_infos_data--Race2Length">{{ Race2Length }} laps</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="server_log_wrapper">
+        <div class="container" >
+            <div class="row"  id="server_log">
+                <div class="col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-history"></i> Live events</h4>
+                        </div>
+                        <div id="live_log_wrapper" class="panel-body">
+                            <div id="live_log" class="col-md-12">
+                                <!--{{#Log}}-->
+                                <div class="col-md-12 live_log_event">
+                                    <div class="col-md-1 live_log_icon">{{{ icon }}}</div>
+                                    <div class="col-md-11 live_log_msg">{{ message }}</div>
+                                </div>
+                                <!--{{/Log}}-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h4><i class="fa fa-users"></i> Connected</h4>
+                        </div>
+                        <div id="live_connected_wrapper"  class="panel-body">
+                            <div id="live_connected" class="col-md-12">
+                                <!--{{#Connected}}-->
+                                <div class="col-md-12 live_connected_row">
+                                    <div class="col-md-8 live_connected_name">{{{ name }}}</div>
+                                    <div class="col-md-4 live_connected_status">{{ attributes.LoadState }}</div>
+                                </div>
+                                <!--{{/Connected}}-->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="server_standings">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-list"></i> Server standing's</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="live_table">
+                            <div id="table-live">
+                                <table class="table table-hover" >
+                                    <thead>
+                                    <tr>
+                                        <td>Pos</td>
+                                        <td>Name</td>
+                                        <td>Car</td>
+                                        <td>Category</td>
+                                        <td>State</td>
+                                        <td>Current Lap</td>
+                                        <td>Sector 1</td>
+                                        <td>Sector 2</td>
+                                        <td>Sector 3</td>
+                                        <td>Last lap</td>
+                                        <td>Bestlap</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!--{{#Players}}-->
+                                    <tr class="live_table_players" id="participant-{{id}}">
+                                        <td class="live_table_players--Pos">{{ attributes.RacePosition }}</td>
+                                        <td class="live_table_players--Name">{{ attributes.Name}}</td>
+                                        <td class="live_table_players--Vehicle">{{ car.name }}</td>
+                                        <td class="live_table_players--Category">{{ car.Group.name }}</td>
+                                        <td class="live_table_players--state">{{  attributes.State }}</td>
+                                        <td class="live_table_players--Current-Lap">{{  attributes.CurrentLap }}</td>
+                                        <td class="live_table_players--Sector-1">{{ attributes.Sector1Time }}</td>
+                                        <td class="live_table_players--Sector-2">{{ attributes.Sector2Time }}</td>
+                                        <td class="live_table_players--Sector-0">{{ attributes.Sector3Time }}</td>
+                                        <td class="live_table_players--Last-lap">{{  attributes.LastLapTime }}</td>
+                                        <td class="live_table_players--Fastest-lap">{{  attributes.FastestLapTime }}</td>
+                                    </tr>
+                                    <!--{{/Players}}-->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        io.socket.on('connect', function(e){
+            io.socket.get('/getLiveData', null, function(data,jwres){
+            });
+        });
+</script>

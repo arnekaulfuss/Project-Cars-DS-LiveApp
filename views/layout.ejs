@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%- sails.config.globals.sitename %></title>
+
+    <!--  
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+        
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+            
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/dependencies/animate.css">
+    <link rel="stylesheet" href="/styles/dependencies/datepicker/classic.css">
+    <link rel="stylesheet" href="/styles/dependencies/datepicker/classic.date.css">
+    <link rel="stylesheet" href="/styles/dependencies/datepicker/classic.time.css">
+    <link rel="stylesheet" href="/styles/dependencies/owl.carousel.css">
+    <link rel="stylesheet" href="/styles/dependencies/trumbowyg.color.css">
+    <link rel="stylesheet" href="/styles/dependencies/trumbowyg.css">
+    <link rel="stylesheet" href="/styles/dependencies/weather-icons/weather-icons.min.css">
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/js/dependencies/sails.io.js"></script>
+
+</head>
+
+<body>
+
+<%- partial ('elements/menu.ejs') %>
+<% if (typeof admin != "undefined") {%>
+<div id="admin-content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12" id="admin-sidebar">
+                <%- partial ('Admin/elements/menu.ejs') %>
+            </div>
+            <div class="col-md-12">
+                <%- body %>
+            </div>
+        </div>
+    </div>
+</div>
+<% } else { %>
+<%- body %>
+<% } %>
+<div class="alert-container"></div>
+
+<% if (typeof admin != "undefined") {%>
+<script>
+
+    //io.socket.on('connect', function(e){
+        io.socket.get('/adminConnect', null, function(data,jwres){
+        });
+    //});
+
+</script>
+<% } %>
+<!--
+    Client-side Templates
+    ========================
+
+    HTML templates are important prerequisites of modern, rich client applications.
+    To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+    that you load these templates client-side.
+
+    By default, your Gruntfile is configured to automatically load and precompile
+    client-side JST templates in your `assets/templates` folder, then
+    include them here automatically (between TEMPLATES and TEMPLATES END).
+
+    To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+    For example, here are a few things you could do:
+
+        + Import templates from other directories
+        + Use a different template engine (handlebars, jade, dust, etc.)
+        + Internationalize your client-side templates using a server-side
+          stringfile before they're served.
+-->
+
+<!--TEMPLATES-->
+
+<!--TEMPLATES END-->
+
+
+<!--
+
+  Client-side Javascript
+  ========================
+
+  You can always bring in JS files manually with `script` tags, or asynchronously
+  on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+  take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+  By default, files in your `assets/js` folder are included here
+  automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+  CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+  and concatenated into a single file.
+
+  To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+  For example, here are a few things you could do:
+
+      + Change the order of your scripts
+      + Import scripts from other directories
+      + Use a different preprocessor, like TypeScript
+
+-->
+
+<!--SCRIPTS-->
+<script src="/js/dependencies/sails.io.js"></script>
+<script src="/js/dependencies/jquery-2.1.4.js"></script>
+<script src="/js/dependencies/datepicker/picker.js"></script>
+<script src="/js/dependencies/trumbowyg/trumbowyg.js"></script>
+<script src="/js/dependencies/bootstrap.min.js"></script>
+<script src="/js/dependencies/datepicker/legacy.js"></script>
+<script src="/js/dependencies/datepicker/picker.date.js"></script>
+<script src="/js/dependencies/datepicker/picker.time.js"></script>
+<script src="/js/dependencies/ie-emulation-modes-warning.js"></script>
+<script src="/js/dependencies/ie10-viewport-bug-workaround.js"></script>
+<script src="/js/dependencies/ie8-responsive-file-warning.js"></script>
+<script src="/js/dependencies/metisMenu/metisMenu.min.js"></script>
+<script src="/js/dependencies/moment.js"></script>
+<script src="/js/dependencies/mustache.min.js"></script>
+<script src="/js/dependencies/owl.carousel.min.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ar.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ca.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/cs.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/da.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/de.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/en.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/es.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/es_ar.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/fa.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/fi.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/fr.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/he.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/hu.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/id.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/it.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ja.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ko.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/nl.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/pl.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/pt.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ro.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/rs.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/rs_latin.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/ru.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/sk.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/tr.js"></script>
+<script src="/js/dependencies/trumbowyg/langs/zh_cn.js"></script>
+<script src="/js/dependencies/velocity.min.js"></script>
+<script src="/js/dependencies/velocity.ui.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/Event.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/bestlap.js"></script>
+<script src="/js/design.js"></script>
+<script src="/js/home.js"></script>
+<script src="/js/livetiming.js"></script>
+<script src="/js/result.js"></script>
+<script src="/js/stats.js"></script>
+<!--SCRIPTS END-->
+
+</html>
