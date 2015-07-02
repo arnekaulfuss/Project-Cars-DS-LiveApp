@@ -757,6 +757,19 @@ module.exports = function enableServer(sails) {
             if (err) {
                 console.log('Lap error:' + err);
             } else {
+                if (Session.Events.length > 0) {
+                    lapstored.Events.add(Session.Events);
+                    lapstored.save(function(err, res){
+                        if (err) {
+                            console.log("Err add Event to lap");
+                            console.log(err);
+                        } else {
+                            console.log("Event added to lap");
+                        }
+                    });
+
+                }
+
                 console.log('Lap ' + lapstored.CurrentLap + ' by: ' + player.driver.name);
             }
 

@@ -19,6 +19,10 @@
                                         <label for="name">Name:</label>
                                         <input type="text" name="name" class="form-control" value="<%- event.name %>"/>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="name">Server name:</label>
+                                        <input type="text" name="servername" class="form-control" value="<%- event.servername %>"/>
+                                    </div>
                                     <div class="col-md-4">
                                         <label for="dateIngame">Date Ingame</label>
                                         <input type="date" name="dateIngame" class="form-control datepicker" value="<%- event.dateIngame.toISOString().slice(0, 10).replace('T', ' ') %>"/>

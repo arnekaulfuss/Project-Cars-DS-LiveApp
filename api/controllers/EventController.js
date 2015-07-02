@@ -48,6 +48,7 @@ module.exports = {
 
                     data = {
                         name: req.param('name'),
+                        servername: req.param('servername'),
                         dateIngame: req.param('dateIngame_submit') + ' ' + req.param('timeIngame_submit') +':00',
                         //Flags: flags,
                         PracticeLength: parseInt(req.param('PracticeLength')),
@@ -168,6 +169,7 @@ module.exports = {
 
                     data = {
                         name:                   req.param('name'),
+                        servername:                   req.param('servername'),
                         dateIngame:             req.param('dateIngame') +' '+ req.param('timeIngame'),
                         //Flags:                  flags,
                         PracticeLength:         req.param('PracticeLength'),
