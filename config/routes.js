@@ -96,16 +96,16 @@ module.exports.routes = {
 
 
     // user routes
-    'get /login': { view: 'user/login' },
+    'get /login': { view: 'User/login' },
     'post /login': 'UserController.login',
 
     //Comment signup routes after create admin account
-    'get /signup': { view: 'user/signup' },
+    'get /signup': { view: 'User/signup' },
     'post /signup': 'UserController.signup',
 
     'get /reset': 'UserController.pass',
     'post /reset': 'UserController.passwordReset',
-    '/welcome': { view: 'user/welcome' },
+    '/welcome': { view: 'User/welcome' },
     '/profile': 'UserController.profile',
 
 
@@ -117,7 +117,7 @@ module.exports.routes = {
 
     // livetiming views routes
     'get /live': {
-        view: 'livetiming/live'
+        view: 'Livetiming/live'
     },
 
     '/bestlaps' : 'LivetimingController.bestlapsView',
