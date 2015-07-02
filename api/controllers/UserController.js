@@ -22,7 +22,7 @@ module.exports = {
 
     },
     pass: function (req, res) {
-        return res.view('user/passwordReset', {
+        return res.view('User/passwordReset', {
             admin:true
         });
     },
@@ -59,7 +59,7 @@ module.exports = {
             if (err) return res.negotiate(err);
 
             if (req.method === "GET") {
-                return res.view('user/profile', {
+                return res.view('User/profile', {
                     user: user,
                     flash: {
                         content:''
@@ -70,7 +70,7 @@ module.exports = {
             if (req.method === "POST") {
                 if (user.driver.length != 0) {
                     Driver.update({user:user.id}, {steam_id: req.param('steam_id')}).exec(function(err, driver) {
-                        return res.view('user/profile', {
+                        return res.view('User/profile', {
                             user: user,
                             flash: {
                                 content:"Driver updated",
@@ -82,7 +82,7 @@ module.exports = {
                 } else {
                     user.driver.add({ steam_id: req.param('steam_id')});
                     user.save(function(err, user) {
-                        return res.view('user/profile', {
+                        return res.view('User/profile', {
                             user: user,
                             flash: {
                                 content:"Driver updated",

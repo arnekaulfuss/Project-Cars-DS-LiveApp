@@ -28,7 +28,7 @@ module.exports = {
                 }
                 callback(null, driver.laps.length*-1);
             }, function(err, newArray){
-                return res.view('pages/homepage',{
+                return res.view('Pages/homepage',{
                     drivers: newArray,
                     events: results.events
                 });

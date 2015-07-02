@@ -21,33 +21,6 @@
 
 module.exports.connections = {
 
-    /***************************************************************************
-     *                                                                          *
-     * Modify these line with your DATABASE infos                               *
-     *                                                                          *
-     ***************************************************************************/
-
-
-    PcarsServer: {
-        module    : 'sails-mysql',
-        host      : 'localhost',
-        port      : 3306,
-        user      : '_USER_',
-        password  : '_PASSWORD_',
-        database  : '_DATABASE_NAME_',
-        // Optional
-        charset   : 'utf8',
-        collation : 'utf8_general_ci'
-    },
-
-    /***************************************************************************
-     *                                                                          *
-     * All other infos are just there if you want to use other adaptater        *
-     * like mongoDb, but you will have to modify /config/models.js to use       *
-     * your new adaptater.                                                      *
-     *                                                                          *
-     ***************************************************************************/
-
   /***************************************************************************
   *                                                                          *
   * Local disk storage for DEVELOPMENT ONLY                                  *
@@ -76,7 +49,17 @@ module.exports.connections = {
   },
 
 
-
+    MysqlServer: {
+        module    : 'sails-mysql',
+        host      : 'locationvps',
+        port      : 3306,
+        user      : 'root',
+        password  : 'Ph0eNiXmdp',
+        database  : 'pcars',
+        // Optional
+        charset   : 'utf8',
+        collation : 'utf8_swedish_ci'
+    },
 
   /***************************************************************************
   *                                                                          *
