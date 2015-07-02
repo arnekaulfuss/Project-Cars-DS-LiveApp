@@ -73,7 +73,7 @@ For this first release, all account have acces to admin panel.
 *On near future, admin acces will be granted with role rules.*
 
 - Lift the server again, and click to the arrow down on the top menu and click on admin.
-
+- Go to the admin panel -> Server -> and update tracks / group / car step by step.
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
