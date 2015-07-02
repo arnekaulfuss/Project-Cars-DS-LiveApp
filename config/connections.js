@@ -51,11 +51,11 @@ module.exports.connections = {
 
     MysqlServer: {
         module    : 'sails-mysql',
-        host      : 'locationvps',
+        host      : '_HOST_',
         port      : 3306,
-        user      : 'root',
-        password  : 'Ph0eNiXmdp',
-        database  : 'pcars',
+        user      : '_USERNAME_',
+        password  : '_PASSWORD_',
+        database  : '_DATABASE_NAME_',
         // Optional
         charset   : 'utf8',
         collation : 'utf8_swedish_ci'
