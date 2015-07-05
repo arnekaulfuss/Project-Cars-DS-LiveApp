@@ -3,10 +3,17 @@
   "private": false,
   "version": "0.0.5",
   "description": "A web app to listen Project-Cars Dedicated Server, and store all data from it. There are some statistique, livetiming, all laps, events, and more to come.",
-  "keywords": ["Project-cars", "Pcars", "Pcars Dedicated Server", "Sails Js"],
+  "keywords": [
+    "Project-cars",
+    "Pcars",
+    "Pcars Dedicated Server",
+    "Sails Js"
+  ],
   "dependencies": {
     "async": "^1.0.0",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.9.32",
+    "connect-redis": "^1.4.5",
     "ejs": "~0.8.4",
     "fs-extra": "^0.18.4",
     "grunt": "0.4.2",
