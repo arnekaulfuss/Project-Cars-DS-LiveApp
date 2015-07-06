@@ -61,8 +61,8 @@ module.exports.globals = {
 
 	// models: true
 
-    sitename: "Eracing.fr",
-    siteUrl: "http://Eracing.fr",
+    sitename: "Your sitename",
+    siteUrl: "http://Your-domaine.com",
     siteLogo50x: "/images/logo/logo50x50.png",
     DsApiUrl : {
         protocol: 'http://',
