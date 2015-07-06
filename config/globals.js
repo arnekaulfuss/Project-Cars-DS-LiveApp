@@ -61,8 +61,9 @@ module.exports.globals = {
 
 	// models: true
 
-    sitename: "Eracing.fr",
-    siteUrl: "http://Eracing.fr",
-    siteLogo50x: "/images/logo/logo50x50.png"
+  sitename: "Project Cars Live App",
+  copyright: "Reddit Racing",
+  siteUrl: "/",
+  siteLogo50x: "/images/logo/logo50x50.png"
 
 };
