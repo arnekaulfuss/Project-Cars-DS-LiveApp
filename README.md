@@ -7,7 +7,7 @@
 
 - Install [NodeJs](https://nodejs.org/)	
 
-> !!! Be sure you have acces to npm command line !!!
+> !!! Be sure you have access to npm command line !!!
 
 `npm -v`
 
@@ -21,8 +21,7 @@ will return the npm version
  
 After you have "cloned / unzip the package" to your dedicated server or your local machine, run:
 
-`cd /folder/you/had/copy/the/project
-npm update`
+`cd /folder/you/had/copy/the/project & npm update`
 
 Node will install all dependencies
 
