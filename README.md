@@ -31,6 +31,11 @@ Create a database, like "pcars" and be sure your mysql user have all grant acces
 
 Edit the file in: /config/connection.js with your database-infos into 'Mysql' object or if you want to use an other adaptater like mongoDB, don't forget to change the adaptater used into /config/models.js and /config/env/production.js
 
+
+> !!! IMPORTANT SECURITY  REPLACEMENT !!!
+
+Edit the file in /config/session.js, and change the secret security key
+
 ## Usage
 
 ### Launch the server
@@ -100,4 +105,4 @@ The events were created, so that when the session that matches the specification
 You will find in the Assets folder all Js/Css/Fonts/Less/Images used and all pages files are into /views. Your are allow to do all you want.
 
 
-PS: The app is still in beta, if you found a bug, report them here or in "link to come"
+PS: The app is still in beta, if you found a bug, report them here or in [Project-cars forum thread](http://forum.projectcarsgame.com/showthread.php?33757-Project-Cars-Dedicated-Server-Live-App)
