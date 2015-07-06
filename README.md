@@ -69,15 +69,17 @@ You can configure by environment some server infos like:
 	`//'get /signup': { view: 'user/signup' },
     //'post /signup': 'UserController.signup',
 	`
-For this first release, all account have acces to admin panel. 
+For this first release, all account have acces to admin panel http://yourdomain.com:port_specified_in_environment/login.
 *On near future, admin access will be granted with role rules.*
 
 - Lift the server again, and click to the arrow down on the top menu and click on admin.
-- Go to the admin panel -> Server -> and update tracks / group / car step by step.
+- Go to the admin panel -> Server -> and update tracks / group / car step by step. Don't start the listener now!
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
 ### What'is Events?
+
+> NEED TO BE FIX
 
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
