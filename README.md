@@ -4,7 +4,9 @@ This app requires a 64 bit linux environment to run. If you're on OS X or Window
 
 ## Create a VM (Only if not on a 64bit Debian/Ubuntu machine)
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
+
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+
 Create and start the VM
 ```
 cd </my/project/location>
