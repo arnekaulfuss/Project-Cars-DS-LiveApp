@@ -18,6 +18,8 @@ vagrant ssh
 ```
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
+Also, you should open up virtualbox (from your host machine) and increase your VM's memory an cpu allocations to at least 1GB of Ram and 2 CPU cores.
+
 
 ## Set up Ubuntu
 ```
