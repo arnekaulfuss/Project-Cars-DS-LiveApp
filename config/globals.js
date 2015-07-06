@@ -63,6 +63,11 @@ module.exports.globals = {
 
     sitename: "Eracing.fr",
     siteUrl: "http://Eracing.fr",
-    siteLogo50x: "/images/logo/logo50x50.png"
+    siteLogo50x: "/images/logo/logo50x50.png",
+    DsApiUrl : {
+        protocol: 'http://',
+        host: '127.0.0.1',
+        port: '9000'
+    }
 
 };

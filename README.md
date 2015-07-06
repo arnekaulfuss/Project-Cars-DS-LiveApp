@@ -30,7 +30,7 @@ Node will install all dependencies
 
 Create a database, like "pcars" and be sure your mysql user have all grant access to it, when you will lift the app all table will be created.
 
-Edit the file in: /config/connection.js with your database-infos into 'PcarsServer'
+Edit the file in: /config/connection.js with your database-infos into 'Mysql' object or if you want to use an other adaptater like mongoDB, don't forget to change the adaptater used into /config/models.js and /config/env/production.js
 
 ## Usage
 
@@ -70,7 +70,7 @@ You can configure by environment some server infos like:
     //'post /signup': 'UserController.signup',
 	`
 For this first release, all account have acces to admin panel. 
-*On near future, admin acces will be granted with role rules.*
+*On near future, admin access will be granted with role rules.*
 
 - Lift the server again, and click to the arrow down on the top menu and click on admin.
 - Go to the admin panel -> Server -> and update tracks / group / car step by step.
@@ -82,7 +82,7 @@ For this first release, all account have acces to admin panel.
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
 - Go to admin panel, create one, and when you create a session in game be sure you are using the same conditions. the listener match if is identical:
-	-  servername,
+	- servername,
 	- weather conditions *slot1, slot2, slot3, slot4*,
 	- date Ingame,
 	- between start and end date,

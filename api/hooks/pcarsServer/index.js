@@ -1,11 +1,7 @@
 module.exports = function enableServer(sails) {
 
 
-    var LiveConfig = {
-        protocol: 'http://',
-        host: '127.0.0.1',
-        port: '9000'
-    };
+    var LiveConfig = sails.config.globals.DsApiUrl;
 
     //load dependencies
     var http = require('http');
@@ -344,15 +340,18 @@ module.exports = function enableServer(sails) {
                                                                             steam_id: d.member.steamid,
                                                                             name: d.member.name
                                                                         }).exec(function (err, driver) {
-                                                                            driver.sessionsplayed.add(Session);
-                                                                            driver.save(function(err, result){
-                                                                                if (err) {
-                                                                                    console.log("Err upd driver");
-                                                                                    console.log(err);
-                                                                                }
+                                                                            if (d.participant.IsPlayer === 1){
+                                                                                driver.sessionsplayed.add(Session);
+                                                                                driver.save(function(err, result){
+                                                                                    if (err) {
+                                                                                        console.log("Err upd driver");
+                                                                                        console.log(err);
+                                                                                    }
+                                                                                    callback2(null, driver);
+                                                                                });
+                                                                            } else {
                                                                                 callback2(null, driver);
-                                                                            });
-
+                                                                            }
                                                                         });
                                                                 }
                                                             },function (err, results) {
@@ -385,8 +384,9 @@ module.exports = function enableServer(sails) {
 
                                                     if (log.name == "Lap") {
                                                         player = getPlayerByParticipantId(log.participantid, players);
-                                                        console.log(player);
-                                                        SaveLap(player, CurrentLog, Session, SessionStage);
+                                                        if (player.participant.IsPlayer === 1) {
+                                                            SaveLap(player, CurrentLog, Session, SessionStage);
+                                                        }
                                                         pushPlayerNewAttributes(getByParticipantId(log.participantid, Status.response.participants), players);
                                                         pushPlayerLap(CurrentLog, players, SessionStage);
 
