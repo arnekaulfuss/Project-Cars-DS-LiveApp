@@ -36,6 +36,10 @@ Edit the file in: /config/connection.js with your database-infos into 'Mysql' ob
 
 Edit the file in /config/session.js, and change the secret security key
 
+> Clan/team website infos
+
+Edit the file in /config/globals.js and change sitename/siteurl to your infos.
+
 ## Usage
 
 ### Launch the server
