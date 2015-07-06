@@ -32,11 +32,10 @@ vagrant ssh
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
 
-
 ## Set up Ubuntu
 ```
 sudo apt-get update
-sudo apt-get install lib32gcc1 git mysql-server redis-server
+sudo apt-get install lib32gcc1 git mysql-server redis-server -y
 sudo apt-get autoremove -y
 ```
 
