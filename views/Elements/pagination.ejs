@@ -1,0 +1,21 @@
+<div class="text-center">
+    <% if ( pagination.count > 0 ) { %>
+    <nav>
+        <ul class="pagination">
+            <li <% if (pagination.page <= 1) {%> class="disabled" <% } %> >
+            <a href="<%- pagination.href %><%-(parseInt(pagination.page) -1) %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+            </li>
+            <% for (i = 1; i <= pagination.count; i++) {  %>
+            <li <% if (i == parseInt(pagination.page)) { %> class="active" <% } %> ><a href="<%- pagination.href %><%- i %>"><%- i %></a></li>
+            <% } %>
+            <li <% if (pagination.page == pagination.count ) {%> class="disabled" <% } %> >
+            <a href="<%- pagination.href %><%- (parseInt(pagination.page) +1) %>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+    <% } %>
+</div>

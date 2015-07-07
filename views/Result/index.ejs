@@ -8,6 +8,7 @@
                     </div>
                     <div class="panel-body" id="results_results_panel-body">
                         <h4><i class="fa fa-warning"></i> Results's loading file can be long depending on the size.</h4>
+                        <%- partial ('../Elements/pagination.ejs') %>
                         <table class="table table-hover table-res" id="results_table">
                             <thead>
                             <tr>
@@ -36,6 +37,7 @@
                             <% } %>
                             </tbody>
                         </table>
+                        <%- partial ('../Elements/pagination.ejs') %>
                     </div>
                 </div>
             </div>

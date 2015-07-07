@@ -244,11 +244,40 @@ module.exports = {
     },
 
     resultsIndex: function (req, res) {
-        ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, results) {
+        if (req.param('page')) {
+            ServerSession.count(function(err, count){
+                ServerSession.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: 50}).populateAll().exec(function (err, sessions){
+                    return res.view('Result/index',{
+                        sessions: sessions,
+                        pagination: {
+                            page: req.param('page'),
+                            href: '/results/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
+            });
+        } else {
+            ServerSession.count(function(err, count){
+                ServerSession.find().sort("createdAt DESC").limit(50).populateAll().exec(function (err, sessions){
+                    return res.view('Result/index',{
+                        sessions: sessions,
+                        pagination: {
+                            page: 1,
+                            href: '/results/',
+                            count: Math.round((count / 50))
+                        }
+
+                    });
+                });
+            });
+
+        }
+        /*ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, results) {
             return res.view('Result/index',{
                 sessions: results
             });
-        });
+        });*/
     },
 
     resultsView: function (req, res) {

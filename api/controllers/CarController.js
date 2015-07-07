@@ -1,7 +1,7 @@
 /**
- * ServerController
+ * CarController
  *
- * @description :: Server-side logic for managing users
+ * @description :: Server-side logic for managing cars
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
@@ -9,12 +9,35 @@
 module.exports = {
 
     index: function (req, res) {
-        Car.find().sort('name ASC').exec(function(error, records) {
-            return res.view('Admin/Car/index',{
-                admin: true,
-                cars: records
+        if (req.param('page')) {
+            Car.count(function(err, count){
+                Car.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, cars){
+                    return res.view('Admin/Car/index',{
+                        cars: cars,
+                        admin: true,
+                        pagination: {
+                            page: req.param('page'),
+                            href:'/admin/cars/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Car.count(function(err, count){
+                Car.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, cars){
+                    return res.view('Admin/Car/index',{
+                        cars: cars,
+                        admin: true,
+                        pagination: {
+                            page: 1,
+                            href:'/admin/cars/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
+            });
+        }
     },
 
     edit: function (req, res) {

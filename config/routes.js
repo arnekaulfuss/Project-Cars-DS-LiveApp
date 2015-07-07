@@ -21,132 +21,88 @@
  */
 
 module.exports.routes = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
-
     //Base route
     '/': 'PagesController.home',
 
-    // Admin routes
+    /***************************************************************************
+     *                                                                          *
+     * Admin END ROUTES                                                         *
+     *                                                                          *
+     ***************************************************************************/
+
+    // Admin base routes
     '/admin' : 'AdminController.dashboard',
     '/adminConnect': 'AdminController.adminConnect',
 
-
-    // Drivers routes
+    // Admin Drivers routes
     '/admin/drivers': 'DriverController.adminIndex',
-    '/admin/driver/edit/:id': {
-        controller: 'DriverController',
-        action: 'edit',
-        skipAssets: true
-    },
-    '/drivers': {
-        controller: 'DriverController',
-        action: 'index'
-    },
-    '/driver/:id': {
-        controller: 'DriverController',
-        action: 'view'
-    },
-
+    '/admin/drivers/:page': 'DriverController.adminIndex',
+    '/admin/driver/edit/:id': 'DriverController.edit',
     // Cars Admin routes
     '/admin/cars': 'CarController.index',
-    '/admin/cars/:id': {
-        controller: 'CarController',
-        action: 'edit',
-        skipAssets: true
-    },
+    '/admin/cars/:page': 'CarController.index',
+    '/admin/cars/:id': 'CarController.edit',
     // Events Admin routes
     '/admin/events': 'EventController.indexAdmin',
+    '/admin/events/:page': 'EventController.indexAdmin',
     '/admin/events/add': 'EventController.add',
-    '/admin/events/:id': {
-        controller: 'EventController',
-        action: 'edit',
-        skipAssets: true
-    },
-    '/events/:id': {
-        controller: 'EventController',
-        action: 'show',
-        skipAssets: true
-    },
-    '/events': {
-        controller: 'EventController',
-        action: 'index',
-        skipAssets: true
-    },
-
+    '/admin/events/:id': 'EventController.edit',
     // Track Admin routes
     '/admin/tracks': 'TrackController.index',
-    '/admin/tracks/:id': {
-        controller: 'TrackController',
-        action: 'edit',
-        skipAssets: true
-    },
-
-    // Track Admin routes
+    '/admin/tracks/:page': 'TrackController.index',
+    '/admin/track/:id': 'TrackController.edit',
+    // Sessions Admin routes
     '/admin/sessions': 'SessionsController.index',
+    '/admin/sessions/:page': 'SessionsController.index',
     '/admin/sessions/:id': 'SessionsController.delete',
 
+    // Laps Admin routes
+    '/admin/laps': 'LapController.adminIndex',
+    '/admin/laps/:page': 'LapController.adminIndex',
+    '/admin/lap/:id': 'LapController.delete',
 
+    /***************************************************************************
+     *                                                                          *
+     * FRONT END ROUTES                                                         *
+     *                                                                          *
+     ***************************************************************************/
+
+    //Driver front routes
+    '/drivers': 'DriverController.index',
+    '/drivers/:page': 'DriverController.index',
+    '/driver/:id': 'DriverController.view',
+    //Events front routes
+    '/events/:id': 'EventController.show',
+    '/events': 'EventController.index',
+    '/events/:page': 'EventController.index',
     // user routes
     'get /login': { view: 'User/login' },
     'post /login': 'UserController.login',
-
     //Comment signup routes after create admin account
     'get /signup': { view: 'User/signup' },
     'post /signup': 'UserController.signup',
-
     'get /reset': 'UserController.pass',
     'post /reset': 'UserController.passwordReset',
     '/welcome': { view: 'User/welcome' },
     '/profile': 'UserController.profile',
-
-
-
     '/logout': 'UserController.logout',
-
-
-
-
     // livetiming views routes
-    'get /live': {
-        view: 'Livetiming/live'
-    },
+    'get /live': { view: 'Livetiming/live' },
 
     '/bestlaps' : 'LivetimingController.bestlapsView',
     'get /bst': 'LivetimingController.bestlapsQuery',
 
     '/results' : 'LivetimingController.resultsIndex',
+    '/results/:page' : 'LivetimingController.resultsIndex',
     '/result/:id' : 'LivetimingController.resultsView',
     'get /res': 'LivetimingController.resultsQuery',
-
     'get /getLiveData': 'LivetimingController.getLiveData',
     '/stats': 'LivetimingController.stats',
-
-    // livetiming actions routes
+    // Listener actions routes
     '/start': 'ServerController.start',
     '/stop': 'ServerController.stop',
     '/upd': 'ServerController.updateTracksAndCar',
     '/updCars': 'ServerController.updateCars',
     '/admin/server': 'ServerController.admin'
-
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
-
 
 };

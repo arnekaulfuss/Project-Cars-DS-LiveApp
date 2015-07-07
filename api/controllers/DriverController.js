@@ -9,20 +9,65 @@
 module.exports = {
 
     adminIndex: function (req, res) {
-        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
-            return res.view('Admin/Driver/index',{
-                admin: true,
-                drivers: records
+        if (req.param('page')) {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: req.param('page'), limit: 50}).populateAll().exec(function (err, drivers){
+                    return res.view('Admin/Driver/index',{
+                        drivers: drivers,
+                        admin: true,
+                        pagination: {
+                            page: req.param('page'),
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").limit(50).populateAll().exec(function (err, drivers){
+                    return res.view('Admin/Driver/index',{
+                        drivers: drivers,
+                        admin: true,
+                        pagination: {
+                            page: 1,
+                            count: Math.round((count / 50))
+                        }
+
+                    });
+                });
+            });
+        }
     },
 
     index: function (req, res) {
-        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
-            return res.view('Driver/index',{
-                drivers: records
+        if (req.param('page')) {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: req.param('page'), limit: 50}).populateAll().exec(function (err, drivers){
+                    return res.view('Driver/index',{
+                        drivers: drivers,
+                        pagination: {
+                            page: req.param('page'),
+                            href: '/admin/driver/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").limit(50).populateAll().exec(function (err, drivers){
+                    return res.view('Driver/index',{
+                        drivers: drivers,
+                        pagination: {
+                            page: 1,
+                            href: '/admin/driver/',
+                            count: Math.round((count / 50))
+                        }
+
+                    });
+                });
+            });
+        }
     },
 
     edit: function (req, res) {

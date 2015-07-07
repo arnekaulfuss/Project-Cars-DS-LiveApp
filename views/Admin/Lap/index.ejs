@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Sessions</h1>
+            <h1 class="page-header">Laps</h1>
         </div>
     </div>
     <div class="row">
@@ -13,26 +13,26 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>Driver</th>
                             <th>Track</th>
                             <th>Group</th>
-                            <th>Drivers</th>
-                            <th>Laps</th>
+                            <th>Count</th>
+                            <th>LapTime</th>
                             <th>CreatedAt</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <% for (var i in sessions) {%>
+                        <% for (var i in laps) {%>
                         <tr>
-                            <td><%- sessions[i].id %></td>
-                            <td><%- sessions[i].name %></td>
-                            <td><%- sessions[i].Track.name %></td>
-                            <td><%- sessions[i].group.name %></td>
-                            <td><%- sessions[i].Drivers.length %></td>
-                            <td><%- sessions[i].Laps.length %></td>
-                            <td class="global--time"><%- sessions[i].createdAt %></td>
-                            <td><a class="btn btn-danger pull-right" href="/admin/sessions/<%- sessions[i].id %>">Delete</a></td>
+                            <td><%- laps[i].id %></td>
+                            <td><%- laps[i].owner.name %></td>
+                            <td><%- laps[i].Track.name %></td>
+                            <td><%- laps[i].group.name %></td>
+                            <td><% if (laps[i].CountThisLapTimes == 1) { %> <span class="text-success"><%- laps[i].CountThisLapTimes %></span> <% } else { %> <span class="text-danger"><%- laps[i].CountThisLapTimes %></span> <% } %></td>
+                            <td class="ms--time"><%- laps[i].LapTime %></td>
+                            <td class="global--time"><%- laps[i].createdAt %></td>
+                            <td><a class="btn btn-danger pull-right delete--lap" href="/admin/lap/<%- laps[i].id %>">Delete</a></td>
                         </tr>
                         <% } %>
                         </tbody>

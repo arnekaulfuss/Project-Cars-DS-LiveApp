@@ -9,20 +9,65 @@
 module.exports = {
 
     index: function (req, res) {
-        Event.find().sort('name ASC').populateAll().exec(function(error, records) {
-            return res.view('Event/index',{
-                events: records
+        if (req.param('page')) {
+            Event.count(function(err, count){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                    return res.view('Event/index',{
+                        events: events,
+                        pagination: {
+                            page: req.param('page'),
+                            href:'/events/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Event.count(function(err, count){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                    return res.view('Event/index',{
+                        events: events,
+                        pagination: {
+                            page: 1,
+                            href:'/events/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
+            });
+        }
     },
 
     indexAdmin: function (req, res) {
-        Event.find().sort('name ASC').exec(function(error, records) {
-            return res.view('Admin/Event/index',{
-                admin: true,
-                events: records
+        if (req.param('page')) {
+            Event.count(function(err, count){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                    return res.view('Admin/Event/index',{
+                        events: events,
+                        admin: true,
+                        pagination: {
+                            page: req.param('page'),
+                            href:'/events/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Event.count(function(err, count){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                    return res.view('Admin/Event/index',{
+                        events: events,
+                        admin: true,
+                        pagination: {
+                            page: 1,
+                            href:'/events/',
+                            count: Math.round((count / 50))
+                        }
+                    });
+                });
+            });
+        }
     },
 
     edit: function (req, res) {
