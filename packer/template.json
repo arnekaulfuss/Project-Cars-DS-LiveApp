@@ -97,7 +97,8 @@
             "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
             "artifact_type": "vagrant.box",
             "metadata": {
-                "provider": "vmware_desktop"
+                "provider": "vmware_desktop",
+                "version": "1.1.1"
             }
         },
         {
@@ -106,7 +107,8 @@
             "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
             "artifact_type": "vagrant.box",
             "metadata": {
-                "provider": "virtualbox"
+                "provider": "virtualbox",
+                "version": "1.1.1"
             }
         }]
     ]
