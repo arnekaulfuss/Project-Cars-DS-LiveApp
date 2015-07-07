@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "tylerbre/pcars_ds_full"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -52,7 +52,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider "virtualbox" do |vb|
 
-    # Use VBoxManage to customize the VM. For example to change memory:
+    # Use VBoxManage to customize the VM.
+    # using 2GB RAM, and 2 CPU cores
+    # minimum to run this VM is 1.5GB RAM and 1 cpu core
     vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
   end
 
