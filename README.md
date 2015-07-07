@@ -13,18 +13,6 @@ cd </my/project/location>
 vagrant up
 ```
 
-Turn off the VM.
-```
-vagrant halt
-```
-
-Open up virtualbox (from your host machine) and increase your VM's memory an cpu allocations to at least 1GB of Ram and 2 CPU cores.
-
-Start the VM once you've allocated more resources
-```
-vagrant up
-```
-
 Login to the VM
 ```
 vagrant ssh
@@ -35,7 +23,7 @@ It's worth noting that your code is shared from your host (OS X, Windows, etc) a
 ## Set up Ubuntu
 ```
 sudo apt-get update
-sudo apt-get install lib32gcc1 git mysql-server redis-server -y
+sudo apt-get install lib32gcc1 lib32stdc++6 git mysql-server redis-server -y
 sudo apt-get autoremove -y
 ```
 
