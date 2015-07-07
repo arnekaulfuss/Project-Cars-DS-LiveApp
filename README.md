@@ -48,9 +48,8 @@ nvm install stable && nvm alias default stable
 
 ## Install app dependencies
 ```
-cd /vagrant
 npm install -g sails
-./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh
+cd /vagrant
 npm install
 ```
 

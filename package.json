@@ -4,10 +4,10 @@
   "version": "0.0.5",
   "description": "A web app to listen Project-Cars Dedicated Server, and store all data from it. There are some statistique, livetiming, all laps, events, and more to come.",
   "keywords": [
-    "Project-cars",
-    "Pcars",
-    "Pcars Dedicated Server",
-    "Sails Js"
+  "Project-cars",
+  "Pcars",
+  "Pcars Dedicated Server",
+  "Sails Js"
   ],
   "dependencies": {
     "async": "^1.0.0",
@@ -41,16 +41,17 @@
     "sails-mysql": "~0.10.2",
     "sails-postgresql": "^0.10.15",
     "skipper-disk": "^0.5.4"
-  },
-  "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
-  },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JcPires/Project-Cars-DS-LiveApp"
-  },
-  "author": "jc pires <djyss@live.fr>",
-  "license": "MIT"
-}
+    },
+    "scripts": {
+      "debug": "node debug app.js",
+      "start": "node app.js",
+      "install": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh"
+    },
+    "main": "app.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/JcPires/Project-Cars-DS-LiveApp"
+    },
+    "author": "jc pires <djyss@live.fr>",
+    "license": "MIT"
+  }
