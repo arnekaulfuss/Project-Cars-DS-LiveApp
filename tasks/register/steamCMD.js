@@ -1,30 +1,55 @@
 var fs = require('fs');
 var path = require('path');
+var _ = require('lodash');
+
+var pcarsOptions = require('../../config/pcars_ds/server_options.js');
 
 var exists = fs.existsSync;
-var mkdir = fs.mkdirSync;
-var chmod = fs.chmodSync;
-var spawn = require('child_process').spawnSync; 
+var read = fs.readFileSync;
+var write = fs.writeFileSync;
 
 module.exports = function (grunt) {
-  grunt.registerTask('steamCMD', 'Install steamcmd and pcars dedicated server', function () {
-    if (!exists(path.resolve(__dirname, '../../steamcmd/pcars_ds/DedicatedServerCmd'))) {
-      grunt.log.writeln('Going to try to install pcars dedicated server via steamcmd');
-      grunt.log.writeln('Assumes a linux 64bit system with lib32 c compiler');
-      grunt.log.writeln('If you\'re not on linux, be sure to install steamcmd and pcars manually within the "steamcmd" directory in this project');
 
-      var steamDir = path.resolve(__dirname, '../../steamcmd');
-      var scriptsDir = path.resolve(__dirname, '../../scripts');
+  var server_path             = path.resolve(__dirname, '../../steamcmd/pcars_ds/server.cfg');
+  var blacklist_path          = path.resolve(__dirname, '../../steamcmd/pcars_ds/blacklist.cfg');
+  var whitelist_path          = path.resolve(__dirname, '../../steamcmd/pcars_ds/whitelist.cfg');
+  var server_template_path    = path.resolve(__dirname, '../../config/pcars_ds/server.cfg.template');
+  var blacklist_template_path = path.resolve(__dirname, '../../config/pcars_ds/blacklist.cfg.template');
+  var whitelist_template_path = path.resolve(__dirname, '../../config/pcars_ds/whitelist.cfg.template');
 
-      // install steamcmd
-      spawn(scriptsDir + '/install_steamcmd.sh');
-      grunt.log.writeln('Installed steam cmd');
-
-      // install pcars_ds
-      spawn(scriptsDir + '/install_pcars.sh');
-      grunt.log.writeln('Installed project cars dedicated server');
-
-    } 
-    grunt.log.ok('steamcmd and pcars installed.');
+  grunt.registerTask('pcars_ds:is_installed', function () {
+    if (!pcars_is_installed()) return grunt.fail.fatal('Pcars dedi server is not installed. Install with "npm install"');
+    grunt.log.ok('steamcmd and pcars are both installed, continuing.');
   });
+
+  grunt.registerTask('pcars_ds:reapply_cfg', 're-apply\'s the configuration for the dedicated server', function () {
+
+    var server    = _.template(read(server_template_path));
+    var blacklist = read(blacklist_template_path);
+    var whitelist = read(whitelist_template_path);
+
+    write(server_path, server(pcarsOptions));
+    write(blacklist_path, blacklist);
+    write(whitelist_path, whitelist);
+
+    grunt.log.ok('server configs re-applied successfully, continuing.');
+  });
+
+  grunt.registerTask('pcars_ds:start', [
+    'shell:pcars_ds_kill',
+    'pcars_ds:is_installed',
+    'pcars_ds:reapply_cfg',
+    'shell:pcars_ds_start'
+  ]);
+
+
+  /*==========  ...  ==========*/
+
+  function steamcmd_is_installed () {
+    return exists(path.resolve(__dirname, '../../steamcmd/steam.sh'));
+  }
+
+  function pcars_is_installed () {
+    return steamcmd_is_installed() && exists(path.resolve(__dirname, '../../steamcmd/pcars_ds/DedicatedServerCmd'));
+  }
 }

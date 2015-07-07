@@ -1,0 +1,57 @@
+"//" : "You can use dummy entries like this to write comments into the config. 'rem' and '#' are also supported as comment entries."
+
+"//" : "--- Basic server options ---"
+"//" : "- logLevel: logging level of the server. Messages of this severity and more important will be logged. Can be any of debug/info/warning/error."
+"//" : "- eventsLogSize : number of gameplay events stored on the server. Oldest ones will be discarded once the game logs more."
+"//" : "- name: the server's name, this will appear in server browser (when implemented) and will be also the default name of sessions hosted on the server."
+"//" : "- secure: authenticate users with Steam to check VAC ban when set to true."
+"//" : "- password: password required to create sessions on the server as well as to join the sessions, password set in Create options is ignored on DS."
+"//" : "- maxPlayerCount: maximum size of sessions that can be created on this server."
+"//" : "- bindIP: IP address where the server's sockets should be bound. Leave empty for 'all interfaces'."
+"//" : "- steamPost, hostPort, quaryPort: ports used to communicate with Steam and game, they must all be accessible on the public IP of the server."
+"//" : "- sleepWaiting, sleepActive: delay between ticks in milliseconds, when not hosting and when hosting a game, respectively."
+
+logLevel : "info"
+eventsLogSize : 10000
+name : "<%= name %>"
+secure : true
+password : "<%= password %>"
+maxPlayerCount : <%= maxPlayerCount %>
+bindIP : "<%= bindIP %>"
+steamPort : 8766
+hostPort : 27015
+queryPort : 27016
+sleepWaiting : 250
+sleepActive : 10
+
+"//" : "--- Black list ---"
+"//" : "Anyone in this list will not be allowed into the server."
+"//" : "You can use array or map/object. If object, the keys are ignored, but you can used the strings as comments with name or reason for being in the list."
+"//" : "Also instead of listing the ids directly in the config you can list the file names to load those lists from, and combine the two in any order."
+
+blackList : [ "blacklist.cfg" ]
+
+"//" : "--- White list ---"
+"//" : "If this is not empty only whitelisted members will be allowed into the server."
+"//" : "Usually you don't want to have this set at all and use passwords instead, but if you prefer to control server access by whitelisting instead, keep this in and enter the right IDs."
+"//" : "Using the whitelist effectively deactivates the blacklist, as anyone whitelisted will be allowed regardless of the blacklist's contents."
+"//" : "You can use array or map/object. If object, the keys are ignored, but you can used the strings as comments with name or reason for being in the list."
+
+whiteList : [ "whitelist.cfg" ]
+
+"//" : "--- HttpApi configuration ---"
+"//" : "This provides http-based API and basic web-based controls using a built-in http server."
+"//" : "HttpApi is disabled by default, and if you enable it with everything else left to default it will listen only locally on 127.0.0.1:9000"
+"//" : "- enableHttpApi: master enable/disable toggle."
+"//" : "- httpApiLogLevel: similar to logLevel above but only for libwebsockets output. Note that all logging still goes through the main filter, so you won't be able to use more verbose logging here than the main level."
+"//" : "- httpApiInterface: interface name or IP where to bind the local http server providing the API and web-based controls.."
+"//" : "- httpApiPort: port where the local http server listens."
+"//" : "- httpApiExtraHeaders: map with extra HTTP headers to add to HTTP API responses. The keys are the conditions for adding the headers, the values are the headers to add. There are no conditions supported yet."
+
+enableHttpApi : true
+httpApiLogLevel : "info"
+httpApiInterface : "<%= httpApiInterface %>"
+httpApiPort : <%= httpApiPort %>
+httpApiExtraHeaders : {
+    "*" : "Access-Control-Allow-Origin: *"
+}
