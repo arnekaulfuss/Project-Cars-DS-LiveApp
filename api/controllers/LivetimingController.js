@@ -246,26 +246,26 @@ module.exports = {
     resultsIndex: function (req, res) {
         if (req.param('page')) {
             ServerSession.count(function(err, count){
-                ServerSession.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: 50}).populateAll().exec(function (err, sessions){
+                ServerSession.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.results.frontend.limit}).populateAll().exec(function (err, sessions){
                     return res.view('Result/index',{
                         sessions: sessions,
                         pagination: {
                             page: req.param('page'),
                             href: '/results/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.results.frontend.limit))
                         }
                     });
                 });
             });
         } else {
             ServerSession.count(function(err, count){
-                ServerSession.find().sort("createdAt DESC").limit(50).populateAll().exec(function (err, sessions){
+                ServerSession.find().sort("createdAt DESC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.results.frontend.limit}).populateAll().exec(function (err, sessions){
                     return res.view('Result/index',{
                         sessions: sessions,
                         pagination: {
                             page: 1,
                             href: '/results/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.results.frontend.limit))
                         }
 
                     });

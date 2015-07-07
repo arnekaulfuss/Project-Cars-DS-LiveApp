@@ -11,28 +11,28 @@ module.exports = {
     adminIndex : function(req, res) {
         if (req.param('page')) {
             Lap.count(function(err, count){
-                Lap.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: 50}).populateAll().exec(function (err, laps){
+                Lap.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.laps.admin.limit}).populateAll().exec(function (err, laps){
                     return res.view('Admin/Lap/index',{
                         laps: laps,
                         admin: true,
                         pagination: {
                             page: req.param('page'),
                             href: '/admin/laps/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.laps.admin.limit))
                         }
                     });
                 });
             });
         } else {
             Lap.count(function(err, count){
-                Lap.find().sort("createdAt DESC").limit(50).populateAll().exec(function (err, laps){
+                Lap.find().sort("createdAt DESC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.laps.admin.limit}).populateAll().exec(function (err, laps){
                     return res.view('Admin/Lap/index',{
                         laps: laps,
                         admin: true,
                         pagination: {
                             page: 1,
                             href: '/admin/laps/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.laps.admin.limit))
                         }
 
                     });

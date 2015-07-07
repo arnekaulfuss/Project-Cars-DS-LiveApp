@@ -1,7 +1,7 @@
 module.exports = function enableServer(sails) {
 
 
-    var LiveConfig = sails.config.globals.DsApiUrl;
+    var LiveConfig = sails.config.personnalConfig.DsApiUrl;
 
     //load dependencies
     var http = require('http');

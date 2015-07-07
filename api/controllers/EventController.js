@@ -11,26 +11,26 @@ module.exports = {
     index: function (req, res) {
         if (req.param('page')) {
             Event.count(function(err, count){
-                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Event/index',{
                         events: events,
                         pagination: {
                             page: req.param('page'),
                             href:'/events/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.events.frontend.limit))
                         }
                     });
                 });
             });
         } else {
             Event.count(function(err, count){
-                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                Event.find().sort('name ASC').paginate({page: 1, limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Event/index',{
                         events: events,
                         pagination: {
                             page: 1,
                             href:'/events/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.events.frontend.limit))
                         }
                     });
                 });
@@ -41,21 +41,21 @@ module.exports = {
     indexAdmin: function (req, res) {
         if (req.param('page')) {
             Event.count(function(err, count){
-                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Admin/Event/index',{
                         events: events,
                         admin: true,
                         pagination: {
                             page: req.param('page'),
                             href:'/events/',
-                            count: Math.round((count / 50))
+                            count: Math.round((count / sails.config.personnalConfig.pagination.events.frontend.limit))
                         }
                     });
                 });
             });
         } else {
             Event.count(function(err, count){
-                Event.find().sort('name ASC').paginate({page: req.param('page'), limit: 50}).exec(function (err, events){
+                Event.find().sort('name ASC').paginate({page: 1, limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Admin/Event/index',{
                         events: events,
                         admin: true,

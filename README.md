@@ -38,7 +38,7 @@ Edit the file in /config/session.js, and change the secret security key
 
 - Clan/team website infos
 
-Edit the file in /config/globals.js and change sitename/siteurl to your infos.
+Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
 
 ## Usage
 
