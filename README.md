@@ -5,7 +5,7 @@ This app requires a 64 bit linux environment to run. If you're on OS X or Window
 ## Create a VM (Only if not on a 64bit Debian/Ubuntu machine)
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
-[Install Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+[Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
 
 Create and start the VM
 ```
@@ -20,32 +20,11 @@ vagrant ssh
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
 
-## Set up Ubuntu
-```
-sudo apt-get update
-sudo apt-get install lib32gcc1 lib32stdc++6 git mysql-server redis-server -y
-sudo apt-get autoremove -y
-```
-
-## Install node
-```
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
-. ~/.bashrc
-nvm install stable && nvm alias default stable
-```
-
 ## Install app dependencies
 ```
-npm install -g sails
 cd /vagrant
 npm install
 ```
-
-## Prepare the database
-
-Create a database, like "pcars" and be sure your mysql user have all grant access to it, when you will lift the app all table will be created.
-
-Edit the file in: /config/connection.js with your database-infos into 'PcarsServer'
 
 # Usage
 
