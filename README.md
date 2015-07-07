@@ -51,12 +51,16 @@ Edit the file in: /config/connection.js with your database-infos into 'PcarsServ
 
 ## Launch the server
 
-lift the server with the production environment spec.  "No debug - minified file  -  ..."
+Start the server with the devellopement environment spec. "debug  - not minified file - ...""
+```
+sails lift
+```
+
+Start the server with the production environment spec.  "No debug - minified file  -  ..."
 ```
 sails lift --prod
 ```
-lift the server with the devellopement environment spec. "debug  - not minified file - ...""
-```sails lift```
+
 
 You can configure by environment some server infos like:
 1. Port used
