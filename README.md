@@ -55,9 +55,17 @@ The better way to run the app, is like pcars dedicated server, with screen on li
  - Press ctrl­+a  to detach from the screen.
  - Press ctrl+­d to leave the screen
 
-command line: 
-- "sails lift --prod" -> will lift the server with the production environment spec.  " No debug - minified file  -  ...".
-- "sails lift" -> will lift the server with the devellopement environment spec. "debug  - not minified file - ..."
+command line:
+
+lift the server with the production environment spec.  " No debug - minified file  -  ...".
+```
+    sails lift --prod
+```
+
+lift the server with the development environment spec. "debug  - not minified file - ..."
+```
+    sails lift
+```
 
 You can configure by environment some server infos like: 
  1. Port used
