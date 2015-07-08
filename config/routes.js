@@ -53,7 +53,8 @@ module.exports.routes = {
     // Track Admin routes
     '/admin/tracks': 'TrackController.index',
     '/admin/tracks/:page': 'TrackController.index',
-    '/admin/track/:id': 'TrackController.edit',
+    'get /admin/track/:id': 'TrackController.edit',
+    'post /admin/track/:id': 'TrackController.update',
     // Sessions Admin routes
     '/admin/sessions': 'SessionsController.index',
     '/admin/sessions/:page': 'SessionsController.index',
