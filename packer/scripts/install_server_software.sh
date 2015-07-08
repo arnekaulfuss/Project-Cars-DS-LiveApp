@@ -10,6 +10,6 @@ apt-get autoremove -y
 
 ln -s /usr/bin/nodejs /usr/bin/node
 npm install npm -g
-npm install -g sails
+npm install -g sails grunt-cli
 
 echo "create database pcars;" | mysql -u root
