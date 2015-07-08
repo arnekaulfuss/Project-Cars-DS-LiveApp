@@ -40,7 +40,5 @@
         sessions: results.sessions
       });
     });
-  },
-
-
+  }
 };
