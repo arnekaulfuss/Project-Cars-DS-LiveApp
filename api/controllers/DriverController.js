@@ -27,7 +27,7 @@
 
   adminIndex: function (req, res) {
     res.locals.layout = 'Admin/layout';
-    this.index();
+    this.index(req, res);
   },
 
   edit: function (req, res) {
