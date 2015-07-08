@@ -29,8 +29,7 @@ module.exports = {
     },
 
     admin: function(req, res) {
-        return res.view('Admin/server',{
-            layout: 'layout_admin'
-        });
+      res.locals.layout = 'Admin/layout';
+        return res.view('Admin/server', {});
     }
 };

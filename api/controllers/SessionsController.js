@@ -10,12 +10,12 @@
 module.exports = {
 
     index: function(req, res) {
+      res.locals.layout = 'Admin/layout';
         if (req.param('page')) {
             ServerSession.count(function(err, count){
                 ServerSession.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.sessions.admin.limit}).populateAll().exec(function (err, sessions){
                     return res.view('Admin/Session/index',{
                         sessions: sessions,
-                        layout: 'layout_admin',
                         pagination: {
                             page: req.param('page'),
                             href: '/admin/sessions/',
@@ -29,7 +29,6 @@ module.exports = {
                 ServerSession.find().sort("createdAt DESC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.sessions.admin.limit}).populateAll().exec(function (err, sessions){
                     return res.view('Admin/Session/index',{
                         sessions: sessions,
-                        layout: 'layout_admin',
                         pagination: {
                             page: 1,
                             href: '/admin/sessions/',
@@ -44,6 +43,7 @@ module.exports = {
     },
 
     delete: function(req,res) {
+      res.locals.layout = 'Admin/layout';
         if (req.param('id')) {
             async.series({
                 laps: function (callback) {
@@ -63,10 +63,7 @@ module.exports = {
                 }
             },function (err, result) {
                 ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, sessions){
-                    return res.view('Admin/Session/index',{
-                        sessions: sessions,
-                        layout: 'layout_admin'
-                    });
+                    return res.view('Admin/Session/index',{ sessions: sessions });
                 });
             });
         }

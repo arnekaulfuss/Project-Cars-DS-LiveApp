@@ -9,12 +9,12 @@
 module.exports = {
 
     adminIndex: function (req, res) {
+        res.locals.layout = 'Admin/layout';
         if (req.param('page')) {
             Driver.count(function(err, count){
                 Driver.find().sort("name ASC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.drivers.admin.limit}).populateAll().exec(function (err, drivers){
-                    return res.view('Admin/Driver/index',{
+                    return res.view('Admin/Driver/index', {
                         drivers: drivers,
-                        layout: 'layout_admin',
                         pagination: {
                             page: req.param('page'),
                             count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
@@ -27,7 +27,6 @@ module.exports = {
                 Driver.find().sort("name ASC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.drivers.admin.limit}).populateAll().exec(function (err, drivers){
                     return res.view('Admin/Driver/index',{
                         drivers: drivers,
-                        layout: 'layout_admin',
                         pagination: {
                             page: 1,
                             count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
@@ -99,7 +98,6 @@ module.exports = {
                     }
                     Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
                         return res.view('Admin/Driver/index',{
-                            layout: 'layout_admin',
                             drivers: records,
                             msg: 'Driver updated!'
                         });
@@ -127,7 +125,6 @@ module.exports = {
                         }, function(err){
                             record.lapsDone = result.laps;
                             return res.view('Admin/Driver/edit',{
-                                layout: 'layout_admin',
                                 driver: record
                             });
                         });

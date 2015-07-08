@@ -15,8 +15,7 @@ module.exports = {
     },
 
     dashboard: function (req, res) {
-
-
+        res.locals.layout = 'Admin/layout';
         async.series({
             drivers: function (callback) {
                 Driver.find().exec(function(error, found) {
@@ -38,8 +37,7 @@ module.exports = {
             return res.view('Admin/dashboard',{
                 drivers: results.drivers,
                 laps: results.laps,
-                sessions: results.sessions,
-                layout: 'layout_admin'
+                sessions: results.sessions
             });
         });
     },

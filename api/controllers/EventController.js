@@ -39,12 +39,12 @@ module.exports = {
     },
 
     indexAdmin: function (req, res) {
+      res.locals.layout = 'Admin/layout';
         if (req.param('page')) {
             Event.count(function(err, count){
                 Event.find().sort('name ASC').paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Admin/Event/index',{
                         events: events,
-                        layout: 'layout_admin',
                         pagination: {
                             page: req.param('page'),
                             href:'/events/',
@@ -58,7 +58,6 @@ module.exports = {
                 Event.find().sort('name ASC').paginate({page: 1, limit: sails.config.personnalConfig.pagination.events.frontend.limit}).exec(function (err, events){
                     return res.view('Admin/Event/index',{
                         events: events,
-                        layout: 'layout_admin',
                         pagination: {
                             page: 1,
                             href:'/events/',
@@ -71,6 +70,7 @@ module.exports = {
     },
 
     edit: function (req, res) {
+      res.locals.layout = 'Admin/layout';
         if (req.method === "POST") {
             if (req.param('name')){
                 dirname = 'images/events';
@@ -127,13 +127,17 @@ module.exports = {
                             if (err) {
                                 console.log(err);
                                 return res.view('Admin/Event/index', {
-                                    layout: 'layout_admin',
+                                    locals: {
+                                      layout: 'layout_admin'
+                                    },
                                     events: records,
                                     msg: 'There are an error when creating your event!'
                                 });
                             }
                             return res.view('Admin/Event/index', {
-                                layout: 'layout_admin',
+                                locals: {
+                                  layout: 'layout_admin'
+                                },
                                 events: records,
                                 msg: 'Event Updated!'
                             });
@@ -167,7 +171,9 @@ module.exports = {
                 }
             },function (err, results) {
                 return res.view('Admin/Event/edit',{
-                    layout: 'layout_admin',
+                    locals: {
+                      layout: 'layout_admin'
+                    },
                     tracks: results.tracks,
                     cars: results.cars,
                     groups: results.groups,
@@ -248,13 +254,11 @@ module.exports = {
                             if (err) {
                                 console.log(err);
                                 return res.view('Admin/Event/index',{
-                                    layout: 'layout_admin',
                                     events: records,
                                     msg: 'There are an error when creating your event!'
                                 });
                             }
                             return res.view('Admin/Event/index',{
-                                layout: 'layout_admin',
                                 events: records,
                                 msg: 'Event Updated!'
                             });
@@ -265,7 +269,6 @@ module.exports = {
             } else {
                 Event.find().sort('name ASC').exec(function(error, records) {
                     return res.view('Admin/Event/index',{
-                        layout: 'layout_admin',
                         events: records,
                         msg: 'There are an error when creating your event!'
                     });
@@ -290,7 +293,6 @@ module.exports = {
                 }
             },function (err, results) {
                 return res.view('Admin/Event/add',{
-                    layout: 'layout_admin',
                     tracks: results.tracks,
                     cars: results.cars,
                     groups: results.groups

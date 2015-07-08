@@ -44,13 +44,13 @@
   <div id="admin-content" class="content-container">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12" id="admin-sidebar">
-          <%- partial ('Admin/partials/menu.ejs') %>
-        </div>
-        <div class="col-md-12">
-          <%- body %>
+        <div class="container">
+          <div class="col-md-12" id="admin-sidebar">
+            <%- partial ('Admin/partials/menu.ejs') %>
+          </div>
         </div>
       </div>
+      <%- body %>
     </div>
   </div>
 

@@ -14,7 +14,9 @@ module.exports = {
                 Track.find().sort("name ASC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.tracks.admin.limit}).exec(function (err, tracks){
                     return res.view('Admin/Track/index',{
                         tracks: tracks,
-                        layout: 'layout_admin',
+                        locals: {
+                          layout: 'layout_admin'
+                        },
                         pagination: {
                             page: req.param('page'),
                             href: '/admin/tracks/',
@@ -28,7 +30,9 @@ module.exports = {
                 Track.find().sort("name ASC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.tracks.admin.limit}).exec(function (err, tracks){
                     return res.view('Admin/Track/index',{
                         tracks: tracks,
-                        layout: 'layout_admin',
+                        locals: {
+                          layout: 'layout_admin'
+                        },
                         pagination: {
                             page: 1,
                             href: '/admin/tracks/',
@@ -72,9 +76,11 @@ module.exports = {
                     }
                     Track.find().sort('name ASC').exec(function(error, records) {
                         return res.view('Admin/Track/index',{
-                            layout: 'layout_admin',
-                            tracks: records,
-                            msg: 'Track Updated!'
+                          locals: {
+                            layout: 'layout_admin'
+                          },
+                          tracks: records,
+                          msg: 'Track Updated!'
                         });
                     });
 
@@ -85,7 +91,9 @@ module.exports = {
         } else {
             Track.findOne({id: req.param('id')}).exec(function(error, record) {
                 return res.view('Admin/Track/edit',{
-                    layout: 'layout_admin',
+                  locals: {
+                    layout: 'layout_admin'
+                    },
                     track: record
                 });
             });
