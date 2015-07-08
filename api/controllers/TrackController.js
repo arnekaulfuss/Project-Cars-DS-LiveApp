@@ -9,7 +9,7 @@
  module.exports = {
 
   index: function (req, res) {
-    res.local.layout = 'layout_admin';
+    res.locals.layout = 'Admin/layout';
     Track.count(function(err, count){
       Track.find().sort("name ASC").paginate({
         page: req.param('page') || 1,
@@ -29,14 +29,14 @@
   },
 
   edit: function (req, res) {
-    res.local.layout = 'layout_admin';
+    res.locals.layout = 'Admin/layout';
     Track.findOne({id: req.param('id')}).exec(function(error, record) {
       res.view('Admin/Track/edit',{ track: record });
     });
   },
 
   update: function (req, res, next) {
-    res.local.layout = 'layout_admin';
+    res.locals.layout = 'Admin/layout';
     dirname = 'images/tracks';
     fileName = req.param('name').split(' ').join('_');
     reqFile = req.file('thumbnail');
