@@ -14,7 +14,7 @@
         page: req.param('page') || 1,
         limit: sails.config.personnalConfig.pagination.events.frontend.limit
       }).exec(function (err, events){
-        return res.view('Event/index',{
+        res.view('Event/index', {
           events: events,
           pagination: {
             page: req.param('page') || 1,
@@ -28,21 +28,7 @@
 
   indexAdmin: function (req, res) {
     res.locals.layout = 'Admin/layout';
-    Event.count(function (err, count){
-      Event.find().sort('name ASC').paginate({
-        page: req.param('page') || 1,
-        limit: sails.config.personnalConfig.pagination.events.frontend.limit
-      }).exec(function (err, events){
-        return res.view('Admin/Event/index', {
-          events: events,
-          pagination: {
-            page: req.param('page') || 1,
-            href:'/events/',
-            count: Math.round((count / sails.config.personnalConfig.pagination.events.frontend.limit))
-          }
-        });
-      });
-    });
+    this.index(req, res);
   },
 
   edit: function (req, res) {
@@ -204,51 +190,51 @@
         name:                   req.param('name'),
         servername:                   req.param('servername'),
         dateIngame:             req.param('dateIngame') +' '+ req.param('timeIngame'),
-          //Flags:                  flags,
-          PracticeLength:         req.param('PracticeLength'),
-          QualifyLength:          req.param('QualifyLength'),
-          RaceLength:             req.param('RaceLength'),
-          DamageType:             req.param('DamageType'),
-          TireWearType:           req.param('TireWearType'),
-          FuelUsageType:          req.param('FuelUsageType'),
-          PenaltiesType:          req.param('PenaltiesType'),
-          AllowedViews:           req.param('AllowedViews'),
-          DateProgression:        req.param('DateProgression'),
-          ForecastProgression:    req.param('ForecastProgression'),
-          WeatherSlot1:           req.param('WeatherSlot1'),
-          WeatherSlot2:           req.param('WeatherSlot2'),
-          WeatherSlot3:           req.param('WeatherSlot3'),
-          WeatherSlot4:           req.param('WeatherSlot4'),
-          start:                  req.param('start'),
-          end:                    req.param('end'),
-          track:                  req.param('track'),
-          group:                  req.param('group'),
-          car:                    req.param('car')
-        };
+        //Flags:                  flags,
+        PracticeLength:         req.param('PracticeLength'),
+        QualifyLength:          req.param('QualifyLength'),
+        RaceLength:             req.param('RaceLength'),
+        DamageType:             req.param('DamageType'),
+        TireWearType:           req.param('TireWearType'),
+        FuelUsageType:          req.param('FuelUsageType'),
+        PenaltiesType:          req.param('PenaltiesType'),
+        AllowedViews:           req.param('AllowedViews'),
+        DateProgression:        req.param('DateProgression'),
+        ForecastProgression:    req.param('ForecastProgression'),
+        WeatherSlot1:           req.param('WeatherSlot1'),
+        WeatherSlot2:           req.param('WeatherSlot2'),
+        WeatherSlot3:           req.param('WeatherSlot3'),
+        WeatherSlot4:           req.param('WeatherSlot4'),
+        start:                  req.param('start'),
+        end:                    req.param('end'),
+        track:                  req.param('track'),
+        group:                  req.param('group'),
+        car:                    req.param('car')
+      };
 
-        console.log(data);
+      console.log(data);
 
-        // If no files were uploaded, respond with an error.
-        if (uploadedFiles.length > 0) data.thumb = '/'+dirname+'/'+fileName+'.jpg';
+      // If no files were uploaded, respond with an error.
+      if (uploadedFiles.length > 0) data.thumb = '/'+dirname+'/'+fileName+'.jpg';
 
-        //console.log(uploadedFiles);
-        Event.create(data).exec(function(err, track) {
-          Event.find().sort('name ASC').exec(function(error, records) {
-            if (err) {
-              console.log(err);
-              return res.view('Admin/Event/index',{
-                events: records,
-                msg: 'There are an error when creating your event!'
-              });
-            }
-
+      //console.log(uploadedFiles);
+      Event.create(data).exec(function(err, track) {
+        Event.find().sort('name ASC').exec(function(error, records) {
+          if (err) {
+            console.log(err);
             return res.view('Admin/Event/index',{
               events: records,
-              msg: 'Event Updated!'
+              msg: 'There are an error when creating your event!'
             });
+          }
+
+          res.view('Admin/Event/index',{
+            events: records,
+            msg: 'Event Updated!'
           });
         });
       });
+    });
   },
 
   delete: function (req, res) {
