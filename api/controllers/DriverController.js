@@ -47,7 +47,7 @@ module.exports = {
                         drivers: drivers,
                         pagination: {
                             page: req.param('page'),
-                            href: '/driver/',
+                            href: '/drivers/',
                             count: Math.round((count / sails.config.personnalConfig.pagination.drivers.frontend.limit))
                         }
                     });
@@ -60,7 +60,7 @@ module.exports = {
                         drivers: drivers,
                         pagination: {
                             page: 1,
-                            href: '/driver/',
+                            href: '/drivers/',
                             count: Math.round((count / sails.config.personnalConfig.pagination.drivers.frontend.limit))
                         }
 
