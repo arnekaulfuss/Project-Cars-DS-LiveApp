@@ -43,9 +43,11 @@
     "skipper-disk": "^0.5.4"
   },
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js",
-    "install": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh"
+    "debug": "sails debug",
+    "console": "sails console",
+    "start": "sails lift",
+    "install": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh",
+    "pack": "cd packer && packer push -name tylerbre/pcars_ds_full template.json"
   },
   "main": "app.js",
   "repository": {
