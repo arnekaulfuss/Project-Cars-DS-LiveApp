@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Laps</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <%- partial ('../../Elements/pagination.ejs') %>
+                    <table class="table table-hovered table-condensed">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Driver</th>
+                            <th>Track</th>
+                            <th>Group</th>
+                            <th>Count</th>
+                            <th>LapTime</th>
+                            <th>CreatedAt</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for (var i in laps) {%>
+                        <tr>
+                            <td><%- laps[i].id %></td>
+                            <td><%- laps[i].owner.name %></td>
+                            <td><%- laps[i].Track.name %></td>
+                            <td><%- laps[i].group.name %></td>
+                            <td><% if (laps[i].CountThisLapTimes == 1) { %> <span class="text-success"><%- laps[i].CountThisLapTimes %></span> <% } else { %> <span class="text-danger"><%- laps[i].CountThisLapTimes %></span> <% } %></td>
+                            <td class="ms--time"><%- laps[i].LapTime %></td>
+                            <td class="global--time"><%- laps[i].createdAt %></td>
+                            <td><a class="btn btn-danger pull-right delete--lap" href="/admin/lap/<%- laps[i].id %>">Delete</a></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                    <%- partial ('../../Elements/pagination.ejs') %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,27 +20,23 @@
               <i class="fa fa-calendar"></i> <b><%- events[i].start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- events[i].end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- events[i].track.name %> </b> <br/>
               <i class="fa fa-car"></i> <b><%- events[i].group.name %></b> - <b><%- events[i].car.name %></b>
             </div>
-            <p>
-              <%- events[i].content.slice(0, 250) %><% if(events[i].content.length > 250){%>...<%}%>
-            </p>
-          </div>
-          <div class="panel-footer">
-            <a class="btn btn-danger btn-block" href="/events/<%- events[i].id %>">Read More <i class="fa fa-arrow-right"></i></a>
+            <% } %>
+            <%- partial ('../Elements/pagination.ejs') %>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
+      <aside>
+        <div class="col-md-4">
+          Events stats to come!
+        </div>
+      </aside>
     </div>
-    <aside>
-      <div class="col-md-4">
-        Events stats to come!
-      </div>
-    </aside>
-  </div>
-</div> <!-- /container -->
-<script>
-  io.socket.on('connect', function(e){
-    io.socket.get('/getLiveData', {from: 'home'}, function(data,jwres){
+  </div> <!-- /container -->
+  <script>
+    io.socket.on('connect', function(e){
+      io.socket.get('/getLiveData', {from: 'home'}, function(data,jwres){
+      });
     });
-  });
-</script>
+  </script>
+</div>

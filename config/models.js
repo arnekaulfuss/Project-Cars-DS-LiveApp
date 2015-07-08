@@ -17,7 +17,7 @@ module.exports.models = {
      * connections (see `config/connections.js`)                                *
      *                                                                          *
      ***************************************************************************/
-    connection: 'MysqlServer',
+    connection: 'Mysql',
 
     migrate: 'alter',
     autoPK: true,

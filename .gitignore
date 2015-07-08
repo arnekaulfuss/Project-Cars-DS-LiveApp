@@ -45,6 +45,7 @@ steamcmd
 .vagrant
 *.box
 *.sql*
+config/session.js
 
 
 

@@ -6,9 +6,8 @@
   </div>
   <div class="row">
     <div class="panel ">
-
       <div class="panel-body">
-
+        <%- partial ('../../Elements/pagination.ejs') %>
         <table class="table">
           <tbody>
             <% for(i in tracks) { %>
@@ -16,13 +15,15 @@
               <td><img src="<%- tracks[i].thumb %>" alt="" width="35"/></td>
               <td><%- tracks[i].name %></td>
               <td>
-                <a class="btn btn-danger pull-right" href="/admin/tracks/<%- tracks[i].id %>">Edit</a>
+                <a class="btn btn-danger pull-right" href="/admin/track/<%- tracks[i].id %>">Edit</a>
               </td>
             </tr>
             <% } %>
           </tbody>
         </table>
+        <%- partial ('../../Elements/pagination.ejs') %>
       </div>
     </div>
   </div>
+</div>
 </div>

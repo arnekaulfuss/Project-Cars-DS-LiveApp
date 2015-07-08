@@ -62,8 +62,7 @@ module.exports.globals = {
 	// models: true
 
   sitename: "Project Cars Live App",
-  copyright: "Reddit Racing",
+  copyright: "Steve Zissou",
   siteUrl: "/",
   siteLogo50x: "/images/logo/logo50x50.png"
-
 };

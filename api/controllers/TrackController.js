@@ -9,12 +9,37 @@
 module.exports = {
 
     index: function (req, res) {
-        Track.find().sort('name ASC').exec(function(error, records) {
-            return res.view('Admin/Track/index',{
-                admin: true,
-                tracks: records
+        if (req.param('page')) {
+            Track.count(function(err, count){
+                Track.find().sort("name ASC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.tracks.admin.limit}).exec(function (err, tracks){
+                    return res.view('Admin/Track/index',{
+                        tracks: tracks,
+                        admin: true,
+                        pagination: {
+                            page: req.param('page'),
+                            href: '/admin/tracks/',
+                            count: Math.round((count / sails.config.personnalConfig.pagination.tracks.admin.limit))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Track.count(function(err, count){
+                Track.find().sort("name ASC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.tracks.admin.limit}).exec(function (err, tracks){
+                    return res.view('Admin/Track/index',{
+                        tracks: tracks,
+                        admin: true,
+                        pagination: {
+                            page: 1,
+                            href: '/admin/tracks/',
+                            count: Math.round((count / sails.config.personnalConfig.pagination.tracks.admin.limit))
+                        }
+
+                    });
+                });
+            });
+
+        }
     },
 
     edit: function (req, res) {

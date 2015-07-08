@@ -40,6 +40,7 @@
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
+
   Mysql: {
     adapter: 'sails-mysql',
     host: 'localhost',

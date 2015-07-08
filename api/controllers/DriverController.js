@@ -9,20 +9,65 @@
 module.exports = {
 
     adminIndex: function (req, res) {
-        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
-            return res.view('Admin/Driver/index',{
-                admin: true,
-                drivers: records
+        if (req.param('page')) {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.drivers.admin.limit}).populateAll().exec(function (err, drivers){
+                    return res.view('Admin/Driver/index',{
+                        drivers: drivers,
+                        admin: true,
+                        pagination: {
+                            page: req.param('page'),
+                            count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.drivers.admin.limit}).populateAll().exec(function (err, drivers){
+                    return res.view('Admin/Driver/index',{
+                        drivers: drivers,
+                        admin: true,
+                        pagination: {
+                            page: 1,
+                            count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
+                        }
+
+                    });
+                });
+            });
+        }
     },
 
     index: function (req, res) {
-        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
-            return res.view('Driver/index',{
-                drivers: records
+        if (req.param('page')) {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.drivers.frontend.limit}).populateAll().exec(function (err, drivers){
+                    return res.view('Driver/index',{
+                        drivers: drivers,
+                        pagination: {
+                            page: req.param('page'),
+                            href: '/admin/driver/',
+                            count: Math.round((count / sails.config.personnalConfig.pagination.drivers.frontend.limit))
+                        }
+                    });
+                });
             });
-        });
+        } else {
+            Driver.count(function(err, count){
+                Driver.find().sort("name ASC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.drivers.frontend.limit}).populateAll().exec(function (err, drivers){
+                    return res.view('Driver/index',{
+                        drivers: drivers,
+                        pagination: {
+                            page: 1,
+                            href: '/admin/driver/',
+                            count: Math.round((count / sails.config.personnalConfig.pagination.drivers.frontend.limit))
+                        }
+
+                    });
+                });
+            });
+        }
     },
 
     edit: function (req, res) {
