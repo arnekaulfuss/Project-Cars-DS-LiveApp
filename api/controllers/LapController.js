@@ -27,7 +27,7 @@
     });
   },
 
-  delete: function (req, res, next()) {
+  delete: function (req, res, next) {
     if (!req.param('id')) return next();
     Lap.findOne(req.param('id')).exec(function (err, lap){
       if (err) return res.json(500, {msg: "Unable to find the lap in Database", class: 'alert-danger'});
