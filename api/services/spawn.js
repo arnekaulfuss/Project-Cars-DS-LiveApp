@@ -1,12 +1,15 @@
 var spawn = require('child_process').spawn;
 var promise = require('bluebird');
+var append = require('fs').appendFileSync;
+var path = require('path');
 
-module.exports = function (script, args) {
+module.exports = function (script, args, logFile) {
   return new promise(function(resolve, reject) {
     var subProcess = spawn(script, args);
+    var response = '';
+
     console.log('RUNNING SCRIPT %s', script);
     console.log('WITH ARGS', args);
-    var response = '';
 
     subProcess.stdout.on('data', updateResponse);
     subProcess.stderr.on('data', updateResponse);
@@ -27,7 +30,14 @@ module.exports = function (script, args) {
     /*==========  ...  ==========*/
 
     function updateResponse (data) {
-      if (data && data.length) response += data.toString('utf8');
+      var hasData = data && data.length;
+      if (!hasData) return;
+
+      if (logFile) {
+        append(path.resolve(__dirname, '../../log/' + logFile), data);
+      } else {
+        response += data.toString('utf8');
+      }
     }
 
     function convertResponse () {

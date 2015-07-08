@@ -3,6 +3,7 @@ var path = require('path');
 var _ = require('lodash');
 
 var pcarsOptions = require('../../config/pcars_ds/server_options.js');
+var spawn = require('../../api/services/spawn.js');
 
 var exists = fs.existsSync;
 var read = fs.readFileSync;
@@ -35,13 +36,23 @@ module.exports = function (grunt) {
     grunt.log.ok('server configs re-applied successfully, continuing.');
   });
 
+  grunt.registerTask('pcars_ds:run_server', 'starts the pcars dedi server', function () {
+    var logName = 'pcars.log';
+    spawn(path.resolve(__dirname, '../../scripts/start_pcars_ds.sh'), [], logName).catch(function () {
+      grunt.fail.fatal('non-zero exit code from pcars.')
+    });
+
+    grunt.log.ok('dedicated server started. outputting logs to ' + path.resolve(__dirname, '../../log/' + logName));
+  });
+
   grunt.registerTask('pcars_ds:start', [
     'shell:pcars_ds_kill',
     'pcars_ds:is_installed',
     'pcars_ds:reapply_cfg',
-    'shell:pcars_ds_start'
+    'pcars_ds:run_server'
   ]);
 
+  // 'shell:pcars_ds_start'
 
   /*==========  ...  ==========*/
 
