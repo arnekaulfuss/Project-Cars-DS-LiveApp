@@ -13,6 +13,7 @@
     "async": "^1.0.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^2.9.32",
+    "coffee-script": "^1.9.3",
     "connect-redis": "^1.4.5",
     "ejs": "~0.8.4",
     "fs-extra": "^0.18.4",
