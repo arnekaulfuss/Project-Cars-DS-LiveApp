@@ -22,7 +22,6 @@ module.exports = function enableServer(sails) {
     var IncidentDB = null;
     var GroupDB = null;
     var EventDB = null;
-    var Session = null;
     var lastlog = 0;
     var api = {
         status: "api/session/status?attributes&members&participants",
@@ -340,7 +339,7 @@ module.exports = function enableServer(sails) {
                                                                             steam_id: d.member.steamid,
                                                                             name: d.member.name
                                                                         }).exec(function (err, driver) {
-                                                                            if (d.participant.IsPlayer === 1){
+                                                                            if (d.participant.attributes.IsPlayer == 1){
                                                                                 driver.sessionsplayed.add(Session);
                                                                                 driver.save(function(err, result){
                                                                                     if (err) {
@@ -384,19 +383,21 @@ module.exports = function enableServer(sails) {
 
                                                     if (log.name == "Lap") {
                                                         player = getPlayerByParticipantId(log.participantid, players);
-                                                        if (player.participant.IsPlayer === 1) {
-                                                            SaveLap(player, CurrentLog, Session, SessionStage);
+                                                        if (typeof player != "undefined" || player.length > 0 ) {
+                                                            if (player.participant.attributes.IsPlayer === 1) {
+                                                                SaveLap(player, CurrentLog, Session, SessionStage);
+                                                            }
+                                                            pushPlayerNewAttributes(getByParticipantId(log.participantid, Status.response.participants), players);
+                                                            pushPlayerLap(CurrentLog, players, SessionStage);
+
+                                                            filedata = fs.readJsonSync(fileResult, {throws: false});
+                                                            filedata.Drivers = players;
+                                                            fs.outputJsonSync(fileResult, filedata);
+
+                                                            sails.sockets.broadcast('Live', 'NewLap', {Player: getPlayerByParticipantId(log.participantid, players), Lap: log});
+                                                            sails.sockets.broadcast('Live', 'NewLog', {Player: player, Log:log});
+                                                            CurrentLog = null;
                                                         }
-                                                        pushPlayerNewAttributes(getByParticipantId(log.participantid, Status.response.participants), players);
-                                                        pushPlayerLap(CurrentLog, players, SessionStage);
-
-                                                        filedata = fs.readJsonSync(fileResult, {throws: false});
-                                                        filedata.Drivers = players;
-                                                        fs.outputJsonSync(fileResult, filedata);
-
-                                                        sails.sockets.broadcast('Live', 'NewLap', {Player: getPlayerByParticipantId(log.participantid, players), Lap: log});
-                                                        sails.sockets.broadcast('Live', 'NewLog', {Player: player, Log:log});
-                                                        CurrentLog = null;
                                                         callback();
                                                     }
 
