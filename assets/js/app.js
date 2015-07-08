@@ -201,22 +201,22 @@ function setLogHumanReadable(e, datas){
 
     if (e.Log.name === "PlayerDestroyed" || e.Log.name === "PlayerLeft") {
         data.icon = '<i class="fa fa-trash-o"></i>';
-        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": Leave the session";
+        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": Leave the session";
         datas.Log.push(data);
     }
 
     if (e.Log.name === "ParticipantCreated") {
         data.icon = '<i class="fa fa-plug"></i>';
-        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": Join the session";
+        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": Join the session";
         datas.Log.push(data);
     }
 
     if (e.Log.name === "Impact") {
         data.icon = '<i class="fa fa-exclamation-triangle"></i>';
         if (e.Log.attributes.OtherParticipantId === -1) {
-            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+" hit a wall!"
+            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+" hit a wall!"
         } else {
-            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+" caused a collision with"+ e.Player2.driver.name;
+            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+" caused a collision with"+ e.Player2.participant.attributes.Name;
         }
         datas.Log.push(data);
     }
@@ -231,7 +231,7 @@ function setLogHumanReadable(e, datas){
         } else if (e.Log.attributes.NewState === "InPits") {
             data.icon = '<i class="fa fa-cogs"></i>';
         }
-        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": "+e.Log.attributes.NewState;
+        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": "+e.Log.attributes.NewState;
         datas.Log.push(data);
     }
 
@@ -242,9 +242,9 @@ function setLogHumanReadable(e, datas){
             data.icon = '<i class="fa fa-history text-success"></i>';
         }
         if (e.Log.name === "Lap") {
-            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": Lap N° "+ e.Log.attributes.Lap+" => "+e.Log.attributes.LapTime;
+            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": Lap N° "+ e.Log.attributes.Lap+" => "+msToMinsAndSec(e.Log.attributes.LapTime);
         } else if (e.Log.name === "Sector") {
-            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+" Lap N° "+ e.Log.attributes.Lap+"  Sector "+ e.Log.attributes.Sector+" => "+e.Log.attributes.SectorTime;
+            data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+" Lap N° "+ e.Log.attributes.Lap+"  Sector "+ e.Log.attributes.Sector+" => "+msToMinsAndSec(e.Log.attributes.SectorTime);
         }
         datas.Log.push(data);
     }
@@ -263,13 +263,13 @@ function setLogHumanReadable(e, datas){
 
     if (e.Log.name === "CutTrackStart") {
         data.icon = '<i class="fa fa-warning text-danger"></i>';
-        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": Leave the track";
+        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": Leave the track";
         datas.Log.push(data);
     }
 
     if (e.Log.name === "CutTrackEnd") {
         data.icon = '<i class="fa fa-warning text-info"></i>';
-        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.driver.name+": back to the track and lost/gain "+ e.Log.attributes.PlaceGain +"position(s)";
+        data.message = moment.unix(e.Log.time).format('H:mm:ss')+' - ' + e.Player.participant.attributes.Name+": back to the track and lost/gain "+ e.Log.attributes.PlaceGain +"position(s)";
         datas.Log.push(data);
     }
 
