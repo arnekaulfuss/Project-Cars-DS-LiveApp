@@ -3,10 +3,18 @@
   "private": false,
   "version": "0.0.5",
   "description": "A web app to listen Project-Cars Dedicated Server, and store all data from it. There are some statistique, livetiming, all laps, events, and more to come.",
-  "keywords": ["Project-cars", "Pcars", "Pcars Dedicated Server", "Sails Js"],
+  "keywords": [
+    "Project-cars",
+    "Pcars",
+    "Pcars Dedicated Server",
+    "Sails Js"
+  ],
   "dependencies": {
     "async": "^1.0.0",
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^2.9.32",
+    "coffee-script": "^1.9.3",
+    "connect-redis": "^1.4.5",
     "ejs": "~0.8.4",
     "fs-extra": "^0.18.4",
     "grunt": "0.4.2",
@@ -22,6 +30,7 @@
     "grunt-sails-linker": "~0.9.5",
     "grunt-sync": "~0.0.4",
     "include-all": "~0.1.3",
+    "lodash": "^3.10.0",
     "mustache": "^2.0.0",
     "rc": "~0.5.0",
     "render-mustache": "sailjs/render-mustache",
@@ -35,8 +44,11 @@
     "skipper-disk": "^0.5.4"
   },
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
+    "debug": "sails debug",
+    "console": "sails console",
+    "start": "sails lift",
+    "install": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh",
+    "pack": "cd packer && packer push -name tylerbre/pcars_ds_full template.json"
   },
   "main": "app.js",
   "repository": {
@@ -44,5 +56,8 @@
     "url": "https://github.com/JcPires/Project-Cars-DS-LiveApp"
   },
   "author": "jc pires <djyss@live.fr>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-shell-spawn": "^0.3.8"
+  }
 }

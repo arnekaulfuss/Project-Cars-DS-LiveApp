@@ -19,7 +19,7 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html
  */
 
-module.exports.connections = {
+ module.exports.connections = {
 
   /***************************************************************************
   *                                                                          *
@@ -49,17 +49,18 @@ module.exports.connections = {
     database: 'pcars'
   },
 
-    MysqlServer: {
-        module    : 'sails-mysql',
-        host      : '_HOST_',
-        port      : 3306,
-        user      : '_USERNAME_',
-        password  : '_PASSWORD_',
-        database  : '_DATABASE_NAME_',
-        // Optional
-        charset   : 'utf8',
-        collation : 'utf8_swedish_ci'
-    },
+
+  MysqlServer: {
+    module    : 'sails-mysql',
+    host      : 'localhost',
+    port      : 3306,
+    user      : 'root',
+    password  : '',
+    database  : 'pcars',
+    // Optional
+    charset   : 'utf8',
+    collation : 'utf8_swedish_ci'
+  },
 
   /***************************************************************************
   *                                                                          *

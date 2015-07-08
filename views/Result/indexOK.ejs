@@ -1,0 +1,575 @@
+<div class="container" style="margin-top: 65px">
+  <div id="results_wrapper">
+    <div class="row">
+      <div class="col-md-12" id="results" style="margin:25px 0 25px 0 ;">
+        <div class="panel panel-danger" id="results_panel">
+          <div class="panel-heading" id="results_panel-heading">
+            <h4>Results</h4>
+          </div>
+          <div class="panel-body" id="results_results_panel-body">
+            <table class="table table-hover table-res" id="results_table">
+              <thead>
+                <tr>
+                  <td>Date</td>
+                  <td>Name</td>
+                  <td>Event</td>
+                  <td>Group</td>
+                  <td>Track</td>
+                  <td>Drivers</td>
+                  <td>Incidents</td>
+                  <td>Show</td>
+                </tr>
+              </thead>
+              <tbody id="res_target">
+                <% for (var i in sessions) { %>
+                <tr  id="res_row">
+                  <td class="res-date"><% var date = new Date(sessions[i].createdAt) %> <%- date.getFullYear() +'-'+ date.getMonth() +'-'+ date.getDate() + ' ' + date.getHours() + ':' +date.getMinutes()%></td>
+                  <td class="res-name"><%- sessions[i].name %></td>
+                  <td class="res-event"><% if(sessions[i].Events){ var event = "Yes" }else{ var event ='No';} %> <%- event %></td>
+                  <td class="res-group"><%- sessions[i].group.name %></td>
+                  <td class="res-track"><%- sessions[i].Track.name %></td>
+                  <td class="res-drivers"><%- sessions[i].Drivers.length %></td>
+                  <td class="res-incidents"><%- sessions[i].incidents.length %></td>
+                  <td><a href="/res" data-name="<%- sessions[i].name%>" data-id="<%- sessions[i].id %>" data-incidents="<%- sessions[i].incidents.length %>" class="btn btn-danger getResult">Show</a></td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="container-fluid">
+  <div class="results_file_wrapper">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container">
+          <a class="btn btn-danger btn-block" href="/results" id="backToResult" style="margin:25px 0 25px 0 ;"><i class="fa fa-caret-left"></i> Back to list</a>
+        </div>
+      </div>
+      <div class="col-md-12" id="results_file">
+        <div id="results_file-infos">
+          <div id="results_file-infos_body">
+            <div class="col-md-12">
+              <div class="panel panel-default results_panel-infos">
+                <div class="panel-body">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Privacy</th>
+                        <th>Track</th>
+                        <th>Group</th>
+                        <th>Pole man</th>
+                        <th>Winner</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr>
+                        <td id="results_file--privacy">{{ file.Session.Privacy }}</td>
+                        <td>{{ file.Session.Track.name }}</td>
+                        <td>{{ file.Session.group.name }}</td>
+                        <td>{{ file.Results.Qualifying.0.driver.member.name }} </br><span class="results--time text-success">{{ file.Results.Qualifying.0.FastestLapTime }}</span></td>
+                        <td>{{ file.Results.Race1.0.driver.member.name }} </br><span class="results--time text-success">{{ file.Results.Race1.0.FastestLapTime }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-danger results_panel-conditions">
+                <div class="panel-body">
+                  <table class="table table-condensed" >
+                    <thead>
+                      <tr>
+                        <th>Ingame date</th>
+                        <th>Date x</th>
+                        <th>Forecast x</th>
+                        <th>Damage</th>
+                        <th>TyreWear</th>
+                        <th>Fuel</th>
+                        <th>Penalties</th>
+                        <th>Incidents</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr>
+                        <td>{{ file.Session.DateYear }}/{{ file.Session.DateMonth }}/{{ file.Session.DateDay }} {{ file.Session.DateHour }}:{{ file.Session.DateMinute }}</td>
+                        <td>{{ file.Session.DateProgression }}x</td>
+                        <td>{{ file.Session.ForecastProgression }}x</td>
+                        <td id="infos_damage" data-damage="{{ file.Session.DamageType }}"></td>
+                        <td id="infos_tireWear" data-tireWear="{{ file.Session.TireWearType }}"></td>
+                        <td>{{ file.Session.FuelUsageType }}x</td>
+                        <td id="infos_penalties" data-penalties="{{ file.Session.PenaltiesType }}"></td>
+                        <td>{{ Incidents }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-default results_panel-wkLength">
+                <div class="panel-body">
+                  <table class="table table-condensed" >
+                    <thead>
+                      <tr>
+                        <th>P1</th>
+                        <th>P2</th>
+                        <th>Q</th>
+                        <th>W</th>
+                        <th>R1</th>
+                        <th>R2</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr>
+                        <td>{{ file.Session.Practice1Length }} min.</td>
+                        <td>{{ file.Session.Practice2Length }} min.</td>
+                        <td>{{ file.Session.QualifyLength }} min.</td>
+                        <td>{{ file.Session.WarmupLength }} min.</td>
+                        <td>{{ file.Session.Race1Length }} Laps</td>
+                        <td>{{ file.Session.Race2Length }} Laps</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-danger results_panel-weather">
+                <div class="panel-body">
+                  <table class="table table-condensed">
+                    <tbody >
+                      <tr>
+                        <td class="infos_weather" data-weather="{{ file.Session.WeatherSlot1 }}"></td>
+                        <td class="infos_weather" data-weather="{{ file.Session.WeatherSlot1 }}"></td>
+                        <td class="infos_weather" data-weather="{{ file.Session.WeatherSlot1 }}"></td>
+                        <td class="infos_weather" data-weather="{{ file.Session.WeatherSlot1 }}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="results_file_wrapper">
+    <div class="row">
+      <div class="panel panel-default" id="results_file-panel_practice">
+        <div class="panel-heading">Practice</div>
+        <div class="panel-body">
+          <div id="results_file-practice1">
+            <div id="results_file-practice1_body">
+              <div class="panel panel-default">
+                <div class="panel-heading"> Practice 1 <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+                <div class="panel-body">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Pos</th>
+                        <th>Driver</th>
+                        <th>Group</th>
+                        <th>Car</th>
+                        <th>Laps</th>
+                        <th>Incidents</th>
+                        <th>Fastest Lap</th>
+                        <th>Gap to leader</th>
+                        <th>Gap to previous</th>
+                        <th>Show laps</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!--{{#Practice1}}-->
+                      <tr>
+                        <td>{{ RacePosition }}</td>
+                        <td>{{ driver.driver.name }}</td>
+                        <td>{{ car.group.name }}</td>
+                        <td>{{ car.name }}</td>
+                        <td>{{ driver.Laps.Qualifying.length }} </td>
+                        <td>{{ driver.Incidents.Qualifying.length }} </td>
+                        <td class="results--time">{{ FastestLapTime }}</td>
+                        <td class="results--gapToLead" data-stage="Practice1" data-fastest="{{ FastestLapTime }}">Gap to leader</td>
+                        <td class="results--gapToPrev" data-stage="Practice1" data-fastest="{{ FastestLapTime }}" data-pos="{{ RacePosition }}">Gap to previous</td>
+                        <td><a class="btn btn-danger results_file--lapsByDriver_btn" href="#"><i class="fa fa-plus"></i></a></td>
+                      </tr>
+                      <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                        <th>Lap</th>
+                        <th>Count</th>
+                        <th>Distance</th>
+                        <th>Sector1</th>
+                        <th>Sector2</th>
+                        <th>Sector3</th>
+                        <th>Lap Time</th>
+                        <th>Gap to leader</th>
+                        <th>Gap to previous</th>
+                        <!--{{#driver.Laps.Practice1}}-->
+                        <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                          <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                          <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                          <td>{{ attributes.DistanceTravelled }}</td>
+                          <td class="results--time">{{ attributes.Sector1Time }}</td>
+                          <td class="results--time">{{ attributes.Sector2Time }}</td>
+                          <td class="results--time">{{ attributes.Sector3Time }}</td>
+                          <td class="results--time LapTime Practice1" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                          <td class="results_file--gapToFastest">gap1</td>
+                          <td>gap2</td>
+                        </tr>
+                        <!--{{/driver.Laps.Practice1}}-->
+                      </tr>
+                      <!--{{/Practice1}}-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="results_file-practice2">
+            <div id="results_file-practice2_body">
+              <div class="panel panel-default">
+                <div class="panel-heading"> Practice 2 <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+                <div class="panel-body">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Pos</th>
+                        <th>Driver</th>
+                        <th>Group</th>
+                        <th>Car</th>
+                        <th>Laps</th>
+                        <th>Incidents</th>
+                        <th>Fastest Lap</th>
+                        <th>Gap to leader</th>
+                        <th>Gap to previous</th>
+                        <th>Show laps</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!--{{#Practice2}}-->
+                      <tr>
+                        <td>{{ RacePosition }}</td>
+                        <td>{{ driver.driver.name }}</td>
+                        <td>{{ car.group.name }}</td>
+                        <td>{{ car.name }}</td>
+                        <td>{{ driver.Laps.Qualifying.length }} </td>
+                        <td>{{ driver.Incidents.Qualifying.length }} </td>
+                        <td class="results--time">{{ FastestLapTime }}</td>
+                        <td class="results--gapToLead" data-stage="Practice2" data-fastest="{{ FastestLapTime }}">Gap to leader</td>
+                        <td class="results--gapToPrev" data-stage="Practice2" data-fastest="{{ FastestLapTime }}" data-pos="{{ RacePosition }}">Gap to previous</td>
+                        <td><a class="btn btn-danger results_file--lapsByDriver_btn" href="#"><i class="fa fa-plus"></i></a></td>
+                      </tr>
+                      <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                        <th>Lap</th>
+                        <th>Count</th>
+                        <th>Distance</th>
+                        <th>Sector1</th>
+                        <th>Sector2</th>
+                        <th>Sector3</th>
+                        <th>Lap Time</th>>
+                        <th>Gap to leader</th>
+                        <th>Gap to previous</th>
+                        <!--{{#driver.Laps.Practice2}}-->
+                        <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                          <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                          <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                          <td>{{ attributes.DistanceTravelled }}</td>
+                          <td class="results--time">{{ attributes.Sector1Time }}</td>
+                          <td class="results--time">{{ attributes.Sector2Time }}</td>
+                          <td class="results--time">{{ attributes.Sector3Time }}</td>
+                          <td class="results--time LapTime Practice2" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                          <td class="results_file--gapToFastest">gap1</td>
+                          <td>gap2</td>
+                        </tr>
+                        <!--{{/driver.Laps.Practice2}}-->
+                      </tr>
+                      <!--{{/Practice2}}-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results_file-qualif">
+        <div id="results_file-qualif_body">
+          <div class="panel panel-default">
+            <div class="panel-heading">Qualifying <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+            <div class="panel-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Group</th>
+                    <th>Car</th>
+                    <th>Laps</th>
+                    <th>Incidents</th>
+                    <th>Fastest Lap</th>
+                    <th>Gap to leader</th>
+                    <th>Gap to previous</th>
+                    <th>Show laps</th>
+                  </tr>
+                </thead>
+                <!--{{#Qualifying}}-->
+                <tbody class="results_file--tbody">
+                  <tr style="z-index:2">
+                    <td>{{ RacePosition }}</td>
+                    <td>{{ driver.driver.name }}</td>
+                    <td>{{ car.group.name }}</td>
+                    <td>{{ car.name }}</td>
+                    <td>{{ driver.Laps.Qualifying.length }} </td>
+                    <td>{{ driver.Incidents.Qualifying.length }} </td>
+                    <td class="results--time">{{ FastestLapTime }}</td>
+                    <td class="results--gapToLead" data-stage="Qualif" data-fastest="{{ FastestLapTime }}">Gap to leader</td>
+                    <td class="results--gapToPrev" data-stage="Qualif" data-fastest="{{ FastestLapTime }}" data-pos="{{ RacePosition }}">Gap to previous</td>
+                    <td><a class="btn btn-danger results_file--lapsByDriver_btn" data-fastest="{{ FastestLapTime }}" href="#"><i class="fa fa-plus"></i></a></td>
+                  </tr>
+                  <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                    <th>Lap</th>
+                    <th>Count</th>
+                    <th>Distance</th>
+                    <th>Sector1</th>
+                    <th>Sector2</th>
+                    <th>Sector3</th>
+                    <th>Lap Time</th>
+                    <th>Gap to pers. best</th>
+                    <th>Gap to sess. best</th>
+                    <!--{{#driver.Laps.Qualifying}}-->
+                    <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                      <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                      <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                      <td>{{ attributes.DistanceTravelled }}</td>
+                      <td class="results--time">{{ attributes.Sector1Time }}</td>
+                      <td class="results--time">{{ attributes.Sector2Time }}</td>
+                      <td class="results--time">{{ attributes.Sector3Time }}</td>
+                      <td class="results--time LapTime Qualif" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                      <td class="results_file--gapToFastest">gap1</td>
+                      <td class="results_file--gapToBest">gap2</td>
+                    </tr>
+                    <!--{{/driver.Laps.Qualifying}}-->
+                  </tr>
+                </tbody>
+                <!--{{/Qualifying}}-->
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results_file-warmup">
+        <div id="results_file-warmup_body">
+          <div class="panel panel-default">
+            <div class="panel-heading">Warmup <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+            <div class="panel-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Group</th>
+                    <th>Car</th>
+                    <th>Laps</th>
+                    <th>Incidents</th>
+                    <th>Fastest Lap</th>
+                    <th>Gap to leader</th>
+                    <th>Gap to previous</th>
+                    <th>Show laps</th>
+                  </tr>
+                </thead>
+                <!--{{#Warmup}}-->
+                <tbody class="results_file--tbody">
+                  <tr style="z-index:2">
+                    <td>{{ RacePosition }}</td>
+                    <td>{{ driver.driver.name }}</td>
+                    <td>{{ car.group.name }}</td>
+                    <td>{{ car.name }}</td>
+                    <td>{{ driver.Laps.Qualifying.length }} </td>
+                    <td>{{ driver.Incidents.Qualifying.length }} </td>
+                    <td class="results--time">{{ FastestLapTime }}</td>
+                    <td class="results--gapToLead" data-stage="Warmup" data-fastest="{{ FastestLapTime }}">Gap to leader</td>
+                    <td class="results--gapToPrev" data-stage="Warmup" data-fastest="{{ FastestLapTime }}" data-pos="{{ RacePosition }}">Gap to previous</td>
+                    <td><a class="btn btn-danger results_file--lapsByDriver_btn" data-fastest="{{ FastestLapTime }}" href="#"><i class="fa fa-plus"></i></a></td>
+                  </tr>
+                  <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                    <th>Lap</th>
+                    <th>Count</th>
+                    <th>Distance</th>
+                    <th>Sector1</th>
+                    <th>Sector2</th>
+                    <th>Sector3</th>
+                    <th>Lap Time</th>
+                    <th>Gap to pers. best</th>
+                    <th>Gap to sess. best</th>
+                    <!--{{#driver.Laps.Warmup}}-->
+                    <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                      <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                      <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                      <td>{{ attributes.DistanceTravelled }}</td>
+                      <td class="results--time">{{ attributes.Sector1Time }}</td>
+                      <td class="results--time">{{ attributes.Sector2Time }}</td>
+                      <td class="results--time">{{ attributes.Sector3Time }}</td>
+                      <td class="results--time LapTime Warmup" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                      <td class="results_file--gapToFastest">gap1</td>
+                      <td class="results_file--gapToBest">gap2</td>
+                    </tr>
+                    <!--{{/driver.Laps.Warmup}}-->
+                  </tr>
+                </tbody>
+                <!--{{/Warmup}}-->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results_file-race1">
+        <div id="results_file-race1_body">
+          <div class="panel panel-default">
+            <div class="panel-heading">Race 1 <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+            <div class="panel-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Group</th>
+                    <th>Car</th>
+                    <th>Total Time</th>
+                    <th>Fastest Lap</th>
+                    <th>Laps</th>
+                    <th>Incidents</th>
+                    <th>Gap to leader</th>
+                    <th>Gap to previous</th>
+                    <th>Show laps</th>
+                  </tr>
+                </thead>
+                <!--{{#Race1}}-->
+                <tbody>
+
+                  <tr>
+                    <td>{{ RacePosition }}</td>
+                    <td>{{ driver.driver.name }}</td>
+                    <td>{{ car.group.name }}</td>
+                    <td>{{ car.name }}</td>
+                    <td class="results--time">{{ TotalTime }}</td>
+                    <td class="results--time fastest-lap">{{ FastestLapTime }}</td>
+                    <td>{{ driver.Laps.Race1.length }}</td>
+                    <td>{{ driver.Incidents.Race1.length  }}</td>
+                    <td class="results_file--Race_gapToLead" data-stage="Race1" data-totalTime="{{ TotalTime }}" data-pos="{{RacePosition}}">Gap to leader</td>
+                    <td class="results_file--Race_gapToPrev" data-stage="Race1" data-totalTime="{{ TotalTime }}" data-pos="{{RacePosition}}">Gap to previous</td>
+                    <td><a class="btn btn-danger results_file--lapsByDriver_btn" data-fastest="{{ FastestLapTime }}" href="#"><i class="fa fa-plus"></i></a></td>
+                  </tr>
+                  <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                    <th>Lap</th>
+                    <th>Count</th>
+                    <th>Distance</th>
+                    <th>Sector1</th>
+                    <th>Sector2</th>
+                    <th>Sector3</th>
+                    <th>Lap Time</th>
+                    <th>Gap to Winner best</th>
+                    <th>Gap to Pers. best</th>
+                    <!--{{#driver.Laps.Race1}}-->
+                    <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                      <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                      <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                      <td>{{ attributes.DistanceTravelled }}</td>
+                      <td class="results--time">{{ attributes.Sector1Time }}</td>
+                      <td class="results--time">{{ attributes.Sector2Time }}</td>
+                      <td class="results--time">{{ attributes.Sector3Time }}</td>
+                      <td class="results--time LapTime Race1" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                      <td class="results_file--gapToFastest">gap1</td>
+                      <td class="results_file--gapToBest">gap1</td>
+                    </tr>
+                    <!--{{/driver.Laps.Race1}}-->
+                  </tr>
+
+                </tbody>
+                <!--{{/Race1}}-->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="results_file-race2">
+        <div id="results_file-race2_body">
+          <div class="panel panel-default">
+            <div class="panel-heading">Race 2 <span class="pull-right"><a class="results_file--collapser" href="#"><i class="fa fa-plus"></i></a></span></div>
+            <div class="panel-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Group</th>
+                    <th>Car</th>
+                    <th>Total Time</th>
+                    <th>Fastest Lap</th>
+                    <th>Laps</th>
+                    <th>Incidents</th>
+                    <th>Gap to leader</th>
+                    <th>Gap to previous</th>
+                    <th>Show laps</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--{{#Race2}}-->
+                  <tr>
+                    <td>{{ RacePosition }}</td>
+                    <td>{{ driver.driver.name }}</td>
+                    <td>{{ car.group.name }}</td>
+                    <td>{{ car.name }}</td>
+                    <td class="results--time">{{ TotalTime }}</td>
+                    <td class="results--time">{{ FastestLapTime }}</td>
+                    <td>{{ driver.Laps.Race1.length }}</td>
+                    <td>{{ driver.Incidents.Race1.length  }}</td>
+                    <td class="results--gapToBest">Gap to leader</td>
+                    <td>Gap to previous</td>
+                    <td><a class="btn btn-danger results_file--lapsByDriver_btn" href="#"><i class="fa fa-plus"></i></a></td>
+                  </tr>
+                  <tr class="results_file--lapsByDriver_rows-head" style="display:none;">
+                    <th>Lap</th>
+                    <th>Counted</th>
+                    <th>Distance</th>
+                    <th>Sector1</th>
+                    <th>Sector2</th>
+                    <th>Sector3</th>
+                    <th>Lap Time</th>
+                    <th>Gap to leader</th>
+                    <th>Gap to previous</th>
+                    <!--{{#driver.Laps.Race2}}-->
+                    <tr class="results_file--lapsByDriver_rows-laps" style="display:none;z-index:1">
+                      <td class="results_file--lapNum">{{ attributes.Lap }}</td>
+                      <td class="results_file--lapCounted">{{ attributes.CountThisLapTimes }}</td>
+                      <td>{{ attributes.DistanceTravelled }}</td>
+                      <td class="results--time">{{ attributes.Sector1Time }}</td>
+                      <td class="results--time">{{ attributes.Sector2Time }}</td>
+                      <td class="results--time">{{ attributes.Sector3Time }}</td>
+                      <td class="results--time LapTime Race2" data-lapTime="{{ attributes.LapTime }}">{{ attributes.LapTime }}</td>
+                      <td class="results_file--gapToFastest">gap1</td>
+                      <td>gap2</td>
+                    </tr>
+                    <!--{{/driver.Laps.Race2 }}-->
+                  </tr>
+                  <!--{{/Race2}}-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

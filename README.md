@@ -1,31 +1,50 @@
+# Installation
 
-# Project-Cars Dedicated Server Live App
+This app requires a 64 bit linux environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-## Installation
+## Create a VM (Only if not on a 64bit Debian/Ubuntu machine)
+[Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
+
+[Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
+
+Create and start the VM
+```
+cd </my/project/location>
+vagrant up
+```
+
+Login to the VM
+```
+vagrant ssh
+```
+It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
 
+## Install app dependencies
+```
+cd /vagrant
+npm install
+```
 
-- Install [NodeJs](https://nodejs.org/)	
+# Usage
 
-> !!! Be sure you have access to npm command line !!!
+## Launch the server
 
-`npm -v`
+Start the server with the devellopement environment spec. "debug  - not minified file - ...""
+```
+sails lift
+```
 
-will return the npm version
+Start the server with the production environment spec.  "No debug - minified file  -  ..."
+```
+sails lift --prod
+```
 
- - Install [Sails](http://sailsjs.org/) 
- 
-`npm install sails -g`
 
-- Update the project
- 
-After you have "cloned / unzip the package" to your dedicated server or your local machine, run:
-
-`cd /folder/you/had/copy/the/project & npm update`
-
-Node will install all dependencies
-
-- Prepare the database
+You can configure by environment some server infos like:
+1. Port used
+2. log level
+3. models connection
 
 Create a database, like "pcars" and be sure your mysql user have all grant access to it, when you will lift the app all table will be created.
 
@@ -67,7 +86,7 @@ lift the server with the development environment spec. "debug  - not minified fi
     sails lift
 ```
 
-You can configure by environment some server infos like: 
+You can configure by environment some server infos like:
  1. Port used
  2. log level
  3. models connection
@@ -93,26 +112,26 @@ For this first release, all account have acces to admin panel http://yourdomain.
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
-### What'is Events?
+## What'is Events?
 
 > NEED TO BE FIX
 
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
 - Go to admin panel, create one, and when you create a session in game be sure you are using the same conditions. the listener match if is identical:
-	- servername,
-	- weather conditions *slot1, slot2, slot3, slot4*,
-	- date Ingame,
-	- between start and end date,
-	- DamageType,
-	- TireWearType,
-	- FuelUsageType,
-	- Track,
-	- Car group,
-	- DateProgression,
-	- ForecastProgression
+-  servername,
+- weather conditions *slot1, slot2, slot3, slot4*,
+- date Ingame,
+- between start and end date,
+- DamageType,
+- TireWearType,
+- FuelUsageType,
+- Track,
+- Car group,
+- DateProgression,
+- ForecastProgression
 
-### I don't love design can i modify it?
+## I don't love design can i modify it?
 
 You will find in the Assets folder all Js/Css/Fonts/Less/Images used and all pages files are into /views. Your are allow to do all you want.
 

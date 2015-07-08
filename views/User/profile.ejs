@@ -1,64 +1,64 @@
 <div class="site">
-    <div class="container">
-        <%- partial ('../elements/flash.ejs') %>
-        <h1>My profile</h1>
-        <section id="profile">
-            <div class="col-md-12">
-                <h3>User profile</h3>
-                <div class="row">
+  <div class="container">
+    <%- partial ('../elements/flash.ejs') %>
+    <h1>My profile</h1>
+    <section id="profile">
+      <div class="col-md-12">
+        <h3>User profile</h3>
+        <div class="row">
+          <div class="col-sm-4">
+            <img src="http://lorempixel.com/240/240/sports/6/" alt="profile-avatar" class="img-circle"/>
+          </div>
+          <div class="col-sm-8">
+            <ul class="list-group">
+              <li class="list-group-item"><b>Username:</b> <span class="text-right"><%= user.username %></span></li>
+              <li class="list-group-item"><b>Email:</b> <span class="text-right"><%= user.email %></span></li>
+              <li class="list-group-item"><b>Registred</b> <span class="text-right"><%= user.createdAt %></span></li>
+              <li class="list-group-item">
+                <form action="/profile" method="POST" class="form-horizontal">
+                  <div class="form-group">
+                    <div class="col-sm-6">
+                      <b>Steam ID</b>
+                    </div>
                     <div class="col-sm-4">
-                        <img src="http://lorempixel.com/240/240/sports/6/" alt="profile-avatar" class="img-circle"/>
+                      <input type="text" class="form-control" id="steam_id" value="
+                      <% if(user.driver.length > 0){ %><%= user.driver[0].steam_id %><% } %>
+                      ">
                     </div>
-                    <div class="col-sm-8">
-                        <ul class="list-group">
-                            <li class="list-group-item"><b>Username:</b> <span class="text-right"><%= user.username %></span></li>
-                            <li class="list-group-item"><b>Email:</b> <span class="text-right"><%= user.email %></span></li>
-                            <li class="list-group-item"><b>Registred</b> <span class="text-right"><%= user.createdAt %></span></li>
-                            <li class="list-group-item">
-                                <form action="/profile" method="POST" class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class="col-sm-6">
-                                            <b>Steam ID</b>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="steam_id" value="
-                                            <% if(user.driver.length > 0){ %><%= user.driver[0].steam_id %><% } %>
-                                            ">
-                                        </div>
-                                        <div class="col-sm-2"><input type="submit" value="<%= __('Update') %>" class="btn btn-primary" /></div>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <% if(user.driver.length > 0){ %>
-                    <h3>Driver profile</h3>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="race_count" class="col-sm-2 control-label">Race:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="race_count" value="<%= user.driver[0].race_count %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pole_count" class="col-sm-2 control-label">Pole:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="pole_count" value="<%= user.driver[0].pole_count %>" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="bestlaps_count" class="col-sm-2 control-label">bestlaps:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="bestlaps_count" value="<%= user.driver[0].bestlaps_count %>" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-                </div>
+                    <div class="col-sm-2"><input type="submit" value="<%= __('Update') %>" class="btn btn-primary" /></div>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <% if(user.driver.length > 0){ %>
+          <h3>Driver profile</h3>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="race_count" class="col-sm-2 control-label">Race:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="race_count" value="<%= user.driver[0].race_count %>" disabled>
+              </div>
             </div>
-        </section>
-    </div>
+            <div class="form-group">
+              <label for="pole_count" class="col-sm-2 control-label">Pole:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="pole_count" value="<%= user.driver[0].pole_count %>" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bestlaps_count" class="col-sm-2 control-label">bestlaps:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="bestlaps_count" value="<%= user.driver[0].bestlaps_count %>" disabled>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>

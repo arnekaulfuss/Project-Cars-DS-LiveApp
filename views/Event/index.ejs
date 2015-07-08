@@ -1,53 +1,42 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron jumbotron-home">
-    <div class="mask"></div>
-    <div class="container content">
-        <h1>Welcome on our Livetiming !</h1>
-        <p>Here you will see all laps recorded by our app, you can show the live, or compare bestlaps, or also look on some stats ;)</p>
-    </div>
+  <div class="mask"></div>
+  <div class="container content">
+    <h1>Welcome on our Livetiming !</h1>
+    <p>Here you will see all laps recorded by our app, you can show the live, or compare bestlaps, or also look on some stats ;)</p>
+  </div>
 </div>
 
 <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-8">
-            <% for (i in events) { %>
-            <div class="col-md-12">
-                <div class="panel panel-default events--panel">
-                    <a href="/events/<%- events[i].id %>"><img src="<%- events[i].thumb %>" class="img-responsive"/></a>
-                    <div class="panel-body">
-                        <div class="event--infos">
-                            <i class="fa fa-calendar"></i> <b><%- events[i].start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- events[i].end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- events[i].track.name %> </b> <br/>
-                            <i class="fa fa-car"></i> <b><%- events[i].group.name %></b> - <b><%- events[i].car.name %></b>
-                        </div>
-                        <p>
-                            <%- events[i].content.slice(0, 250) %><% if(events[i].content.length > 250){%>...<%}%>
-                        </p>
-                    </div>
-                    <div class="panel-footer">
-                        <a class="btn btn-danger btn-block" href="/events/<%- events[i].id %>">Read More <i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-8">
+      <% for (i in events) { %>
+      <div class="col-md-12">
+        <div class="panel panel-default events--panel">
+          <a href="/events/<%- events[i].id %>"><img src="<%- events[i].thumb %>" class="img-responsive"/></a>
+          <div class="panel-body">
+            <div class="event--infos">
+              <i class="fa fa-calendar"></i> <b><%- events[i].start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- events[i].end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- events[i].track.name %> </b> <br/>
+              <i class="fa fa-car"></i> <b><%- events[i].group.name %></b> - <b><%- events[i].car.name %></b>
             </div>
             <% } %>
             <%- partial ('../Elements/pagination.ejs') %>
+          </div>
         </div>
-        <aside>
-            <div class="col-md-4">
-                Events stats to come!
-            </div>
-        </aside>
-
+        <% } %>
+      </div>
+      <aside>
+        <div class="col-md-4">
+          Events stats to come!
+        </div>
+      </aside>
     </div>
-    <hr>
-
-    <footer>
-        <p>&copy; Jean-Christophe Pires - 2015</p>
-    </footer>
-</div> <!-- /container -->
-<script>
+  </div> <!-- /container -->
+  <script>
     io.socket.on('connect', function(e){
-        io.socket.get('/getLiveData', {from: 'home'}, function(data,jwres){
-        });
+      io.socket.get('/getLiveData', {from: 'home'}, function(data,jwres){
+      });
     });
-</script>
+  </script>
+</div>

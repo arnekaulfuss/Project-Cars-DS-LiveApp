@@ -8,22 +8,22 @@
     <meta name="author" content="">
     <title><%- sails.config.personnalConfig.sitename %></title>
 
-    <!--  
+    <!--
         Stylesheets and Preprocessors
         ==============================
 
         You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
         of Sails' conventional asset pipeline (boilerplate Gruntfile).
 
         By default, stylesheets from your `assets/styles` folder are included
         here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
         are supported. In production, your styles will be minified and concatenated into
         a single file.
-        
+
         To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
         For example, here are a few things you could do:
-            
+
             + Change the order of your CSS files
             + Import stylesheets from other directories
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
@@ -37,40 +37,37 @@
     <![endif]-->
     <script src="/js/dependencies/sails.io.js"></script>
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-<%- partial ('Elements/menu.ejs') %>
-<% if (typeof admin != "undefined") {%>
-<div id="admin-content">
-    <div class="container-fluid">
+    <%- partial ('Elements/menu.ejs') %>
+    <% if (typeof admin != "undefined") {%>
+    <div id="admin-content">
+      <div class="container-fluid">
         <div class="row">
 
-            <div class="col-md-12" id="admin-sidebar">
-                <%- partial ('Admin/elements/menu.ejs') %>
-            </div>
-            <div class="col-md-12">
-                <%- body %>
-            </div>
+          <div class="col-md-12" id="admin-sidebar">
+            <%- partial ('Admin/elements/menu.ejs') %>
+          </div>
+          <div class="col-md-12">
+            <%- body %>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<% } else { %>
-<%- body %>
-<% } %>
-<div class="alert-container"></div>
+    <% } else { %>
+    <%- body %>
+    <%- partial('partials/footer.ejs') %>
+    <% } %>
 
-<% if (typeof admin != "undefined") {%>
-<script>
+    <div class="alert-container"></div>
 
-    //io.socket.on('connect', function(e){
-        io.socket.get('/adminConnect', null, function(data,jwres){
-        });
-    //});
-
-</script>
-<% } %>
+    <% if (typeof admin != "undefined") {%>
+    <script>
+      io.socket.get('/adminConnect', null, function (data, jwres) {});
+    </script>
+    <% } %>
 <!--
     Client-side Templates
     ========================
@@ -90,11 +87,11 @@
         + Use a different template engine (handlebars, jade, dust, etc.)
         + Internationalize your client-side templates using a server-side
           stringfile before they're served.
--->
+        -->
 
-<!--TEMPLATES-->
-
-<!--TEMPLATES END-->
+        <!--TEMPLATES-->
+        
+        <!--TEMPLATES END-->
 
 
 <!--
@@ -175,5 +172,5 @@
 <script src="/js/result.js"></script>
 <script src="/js/stats.js"></script>
 <!--SCRIPTS END-->
-
+</body>
 </html>
