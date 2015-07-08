@@ -9,7 +9,7 @@
 module.exports = {
 
     start: function (req, res) {
-        
+
         sails.hooks.pcarsserver.start();
     },
 
@@ -30,7 +30,7 @@ module.exports = {
 
     admin: function(req, res) {
         return res.view('Admin/server',{
-            admin: true
+            layout: 'layout_admin'
         });
     }
 };

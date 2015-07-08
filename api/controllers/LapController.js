@@ -14,7 +14,7 @@ module.exports = {
                 Lap.find().sort("createdAt DESC").paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.laps.admin.limit}).populateAll().exec(function (err, laps){
                     return res.view('Admin/Lap/index',{
                         laps: laps,
-                        admin: true,
+                        layout: 'layout_admin',
                         pagination: {
                             page: req.param('page'),
                             href: '/admin/laps/',
@@ -28,7 +28,7 @@ module.exports = {
                 Lap.find().sort("createdAt DESC").paginate({page: 1, limit: sails.config.personnalConfig.pagination.laps.admin.limit}).populateAll().exec(function (err, laps){
                     return res.view('Admin/Lap/index',{
                         laps: laps,
-                        admin: true,
+                        layout: 'layout_admin',
                         pagination: {
                             page: 1,
                             href: '/admin/laps/',

@@ -14,7 +14,7 @@ module.exports = {
                 Car.find().sort('name ASC').paginate({page: req.param('page'), limit: sails.config.personnalConfig.pagination.cars.admin.limit}).exec(function (err, cars){
                     return res.view('Admin/Car/index',{
                         cars: cars,
-                        admin: true,
+                        layout: 'layout_admin',
                         pagination: {
                             page: req.param('page'),
                             href:'/admin/cars/',
@@ -28,7 +28,7 @@ module.exports = {
                 Car.find().sort('name ASC').paginate({page: 1, limit: sails.config.personnalConfig.pagination.cars.admin.limit}).exec(function (err, cars){
                     return res.view('Admin/Car/index',{
                         cars: cars,
-                        admin: true,
+                        layout: 'layout_admin',
                         pagination: {
                             page: 1,
                             href:'/admin/cars/',
@@ -76,7 +76,7 @@ module.exports = {
                     }
                     Car.find().sort('name ASC').exec(function(error, records) {
                         return res.view('Admin/Car/index',{
-                            admin: true,
+                            layout: 'layout_admin',
                             cars: records,
                             msg: 'Car Updated!'
                         });
@@ -89,7 +89,7 @@ module.exports = {
         } else {
             Car.findOne({id: req.param('id')}).exec(function(error, record) {
                 return res.view('Admin/Car/edit',{
-                    admin: true,
+                    layout: 'layout_admin',
                     car: record
                 });
             });

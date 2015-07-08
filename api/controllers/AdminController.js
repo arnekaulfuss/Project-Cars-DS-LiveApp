@@ -33,13 +33,13 @@ module.exports = {
                     callback(null, found);
                 });
             }
-        },function (err, results) {
+        }, function (err, results) {
 
             return res.view('Admin/dashboard',{
                 drivers: results.drivers,
                 laps: results.laps,
                 sessions: results.sessions,
-                admin: true
+                layout: 'layout_admin'
             });
         });
     },
