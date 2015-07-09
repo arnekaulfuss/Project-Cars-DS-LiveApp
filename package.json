@@ -34,6 +34,7 @@
     "mustache": "^2.0.0",
     "rc": "~0.5.0",
     "render-mustache": "sailjs/render-mustache",
+    "request": "^2.58.0",
     "request-json": "^0.5.3",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
