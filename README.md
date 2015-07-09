@@ -34,7 +34,7 @@ Update your server software (installs binaries and node dependencies)
 sudo ./scripts/install_server_software.sh
 ```
 
-## Install app dependencies
+Install app dependencies
 ```
 npm install
 ```
