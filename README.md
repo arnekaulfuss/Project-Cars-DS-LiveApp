@@ -39,6 +39,8 @@ sudo ./scripts/install_server_software.sh
 npm install
 ```
 
+## Updating your database credentials
+
 # Usage
 
 ## Starting the server
@@ -48,20 +50,12 @@ Run the server in development mode, on port 1337
 npm run dev
 ```
 
-Start the server in production mode, on port 80
+Start the server in production mode, on port 80.
+Note! This assumes you do not have any other applications on your server running on port 80. 
+If you have, something like Apache, or Nginx installed and would like to proxy traffic via those apps, you might not want to run the next command, as it updates iptables and will route all traffic to and from port 80 to the node app.
 ```
 npm run prod
 ```
-
-
-You can configure by environment some server infos like:
-1. Port used
-2. log level
-3. models connection
-
-Create a database, like "pcars" and be sure your mysql user have all grant access to it, when you will lift the app all table will be created.
-
-Edit the file in: /config/connection.js with your database-infos into 'Mysql' object or if you want to use an other adaptater like mongoDB, don't forget to change the adaptater used into /config/models.js and /config/env/production.js
 
 
 > !!! IMPORTANT SECURITY  REPLACEMENT !!!
