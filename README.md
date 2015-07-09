@@ -2,7 +2,7 @@
 
 This app requires a 64 bit linux environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-## Using the included VM
+## Using Vagrant
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
@@ -23,9 +23,19 @@ It's worth noting that your code is shared from your host (OS X, Windows, etc) a
 
 ## Using your own Ubuntu/Debian 64bit machine
 
+Clone the repo and cd into it
+```
+git clone <git repo> .
+cd Project-Cars-DS-LiveApp
+```
+
+Update your server software (installs binaries and node dependencies)
+```
+sudo ./scripts/install_server_software.sh
+```
+
 ## Install app dependencies
 ```
-cd /vagrant
 npm install
 ```
 
