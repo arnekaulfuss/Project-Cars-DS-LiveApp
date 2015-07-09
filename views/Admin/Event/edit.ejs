@@ -10,24 +10,24 @@
         <div class="panel panel-primary">
           <div class="panel-body">
             <div class="col-md-12">
-              <form action="/admin/events/edit" method="POST" class="form-horizontal" enctype="multipart/form-data">
+              <form action="/admin/event/edit/<%- event.id %>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 <!-- <div class="col-md-6"> -->
                 <input type="hidden" name="id-val" value="<%- event.id %>"/>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label for="name">Name:</label>
                       <input type="text" name="name" class="form-control" value="<%- event.name %>"/>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-6">
                       <label for="name">Server name:</label>
                       <input type="text" name="servername" class="form-control" value="<%- event.servername %>"/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label for="dateIngame">Date Ingame</label>
                       <input type="date" name="dateIngame" class="form-control datepicker" value="<%- event.dateIngame.toISOString().slice(0, 10).replace('T', ' ') %>"/>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <label for="timeIngame">Time Ingame</label>
                       <input type="time" name="timeIngame" class="form-control timepicker" value="<%- event.dateIngame.toTimeString().slice(0, 8)%>"/>
                     </div>

@@ -14,7 +14,7 @@
       <% for (var i in events) { %>
       <div class="col-md-12">
         <div class="panel panel-default events--panel">
-          <a href="/events/<%- events[i].id %>">
+          <a href="/event/<%- events[i].id %>">
             <img src="<%- events[i].thumb %>" class="img-responsive"/>
           </a>
           <div class="panel-body">
@@ -23,24 +23,17 @@
               <br/>
               <i class="fa fa-car"></i> <b><%- events[i].group.name %></b> - <b><%- events[i].car.name %></b>
             </div>
-            <%- partial ('../partials/pagination.ejs') %>
+
           </div>
         </div>
       </div>
-      <% } %>
-      <aside>
-        <div class="col-md-4">
-          Events stats to come!
-        </div>
-      </aside>
+    <% } %>
+    <%- partial ('../partials/pagination.ejs') %>
     </div>
-  </div> <!-- /container -->
+    <aside>
+      <div class="col-md-4">
+        Events stats to come!
+      </div>
+    </aside>
+  </div>
 </div>
-
-
-<script>
-  io.socket.on('connect', function (e) {
-    io.socket.get('/getLiveData', {from: 'home'}, function (data, jwres) {
-    });
-  });
-</script>

@@ -1,16 +1,17 @@
-<div class="container">
-  <div id="results_wrapper" style="display:none">
-    <div class="row">
-      <div class="col-md-12" id="results" style="margin:25px 0 25px 0 ;">
-        <div class="panel panel-danger" id="results_panel">
-          <div class="panel-heading" id="results_panel-heading">
-            <h4>Results</h4>
-          </div>
-          <div class="panel-body" id="results_results_panel-body">
-            <h4><i class="fa fa-warning"></i> Results's loading file can be long depending on the size.</h4>
-            <%- partial ('../partials/pagination.ejs') %>
-            <table class="table table-hover table-res" id="results_table">
-              <thead>
+<div class="site">
+  <div class="container">
+    <div id="results_wrapper" style="display:none">
+      <div class="row">
+        <div class="col-md-12" id="results" style="margin:25px 0 25px 0 ;">
+          <div class="panel panel-danger" id="results_panel">
+            <div class="panel-heading" id="results_panel-heading">
+              <h4>Results</h4>
+            </div>
+            <div class="panel-body" id="results_results_panel-body">
+              <h4><i class="fa fa-warning"></i> Results's loading file can be long depending on the size.</h4>
+              <%- partial ('../partials/pagination.ejs') %>
+              <table class="table table-hover table-res" id="results_table">
+                <thead>
                 <tr>
                   <td>Date</td>
                   <td>Name</td>
@@ -21,8 +22,8 @@
                   <td>Incidents</td>
                   <td>Show</td>
                 </tr>
-              </thead>
-              <tbody id="res_target">
+                </thead>
+                <tbody id="res_target">
                 <% for (var i in sessions) { %>
                 <tr  id="res_row">
                   <td class="res-date"><% var date = new Date(sessions[i].createdAt) %> <%- date.getFullYear() +'-'+ date.getMonth() +'-'+ date.getDate() + ' ' + date.getHours() + ':' +date.getMinutes()%></td>
@@ -35,12 +36,14 @@
                   <td><a href="/result/<%- sessions[i].id %>" class="btn btn-danger getResult">Show</a></td>
                 </tr>
                 <% } %>
-              </tbody>
-            </table>
-            <%- partial ('../partials/pagination.ejs') %>
+                </tbody>
+              </table>
+              <%- partial ('../partials/pagination.ejs') %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

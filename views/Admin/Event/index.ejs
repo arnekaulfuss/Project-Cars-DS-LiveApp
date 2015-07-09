@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Events <a href="/admin/events/add" class="btn btn-danger pull-right"><i class="fa fa-plus"></i> Add a new event</a></h1>
+      <h1 class="page-header">Events <a href="/admin/event/add" class="btn btn-danger pull-right"><i class="fa fa-plus"></i> Add a new event</a></h1>
     </div>
     <div class="row">
       <div class="panel ">
@@ -14,7 +14,7 @@
                 <td><img src="<%- events[i].thumb %>" alt="" width="75"/></td>
                 <td><%- events[i].name %></td>
                 <td>
-                  <a class="btn btn-danger pull-right" href="/admin/events/<%- events[i].id %>">Edit</a>
+                  <a class="btn btn-danger pull-right" href="/admin/event/edit/<%- events[i].id %>">Edit</a>
                 </td>
               </tr>
               <% } %>

@@ -12,30 +12,30 @@
         <%- partial ('../partials/pagination.ejs') %>
         <table class="table table-condensed">
           <thead>
-            <tr>
-              <th></th>
-              <th>Username</th>
-              <th>Laps</th>
-              <th>Sessions</th>
-              <th>Incidents</th>
-              <th>Last connection</th>
-              <th></th>
-            </tr>
+          <tr>
+            <th></th>
+            <th>Username</th>
+            <th>Laps</th>
+            <th>Sessions</th>
+            <th>Incidents</th>
+            <th>Last connection</th>
+            <th></th>
+          </tr>
           </thead>
           <tbody>
-            <% for(i in drivers) { %>
-            <tr>
-              <td><img src="<%- drivers[i].avatar %>" width="50" height="50" class="img-circle"></td>
-              <td><%- drivers[i].name %></td>
-              <td><%- drivers[i].laps.length %></td>
-              <td><%- drivers[i].sessionsplayed.length %></td>
-              <td><%- drivers[i].incidents.length %></td>
-              <td class="global--time"><%- drivers[i].updatedAt %></td>
-              <td>
-                <a class="btn btn-danger" href="/driver/<%- drivers[i].id %>">Show</a>
-              </td>
-            </tr>
-            <% } %>
+          <% for(i in drivers) { %>
+          <tr>
+            <td><img src="<%- drivers[i].avatar %>" width="50" height="50" class="img-circle"></td>
+            <td><%- drivers[i].name %></td>
+            <td><%- drivers[i].laps.length %></td>
+            <td><%- drivers[i].sessionsplayed.length %></td>
+            <td><%- drivers[i].incidents.length %></td>
+            <td class="global--time"><%- drivers[i].updatedAt %></td>
+            <td>
+              <a class="btn btn-danger" href="/driver/<%- drivers[i].id %>">Show</a>
+            </td>
+          </tr>
+          <% } %>
           </tbody>
         </table>
         <%- partial ('../partials/pagination.ejs') %>

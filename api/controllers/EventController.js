@@ -14,11 +14,14 @@
         page: req.param('page') || 1,
         limit: sails.config.personnalConfig.pagination.events.frontend.limit
       }).exec(function (err, events){
-        res.view('Event/index', {
+        var view = 'Event/index';
+        var href = '/events/';
+        if (res.locals.layout){view = 'Admin/Event/index'; href= '/admin/events/'};
+        res.view(view, {
           events: events,
           pagination: {
             page: req.param('page') || 1,
-            href:'/events/',
+            href:href,
             count: Math.round((count / sails.config.personnalConfig.pagination.events.frontend.limit))
           }
         });
@@ -124,18 +127,11 @@
               msg: 'There are an error when creating your event!'
             });
           }
-          return res.view('Admin/Event/index', {
-            locals: {
-              layout: 'layout_admin'
-            },
-            events: records,
-            msg: 'Event Updated!'
-          });
+          return res.redirect('admin/events');
         });
       });
     });
   },
-
 
   show: function (req, res) {
     Event.findOne(req.param('id')).populateAll().exec(function (error, record) {
@@ -144,6 +140,9 @@
   },
 
   add: function (req, res) {
+      if (req.method === "POST") {
+          this.create(req,res, next);
+      }else{
     async.series({
       tracks: function (callback) {
         Track.find().sort('name ASC').exec(function (error, results) {
@@ -166,12 +165,12 @@
         cars: results.cars,
         groups: results.groups
       });
-    });
+    });}
   },
 
   create: function (req, res, next) {
     if (!req.param('name')) return next();
-
+    console.log('okay on create');
     var dirname = 'images/events';
     var fileName = req.param('name').split(' ').join('_');
     var reqFile = req.file('thumbnail');
@@ -211,9 +210,6 @@
         group:                  req.param('group'),
         car:                    req.param('car')
       };
-
-      console.log(data);
-
       // If no files were uploaded, respond with an error.
       if (uploadedFiles.length > 0) data.thumb = '/'+dirname+'/'+fileName+'.jpg';
 
@@ -227,11 +223,7 @@
               msg: 'There are an error when creating your event!'
             });
           }
-
-          res.view('Admin/Event/index',{
-            events: records,
-            msg: 'Event Updated!'
-          });
+          return res.redirect('admin/events');
         });
       });
     });
