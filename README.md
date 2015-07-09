@@ -2,7 +2,7 @@
 
 This app requires a 64bit Debian/Ubuntu environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-## Using vagrant
+### Using vagrant
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
@@ -27,7 +27,7 @@ cd /vagrant
 npm install
 ```
 
-## Using your own Ubuntu/Debian 64bit machine
+### Using your own Ubuntu/Debian 64bit machine
 
 Clone the repo and cd into it
 ```
@@ -45,29 +45,29 @@ Install app dependencies
 npm install
 ```
 
-## Updating your database credentials
+### Updating your database credentials
 
 By default, the setup creates a mysql database with a root user and no password, and a pcars table. It's important that you do not expose port 3306 with the setup. If you would prefer to use a different user/database, you can edit ```config/connections.js``` with your database info
 
 # Usage
 
-## Starting the server
+### Starting the server
 
 Make sure you have port 80 and 1337 open on your server, or forwarded to your machine from your home router.
 
-### Run in development mode, on port 1337
+#### Run in development mode, on port 1337
 ```
 npm run dev
 ```
 
-### Run in production mode, on port 80.
+#### Run in production mode, on port 80.
 Note! This assumes you do not have any other applications on your server running on port 80. 
 If you have, something like Apache, or Nginx installed and would like to proxy traffic via those apps, you might not want to run the next command, as it updates iptables and will route all traffic to and from port 80 to the node app.
 ```
 npm run prod
 ```
 
-## Create an admin account
+### Create an admin account
 
 - First go to: http://yourdomain.com:port_specified_in_environment/signup
 
@@ -85,14 +85,14 @@ For this first release, all account have acces to admin panel http://yourdomain.
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
-## Personalize the site
+### Personalize the site
 
 Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
 
 
 
 # TODO
-## What are events?
+### What are events?
 
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
@@ -109,9 +109,9 @@ The events were created, so that when the session that matches the specification
 - DateProgression,
 - ForecastProgression
 
-## I don't love design can i modify it?
+### I don't love design can i modify it?
 
 You will find in the Assets folder all Js/Css/Fonts/Less/Images used and all pages files are into /views. Your are allow to do all you want.
 
 
-PS: The app is still in beta, if you found a bug, report them here or in [Project-cars forum thread](http://forum.projectcarsgame.com/showthread.php?33757-Project-Cars-Dedicated-Server-Live-App)
+# Report bugs and features here [Project-cars forum thread](http://forum.projectcarsgame.com/showthread.php?33757-Project-Cars-Dedicated-Server-Live-App)
