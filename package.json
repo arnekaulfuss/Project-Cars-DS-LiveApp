@@ -45,11 +45,13 @@
     "skipper-disk": "^0.5.4"
   },
   "scripts": {
-    "debug": "sails debug",
-    "console": "sails console",
-    "start": "sails lift",
     "preinstall": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh",
-    "packer": "cd packer && packer push -name tylerbre/pcars_ds_full template.json"
+    "packer": "cd packer && packer push -name tylerbre/pcars_ds_full template.json",
+    "prod": "./scripts/setup_production.sh && npm run kill && pm2 start ./config/pm2/production.json",
+    "kill": "pm2 kill",
+    "dev": "sails lift --silly",
+    "debug": "sails debug",
+    "console": "sails console"
   },
   "main": "app.js",
   "repository": {

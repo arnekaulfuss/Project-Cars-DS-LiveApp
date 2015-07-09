@@ -14,12 +14,15 @@ if [ ! -f "$STEAMCMD_DIR/steamcmd.sh" ]; then
   chmod +x "$STEAMCMD_DIR/steamcmd.sh"
   chmod +x "$STEAMCMD_DIR/steam.sh"
 
-  if [ -f "$BASE_DIR/steamcmd" ]; then
-    unlink "$BASE_DIR/steamcmd"
-  fi
-
-  ln -s "$STEAMCMD_DIR" "$BASE_DIR/steamcmd"
   echo "successfully installed steamcmd to home directory"
 else
   echo "steamcmd is already installed"
 fi
+
+if [ -h "$BASE_DIR/steamcmd" ]; then
+  echo "unlinking steamcmd to cwd"
+  unlink "$BASE_DIR/steamcmd"
+fi
+
+ln -s "$STEAMCMD_DIR" "$BASE_DIR/steamcmd"
+echo "linked steamcmd to cwd"
