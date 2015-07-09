@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
+var request = require('request');
 
 var pcarsOptions = require('../../config/pcars_ds/server_options.js');
 var spawn = require('../../api/services/spawn.js');
@@ -29,7 +30,16 @@ module.exports = function (grunt) {
     var blacklist = read(blacklist_template_path);
     var whitelist = read(whitelist_template_path);
 
-    write(server_path, server(pcarsOptions));
+
+    request('http://ipinfo.io', function (e, res, data) {
+      if (!e && res.statusCode == 200) {
+        data = JSON.parse(data);
+        pcarsOptions.name = pcarsOptions._name([data.country, data.city, pcarsOptions._siteName()].join('-'))
+      }
+
+      write(server_path, server(pcarsOptions));
+    });
+    
     write(blacklist_path, blacklist);
     write(whitelist_path, whitelist);
 
