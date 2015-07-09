@@ -37,7 +37,8 @@ module.exports.routes = {
     // Admin Drivers routes
     '/admin/drivers': 'DriverController.adminIndex',
     '/admin/drivers/:page': 'DriverController.adminIndex',
-    '/admin/driver/edit/:id': 'DriverController.edit',
+    'get /admin/driver/edit/:id': 'DriverController.edit',
+    'post /admin/driver/edit/:id': 'DriverController.update',
     // Cars Admin routes
     '/admin/cars': 'CarController.index',
     '/admin/cars/:page': 'CarController.index',
@@ -45,12 +46,15 @@ module.exports.routes = {
     // Events Admin routes
     '/admin/events': 'EventController.indexAdmin',
     '/admin/events/:page': 'EventController.indexAdmin',
-    '/admin/events/add': 'EventController.add',
-    '/admin/events/:id': 'EventController.edit',
+    'get /admin/events/add': 'EventController.add',
+    'post /admin/events/add': 'EventController.create',
+    'get /admin/events/:id': 'EventController.edit',
+    'post /admin/events/:id': 'EventController.update',
     // Track Admin routes
     '/admin/tracks': 'TrackController.index',
     '/admin/tracks/:page': 'TrackController.index',
-    '/admin/track/:id': 'TrackController.edit',
+    'get /admin/track/:id': 'TrackController.edit',
+    'post /admin/track/:id': 'TrackController.update',
     // Sessions Admin routes
     '/admin/sessions': 'SessionsController.index',
     '/admin/sessions/:page': 'SessionsController.index',
@@ -84,7 +88,8 @@ module.exports.routes = {
     'get /reset': 'UserController.pass',
     'post /reset': 'UserController.passwordReset',
     '/welcome': { view: 'User/welcome' },
-    '/profile': 'UserController.profile',
+    'get /profile': 'UserController.profile',
+    'post /profile': 'UserController.update',
     '/logout': 'UserController.logout',
     // livetiming views routes
     'get /live': { view: 'Livetiming/live' },

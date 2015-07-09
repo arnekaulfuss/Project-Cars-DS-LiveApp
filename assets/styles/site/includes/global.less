@@ -14,15 +14,35 @@
   box-sizing: border-box;
 }
 
+.content-container {
+  padding-top: @navbar-height;
+}
+
 .navbar-header {
   .navbar-brand {
     text-transform: uppercase;
-    font-weight: bold; 
+    font-weight: bold;
     color: @primary_color;
     transition: color 0.3s;
     &:hover {
       color: #34495E;
     }
+  }
+
+  .logo-brand, .text-brand {
+    display: inline-block;
+  }
+
+  .logo-brand {
+    max-height: 36px;
+    margin-top: -6px;
+    margin-right: @grid-gutter-width / 4;
+  }
+
+  .text-brand {
+    display: inline-block;
+    font-weight: normal;
+    font-style: 80%;
   }
 }
 

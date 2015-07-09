@@ -42,8 +42,10 @@
 config/local.js
 config/connections.js
 steamcmd
+log
 .vagrant
 *.box
+*.pid
 *.sql*
 config/session.js
 

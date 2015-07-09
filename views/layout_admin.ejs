@@ -39,15 +39,26 @@
 
 </head>
 <body>
-  <%- partial ('partials/menu.ejs') %>
 
-  <div class="container content-container">
-    <%- body %>
+  <%- partial ('partials/menu.ejs') %>
+  <div id="admin-content" class="content-container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-12" id="admin-sidebar">
+            <%- partial ('Admin/partials/menu.ejs') %>
+          </div>
+        </div>
+      </div>
+      <%- body %>
+    </div>
   </div>
 
-  <%- partial('partials/footer.ejs') %>
-
   <div class="alert-container"></div>
+
+  <script>
+    io.socket.get('/adminConnect', null, function (data, jwres) {});
+  </script>
 <!--
   Client-side Templates
   ========================
@@ -69,9 +80,9 @@
         stringfile before they're served.
       -->
 
-<!--TEMPLATES-->
-
-<!--TEMPLATES END-->
+      <!--TEMPLATES-->
+      
+      <!--TEMPLATES END-->
 
 
 <!--
@@ -152,6 +163,5 @@ For example, here are a few things you could do:
 <script src="/js/result.js"></script>
 <script src="/js/stats.js"></script>
 <!--SCRIPTS END-->
-
 </body>
 </html>
