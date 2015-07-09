@@ -53,12 +53,14 @@ By default, the setup creates a mysql database with a root user and no password,
 
 ## Starting the server
 
-Run the server in development mode, on port 1337
+Make sure you have port 80 and 1337 open on your server, or forwarded to your machine from your home router.
+
+### Run in development mode, on port 1337
 ```
 npm run dev
 ```
 
-Start the server in production mode, on port 80.
+### Run in production mode, on port 80.
 Note! This assumes you do not have any other applications on your server running on port 80. 
 If you have, something like Apache, or Nginx installed and would like to proxy traffic via those apps, you might not want to run the next command, as it updates iptables and will route all traffic to and from port 80 to the node app.
 ```
