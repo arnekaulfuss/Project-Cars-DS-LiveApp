@@ -34,7 +34,7 @@ module.exports = function (grunt) {
     request('http://ipinfo.io', function (e, res, data) {
       if (!e && res.statusCode == 200) {
         data = JSON.parse(data);
-        pcarsOptions.name = pcarsOptions._name([data.country, data.city, pcarsOptions._siteName()].join('-'))
+        pcarsOptions.name = pcarsOptions._name([data.country, data.city, pcarsOptions._siteName].join('-'))
       }
 
       write(server_path, server(pcarsOptions));
