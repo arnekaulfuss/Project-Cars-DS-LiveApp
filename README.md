@@ -2,23 +2,26 @@
 
 This app requires a 64 bit linux environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-## Create a VM (Only if not on a 64bit Debian/Ubuntu machine)
+## Using the included VM
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
 
-Create and start the VM
+Clone the repo and install the vm
 ```
-cd </my/project/location>
+git clone <git repo> .
+cd Project-Cars-DS-LiveApp
 vagrant up
 ```
 
-Login to the VM
+Log into the VM
 ```
 vagrant ssh
 ```
+
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
+## Using your own Ubuntu/Debian 64bit machine
 
 ## Install app dependencies
 ```
@@ -28,16 +31,16 @@ npm install
 
 # Usage
 
-## Launch the server
+## Starting the server
 
-Start the server with the devellopement environment spec. "debug  - not minified file - ...""
+Run the server in development mode, on port 1337
 ```
-sails lift
+npm run dev
 ```
 
-Start the server with the production environment spec.  "No debug - minified file  -  ..."
+Start the server in production mode, on port 80
 ```
-sails lift --prod
+npm run prod
 ```
 
 
