@@ -16,11 +16,13 @@
       }).populateAll().exec(function (err, drivers){
         console.log(res.locals.layout);
         var view = 'Driver/index';
-        if (res.locals.layout){view = 'Admin/Driver/index'};
+        var href = '/drivers/';
+        if (res.locals.layout){view = 'Admin/Driver/index'; href= '/admin/drivers/'};
         return res.view(view, {
           drivers: drivers,
           pagination: {
             page: req.param('page') || 1,
+            href: href,
             count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
           }
         });
