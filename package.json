@@ -47,7 +47,7 @@
     "debug": "sails debug",
     "console": "sails console",
     "start": "sails lift",
-    "install": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh",
+    "preinstall": "./scripts/install_steamcmd.sh && ./scripts/install_pcars.sh",
     "pack": "cd packer && packer push -name tylerbre/pcars_ds_full template.json"
   },
   "main": "app.js",
