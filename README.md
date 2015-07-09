@@ -21,6 +21,12 @@ vagrant ssh
 
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
+Install app dependencies
+```
+cd /vagrant
+npm install
+```
+
 ## Using your own Ubuntu/Debian 64bit machine
 
 Clone the repo and cd into it
