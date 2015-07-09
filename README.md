@@ -1,8 +1,8 @@
 # Installation
 
-This app requires a 64 bit linux environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
+This app requires a 64bit Debian/Ubuntu environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-## Using Vagrant
+## Using vagrant
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
@@ -14,7 +14,7 @@ cd Project-Cars-DS-LiveApp
 vagrant up
 ```
 
-Log into the VM
+The server is installed with all necessary software. Log into the VM
 ```
 vagrant ssh
 ```
@@ -41,6 +41,8 @@ npm install
 
 ## Updating your database credentials
 
+By default, the setup creates a mysql database with a root user and no password, and a pcars table. It's important that you do not expose port 3306 with the setup. If you would prefer to use a different user/database, you can edit ```config/connections.js``` with your database info
+
 # Usage
 
 ## Starting the server
@@ -57,51 +59,7 @@ If you have, something like Apache, or Nginx installed and would like to proxy t
 npm run prod
 ```
 
-
-> !!! IMPORTANT SECURITY  REPLACEMENT !!!
-
-Edit the file in /config/session.js, and change the secret security key
-
-- Clan/team website infos
-
-Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
-
-## Usage
-
-### Launch the server
-
-> !!! CLOSE THE PROJECT CARS DEDICATED SERVER FIRST, BEFORE LIFT !!!
-
-The better way to run the app, is like pcars dedicated server, with screen on linux:
-
-	screen
-	cd /Path/to/the/Project
-	sails lift --prod
-
- - Press ctrl­+a  to detach from the screen.
- - Press ctrl+­d to leave the screen
-
-command line:
-
-lift the server with the production environment spec.  " No debug - minified file  -  ...".
-```
-    sails lift --prod
-```
-
-lift the server with the development environment spec. "debug  - not minified file - ..."
-```
-    sails lift
-```
-
-You can configure by environment some server infos like:
- 1. Port used
- 2. log level
- 3. models connection
-
-### First lift and admin account
-
-> If the 80 port is already used by "apache-..." try to lift the server
-> with another port
+## Create an admin account
 
 - First go to: http://yourdomain.com:port_specified_in_environment/signup
 
@@ -119,9 +77,14 @@ For this first release, all account have acces to admin panel http://yourdomain.
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
-## What'is Events?
+## Personalize the site
 
-> NEED TO BE FIX
+Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
+
+
+
+# TODO
+## What are events?
 
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
