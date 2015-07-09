@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 
       write(server_path, server(pcarsOptions));
     });
-    
+
     write(blacklist_path, blacklist);
     write(whitelist_path, whitelist);
 
