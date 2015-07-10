@@ -19,7 +19,7 @@
           </a>
           <div class="panel-body">
             <div class="event--infos">
-              <i class="fa fa-calendar"></i> <b><%- events[i].start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- events[i].end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- events[i].track.name %> </b>
+              <i class="fa fa-calendar"></i> <b><%- events[i].start.toDateString() %></b> to <b><%- events[i].end.toDateString() %></b> @ <b><%- events[i].track.name %> </b>
               <br/>
               <i class="fa fa-car"></i> <b><%- events[i].group.name %></b> - <b><%- events[i].car.name %></b>
             </div>
