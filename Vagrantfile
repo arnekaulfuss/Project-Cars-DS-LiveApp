@@ -55,6 +55,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # using 2GB RAM, and 2 CPU cores
     # minimum to run this VM is 1.5GB RAM and 1 cpu core
     vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
+
+    # for windoze
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
   end
 
   # View the documentation for the provider you're using for more
