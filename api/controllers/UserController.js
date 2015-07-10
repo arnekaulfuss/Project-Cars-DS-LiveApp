@@ -10,7 +10,7 @@
 
   profile: function (req, res) {
 
-    User.findOne(req.session.me).exec(function(err, user){
+    User.findOne(req.session.me).populate('drivers').exec(function(err, user){
       if (err) return res.negotiate(err);
 
       res.view('User/profile', {

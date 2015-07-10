@@ -7,7 +7,7 @@
         <h3>User profile</h3>
         <div class="row">
           <div class="col-sm-4">
-            <img src="http://lorempixel.com/240/240/sports/6/" alt="profile-avatar" class="img-circle"/>
+            <img src="<%= user.steamAvatarFull %>" alt="profile-avatar" class="img-circle"/>
           </div>
           <div class="col-sm-8">
             <ul class="list-group">
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" id="steam_id" value="
-                      <% if(user.driver.length > 0){ %><%= user.driver[0].steam_id %><% } %>
+                      <% if(user.drivers.length > 0){ %><%= user.drivers[0].steam_id %><% } %>
                       ">
                     </div>
                     <div class="col-sm-2"><input type="submit" value="<%= __('Update') %>" class="btn btn-primary" /></div>
@@ -33,27 +33,27 @@
           </div>
         </div>
         <hr>
-        <% if(user.driver) { %>
+        <% if(user.drivers) { %>
         <div class="row">
-          <% if(_.isArray(user.driver)){ %>
+          <% if(_.isArray(user.drivers)){ %>
           <h3>Driver profile</h3>
           <div class="col-sm-12">
             <div class="form-group">
               <label for="race_count" class="col-sm-2 control-label">Race:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="race_count" value="<%= user.driver[0].race_count %>" disabled>
+                <input type="text" class="form-control" id="race_count" value="<%= user.drivers[0].race_count %>" disabled>
               </div>
             </div>
             <div class="form-group">
               <label for="pole_count" class="col-sm-2 control-label">Pole:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="pole_count" value="<%= user.driver[0].pole_count %>" disabled>
+                <input type="text" class="form-control" id="pole_count" value="<%= user.drivers[0].pole_count %>" disabled>
               </div>
             </div>
             <div class="form-group">
               <label for="bestlaps_count" class="col-sm-2 control-label">bestlaps:</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="bestlaps_count" value="<%= user.driver[0].bestlaps_count %>" disabled>
+                <input type="text" class="form-control" id="bestlaps_count" value="<%= user.drivers[0].bestlaps_count %>" disabled>
               </div>
             </div>
           </div>

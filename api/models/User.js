@@ -1,7 +1,6 @@
 var User = {
   // Enforce model schema in the case of schemaless databases
   schema: true,
-
   attributes: {
     username  : {
       type: 'string',
@@ -22,33 +21,21 @@ var User = {
       type: 'string',
       index: true
     },
-    steamPrimaryClanID: {
-      type: 'string'
-    },
     steamUserName: {
       type: 'string',
       index: true
     },
-    steamRealName: {
-      type: 'string'
-    },
-    steamLocCountryCode: {
-      type: 'string'
-    },
-    steamLocStateCode: {
-      type: 'string'
-    },
-    steamLocCityID: {
-      type: 'integer'
-    },
-    steamAvatar: {
-      type: 'string'
-    },
-    steamAvatarMedium: {
-      type: 'string'
-    },
-    steamAvatarFull: {
-      type: 'string'
+    steamPrimaryClanID: 'string',
+    steamRealName: 'string',
+    steamLocCountryCode: 'string',
+    steamLocStateCode: 'string',
+    steamLocCityID: 'integer',
+    steamAvatar: 'string',
+    steamAvatarMedium: 'string',
+    steamAvatarFull: 'string',
+    drivers:{
+      collection: 'Driver',
+      via: 'userAlias'
     }
   },
   beforeCreate: function (values, cb) {
