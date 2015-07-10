@@ -12,7 +12,7 @@
       <div class="panel-body">
         <div class="col-md-12">
           <div class="event--infos">
-            <i class="fa fa-calendar"></i> <b><%- event.start.toISOString().slice(0, 10).replace('T', ' ') %></b> to <b><%- event.end.toISOString().slice(0, 10).replace('T', ' ') %></b> @ <b><%- event.track.name %> </b> <br/>
+            <i class="fa fa-calendar"></i> <b><%- event.start.toDateString() %></b> to <b><%- event.end.toDateString() %></b> @ <b><%- event.track.name %> </b> <br/>
             <i class="fa fa-car"></i> <b><%- event.group.name %></b> - <b><%- event.car.name %></b>
           </div>
           <%- event.content %>

@@ -46,10 +46,10 @@ module.exports.routes = {
     // Events Admin routes
     '/admin/events': 'EventController.indexAdmin',
     '/admin/events/:page': 'EventController.indexAdmin',
-    'get /admin/events/add': 'EventController.add',
-    'post /admin/events/add': 'EventController.create',
-    'get /admin/events/:id': 'EventController.edit',
-    'post /admin/events/:id': 'EventController.update',
+    'get /admin/event/add': 'EventController.add',
+    'post /admin/event/add': 'EventController.create',
+    'get /admin/event/edit/:id': 'EventController.edit',
+    'post /admin/event/edit/:id': 'EventController.update',
     // Track Admin routes
     '/admin/tracks': 'TrackController.index',
     '/admin/tracks/:page': 'TrackController.index',
@@ -76,7 +76,7 @@ module.exports.routes = {
     '/drivers/:page': 'DriverController.index',
     '/driver/:id': 'DriverController.view',
     //Events front routes
-    '/events/:id': 'EventController.show',
+    '/event/:id': 'EventController.show',
     '/events': 'EventController.index',
     '/events/:page': 'EventController.index',
     // user routes

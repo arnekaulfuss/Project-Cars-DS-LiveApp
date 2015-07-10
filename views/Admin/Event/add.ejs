@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body">
       <div class="col-md-12">
-        <form action="/admin/events/add" method="POST" class="form-horizontal" enctype="multipart/form-data">
+        <form action="/admin/event/add" method="POST" class="form-horizontal" enctype="multipart/form-data">
           <div class="col-md-6">
             <div class="form-group">
               <label for="name">Name:</label>
@@ -18,11 +18,11 @@
 
             <div class="form-group">
               <label for="dateIngame">Date Ingame</label>
-              <input type="date" name="dateIngame" class="form-control"/>
+              <input type="date" name="dateIngame" class="form-control datepicker"/>
             </div>
             <div class="form-group">
               <label for="timeIngame">Time Ingame</label>
-              <input type="time" name="timeIngame" class="form-control"/>
+              <input type="time" name="timeIngame" class="form-control timepicker"/>
             </div>
 
             <div class="form-group">
@@ -155,12 +155,12 @@
 
             <div class="form-group">
               <label for="start">start:</label>
-              <input type="date" name="start" class="form-control"/>
+              <input type="date" name="start" class="form-control datepicker"/>
             </div>
 
             <div class="form-group">
               <label for="end">end:</label>
-              <input type="date" name="end" class="form-control"/>
+              <input type="date" name="end" class="form-control datepicker"/>
             </div>
 
             <div class="form-group">
