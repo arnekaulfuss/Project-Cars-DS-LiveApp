@@ -1,5 +1,5 @@
 module.exports = function (req, res, next) {
-  if (req.session.me && req.session.me.admin) return next();
+  if (req.session.user && req.session.user.admin) return next();
 
   if (req.wantsJSON) return res.send(401);
 
