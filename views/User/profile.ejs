@@ -33,8 +33,9 @@
           </div>
         </div>
         <hr>
+        <% if(user.driver) { %>
         <div class="row">
-          <% if(user.driver.length > 0){ %>
+          <% if(_.isArray(user.driver)){ %>
           <h3>Driver profile</h3>
           <div class="col-sm-12">
             <div class="form-group">
@@ -58,6 +59,7 @@
           </div>
           <% } %>
         </div>
+        <% } %>
       </div>
     </section>
   </div>

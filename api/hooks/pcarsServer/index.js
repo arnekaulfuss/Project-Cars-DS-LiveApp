@@ -48,16 +48,18 @@ module.exports = function enableServer(sails) {
 
       sails.on('hook:orm:loaded', function () {
         // initialize models
-        usersDB = Sails.models.user;
-        lapsDB = Sails.models.lap;
-        driversDB = Sails.models.driver;
-        ServerSessionDB = Sails.models.serversession;
-        CarDB = Sails.models.car;
-        TrackDB = Sails.models.track;
-        GroupDB = Sails.models.group;
-        EventDB = Sails.models.event;
-        ResultDB = Sails.models.result;
-        IncidentDB = Sails.models.incident;
+        // this is breaking `sails console`
+
+        // usersDB = Sails.models.user;
+        // lapsDB = Sails.models.lap;
+        // driversDB = Sails.models.driver;
+        // ServerSessionDB = Sails.models.serversession;
+        // CarDB = Sails.models.car;
+        // TrackDB = Sails.models.track;
+        // GroupDB = Sails.models.group;
+        // EventDB = Sails.models.event;
+        // ResultDB = Sails.models.result;
+        // IncidentDB = Sails.models.incident;
 
         return cb();
       });

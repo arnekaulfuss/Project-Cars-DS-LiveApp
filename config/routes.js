@@ -79,18 +79,11 @@ module.exports.routes = {
     '/event/:id': 'EventController.show',
     '/events': 'EventController.index',
     '/events/:page': 'EventController.index',
-    // user routes
-    'get /login': { view: 'User/login' },
-    'post /login': 'UserController.login',
-    //Comment signup routes after create admin account
-    'get /signup': { view: 'User/signup' },
-    'post /signup': 'UserController.signup',
-    'get /reset': 'UserController.pass',
-    'post /reset': 'UserController.passwordReset',
+    //
     '/welcome': { view: 'User/welcome' },
     'get /profile': 'UserController.profile',
     'post /profile': 'UserController.update',
-    '/logout': 'UserController.logout',
+
     // livetiming views routes
     'get /live': { view: 'Livetiming/live' },
 
@@ -108,6 +101,22 @@ module.exports.routes = {
     '/stop': 'ServerController.stop',
     '/upd': 'ServerController.updateTracksAndCar',
     '/updCars': 'ServerController.updateCars',
-    '/admin/server': 'ServerController.admin'
+    '/admin/server': 'ServerController.admin',
+
+    /*==========  Auth  ==========*/
+
+    // 'get /login': 'AuthController.login',
+    'get /logout': 'AuthController.logout',
+    // 'get /register': 'AuthController.register',
+
+    // 'post /auth/local': 'AuthController.callback',
+    // 'post /auth/local/:action': 'AuthController.callback',
+
+    'get /auth/:provider': 'AuthController.provider',
+    'get /auth/:provider/callback': 'AuthController.callback',
+    // 'get /auth/:provider/login': 'AuthController.login',
+
+
+
 
 };
