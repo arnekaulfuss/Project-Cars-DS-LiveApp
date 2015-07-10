@@ -67,7 +67,6 @@ module.exports = function enableServer(sails) {
       if (loopStatus === null) {
         var file = '../project-cars/LogResults/';
         var fileResult = null;
-
         var Logs;
         var log;
         var player;
@@ -368,7 +367,7 @@ module.exports = function enableServer(sails) {
                           }
 
                           if (log.name == "State") {
-                            if (log.participantid) {
+                            if (getByParticipantId(CurrentLog.participantid, Status.response.participants)) {
                               pushPlayerNewAttributes(getByParticipantId(CurrentLog.participantid, Status.response.participants), players);
                               player = getPlayerByParticipantId(CurrentLog.participantid, players);
                               sails.sockets.broadcast('Live', 'NewLog', {Player: player, Log:log});
@@ -377,7 +376,7 @@ module.exports = function enableServer(sails) {
                           }
 
                           if (log.name == "Sector" ) {
-                            if (log.participantid) {
+                            if (getByParticipantId(CurrentLog.participantid, Status.response.participants)) {
                               pushPlayerNewAttributes(getByParticipantId(CurrentLog.participantid, Status.response.participants), players);
                               player = getPlayerByParticipantId(CurrentLog.participantid, players);
                               sails.sockets.broadcast('Live', 'NewLog', {Player: player, Log:log});
@@ -391,7 +390,7 @@ module.exports = function enableServer(sails) {
                               if (player.participant.attributes.IsPlayer === 1) {
                                 SaveLap(player, CurrentLog, Session, SessionStage);
                               }
-                              if (CurrentLog.participantid) {
+                              if (getByParticipantId(CurrentLog.participantid, Status.response.participants)) {
                                 pushPlayerNewAttributes(getByParticipantId(CurrentLog.participantid, Status.response.participants), players);
                                 pushPlayerLap(CurrentLog, players, SessionStage);
 
