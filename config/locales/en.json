@@ -151,6 +151,26 @@
   "user_profile": "User profile",
   "driver_profile": "Driver profile",
   "my_profile": "My profile",
-  "race": "Race"
-
+  "race": "Race",
+  "event": "Event",
+  "results_loading_message": "Results's loading file can be long depending on the size.",
+  "loading": "Loading...",
+  "back_to_list": "back to list",
+  "privacy": "Privacy",
+  "pole_man": "Pole man",
+  "winner": "Winner",
+  "forecast": "Forecast",
+  "fuel": "Fuel",
+  "position_short": "Pos.",
+  "fastest_lap": "Fastest Lap",
+  "gap_to_leader": "Gap to leader",
+  "gap_to_previous": "Gap to previous",
+  "show_laps": "Show laps",
+  "total_time": "Total Time",
+  "gap_to_personal_best": "Gap to pers. best",
+  "gap_to_session_best": "Gap to sess. best",
+  "practice": "Practice",
+  "qualifying": "Qualifying",
+  "sector": "Sektor",
+  "lap": "Lap"
 }
