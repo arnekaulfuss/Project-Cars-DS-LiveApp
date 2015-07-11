@@ -28,9 +28,9 @@
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
+  // localDiskDb: {
+  //   adapter: 'sails-disk'
+  // },
 
   /***************************************************************************
   *                                                                          *
@@ -40,62 +40,14 @@
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-
-  Mysql: {
-    adapter: 'sails-mysql',
+  mysql: {
+    module: 'sails-mysql',
     host: 'localhost',
+    port: 3306,
     user: 'root',
     password: '',
     database: 'pcars'
-  },
-
-
-  MysqlServer: {
-    module    : 'sails-mysql',
-    host      : 'localhost',
-    port      : 3306,
-    user      : 'root',
-    password  : '',
-    database  : 'pcars',
-    // Optional
-    charset   : 'utf8',
-    collation : 'utf8_swedish_ci'
-  },
-
-  /***************************************************************************
-  *                                                                          *
-  * MongoDB is the leading NoSQL database.                                   *
-  * http://en.wikipedia.org/wiki/MongoDB                                     *
-  *                                                                          *
-  * Run: npm install sails-mongo                                             *
-  *                                                                          *
-  ***************************************************************************/
-  MongodbServer: {
-    adapter: 'sails-mongo',
-    host: 'localhost',
-    port: 27017,
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
-  },
-
-  /***************************************************************************
-  *                                                                          *
-  * PostgreSQL is another officially supported relational database.          *
-  * http://en.wikipedia.org/wiki/PostgreSQL                                  *
-  *                                                                          *
-  * Run: npm install sails-postgresql                                        *
-  *                                                                          *
-  *                                                                          *
-  ***************************************************************************/
-  PostgresqlServer: {
-    adapter: 'sails-postgresql',
-    host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_POSTGRES_USER',
-    password: 'YOUR_POSTGRES_PASSWORD',
-    database: 'YOUR_POSTGRES_DB'
   }
-
 
   /***************************************************************************
   *                                                                          *
