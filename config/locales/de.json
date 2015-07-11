@@ -151,7 +151,7 @@
   "my_profile": "Mein Profil",
   "race": "Rennen",
   "event": "Veranstaltung",
-  "results_loading_message": "laden der Resultate kann eine gewisse Zeit dauern",
+  "results_loading_message": "laden der Ergebnisse kann eine gewisse Zeit dauern",
   "loading": "laden...",
   "back_to_list": "zurück zur Liste",
   "privacy": "Privatsphäre",
@@ -170,5 +170,9 @@
   "practice": "Training",
   "qualifying": "Qualifying",
   "sector": "Sektor",
-  "lap": "Runde"
+  "lap": "Runde",
+  "warmup": "Aufwärmen",
+  "select_state": "Wähle einen Status",
+  "select_event": "Wähle einen Event",
+  "select_driver": "Wähle einen Fahrer"
 }

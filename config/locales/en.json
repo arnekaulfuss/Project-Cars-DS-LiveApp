@@ -172,5 +172,9 @@
   "practice": "Practice",
   "qualifying": "Qualifying",
   "sector": "Sektor",
-  "lap": "Lap"
+  "lap": "Lap",
+  "warmup": "Warmup",
+  "select_state": "Select a State",
+  "select_event": "Select an Event",
+  "select_driver": "Select a Driver"
 }
