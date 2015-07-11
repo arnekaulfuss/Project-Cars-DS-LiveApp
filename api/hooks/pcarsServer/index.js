@@ -43,9 +43,7 @@ module.exports = function enableServer(sails) {
   var Status = {};
 
   return {
-
     initialize: function (cb) {
-
       sails.on('hook:orm:loaded', function () {
         // initialize models
         usersDB = Sails.models.user;
@@ -58,12 +56,26 @@ module.exports = function enableServer(sails) {
         EventDB = Sails.models.event;
         ResultDB = Sails.models.result;
         IncidentDB = Sails.models.incident;
-
         return cb();
       });
     },
-
-    start: function (req, res) {
+    start: function () {
+      var thisHook = this;
+      client.get(api.status, function (err, res, data) {
+        if (err) {
+          if (err.code == "ECONNREFUSED") {
+            sails.sockets.blast({
+              msg: 'Pcars DS aren\'t launched',
+              class: 'alert-danger'
+            });
+          }
+        } else {
+          thisHook.updateTracksAndGroup();
+          thisHook.startListener();
+        }
+      });
+    },
+    startListener: function (req, res) {
       if (loopStatus === null) {
         var file = '../project-cars/LogResults/';
         var fileResult = null;
@@ -487,9 +499,7 @@ module.exports = function enableServer(sails) {
                           if (err) {
                             console.log(err);
                           }
-
                         });
-
                       lastlog = Logs.response.count;
                     }
                   } else {
@@ -571,18 +581,11 @@ module.exports = function enableServer(sails) {
       });
     },
 
-    updateTracksAndCar: function (req,res) {
+    updateTracksAndGroup: function (callback) {
+      var thisHook = this;
       async.series({
           Groups: function (callback) {
             client.get("api/list/vehicle_groups", function(err, res, data){
-              if(err){
-                console.log(err);
-              }
-              callback(null, data);
-            });
-          },
-          Cars: function (callback) {
-            client.get(api.cars.list, function (err, res, data) {
               callback(null, data);
             });
           },
@@ -593,51 +596,64 @@ module.exports = function enableServer(sails) {
           }
         },
         function(err, results) {
-          console.log("debut des resultats");
-
-          async.each(results.Groups.response.list, function(group, callback){
-            GroupDB.findOrCreate(
-              {
-                gameId: group.value
-              },
-              {
-                gameId: group.value,
-                name: group.name
+          if (typeof results.Groups == 'undefined' && typeof results.Tracks == 'undefined') {
+            sails.sockets.blast({
+              msg: 'Are the pcars dedicated server is launched?',
+              class: 'alert-danger'
+            });
+            console.log('Are the pcars dedicated server is launched?');
+            return callback;
+          } else {
+            async.each(results.Groups.response.list, function(group, callback){
+              GroupDB.findOrCreate(
+                {
+                  gameId: group.value
+                },
+                {
+                  gameId: group.value,
+                  name: group.name
+                }
+              ).exec(function(err,result){
+                  callback();
+                });
+            }, function (err) {
+              if (err) {
+                console.log("Error an Group update");
+              } else {
+                thisHook.updateCars();
               }
-            ).exec(function(err,result){
-                callback();
-              });
-          });
 
-          async.each(results.Tracks.response.list, function(track, callback) {
-            TrackDB.findOrCreate(
-              {
-                gameId: track.id
-              },
-              {
-                gameId: track.id,
-                name: track.name
-              }
-            ).exec(function (err, result){
-                console.log("Track: "+result.name);
-                callback();
-              })
-          });
+            });
+            async.each(results.Tracks.response.list, function(track, callback) {
+              TrackDB.findOrCreate(
+                {
+                  gameId: track.id
+                },
+                {
+                  gameId: track.id,
+                  name: track.name
+                }
+              ).exec(function (err, result){
+                  callback();
+                })
+            });
+            console.log('Track and Group updated');
+          }
         }
       );
     },
 
-    updateCars: function(req, res) {
-      console.log("ok");
-      async.series({
-          Cars: function (callback) {
-            client.get(api.cars.list, function (err, res, data) {
-              callback(null, data);
-            });
-          }
-        },
-        function (err, results) {
-          async.each(results.Cars.response.list, function (car, callback) {
+    updateCars: function() {
+      client.get(api.cars.list, function (err, res, data) {
+        if(err){
+          sails.sockets.blast({
+            msg: 'Impossible to update cars',
+            class: 'alert-danger'
+          });
+          console.log('Impossible to update cars');
+          return 'Error';
+        } else {
+          async.each(data.response.list, function (car, callback) {
             GroupDB.findOne({name: car.group}).exec(function (err, group) {
               CarDB.findOrCreate(
                 {
@@ -654,9 +670,10 @@ module.exports = function enableServer(sails) {
                   callback();
                 });
             });
-
           });
-        });
+          console.log('Cars updated');
+        }
+      });
     }
 
   };
