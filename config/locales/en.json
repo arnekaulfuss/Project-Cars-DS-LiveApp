@@ -86,5 +86,16 @@
   "lap_time": "Laptime",
   "driver": "Driver",
   "true": "Yes",
-  "false": "No"
+  "false": "No",
+
+  "username": "Username",
+  "results": "Results",
+  "incidents": "Incidents",
+  "last_connection": "Last Connection",
+  "sessions_played": "Sessions played",
+  "date": "Date",
+  "time": "Time",
+  "update": "Update",
+  "session": "Session"
+
 }
