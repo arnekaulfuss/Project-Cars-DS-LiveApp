@@ -42,7 +42,7 @@ module.exports.routes = {
     // Cars Admin routes
     '/admin/cars': 'CarController.index',
     '/admin/cars/:page': 'CarController.index',
-    '/admin/cars/:id': 'CarController.edit',
+    '/admin/cars/edit/:id': 'CarController.edit',
     // Events Admin routes
     '/admin/events': 'EventController.indexAdmin',
     '/admin/events/:page': 'EventController.indexAdmin',
