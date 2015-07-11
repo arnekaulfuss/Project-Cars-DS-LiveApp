@@ -119,5 +119,18 @@
   "admin": "Admin",
   "password_reset": "Password reset",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "drivers_infotext": "Here there are all the drivers that have been connected to the server, and their stats!",
+  "show": "Show",
+  "50_last_laps": "50 last Laps",
+  "50_last_sessions": "50 last Sessions",
+  "top_10": "Top 10",
+  "third_place": "Third place",
+  "second_place": "Second Place",
+  "first_place": "First Place",
+  "pole": "Poleposition",
+  "last_seen": "Last see",
+  "incidents_victim": "Incidents victim",
+  "incidents_caused": "Incidents caused",
+  "sessions_participated": "Sessions participated"
 }

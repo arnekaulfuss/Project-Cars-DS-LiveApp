@@ -118,5 +118,18 @@
   "admin": "Admin",
   "password_reset": "Passwort reseten",
   "login": "Login",
-  "logout": "Logout"
+  "logout": "Logout",
+  "drivers_infotext": "Hier sind alle Fahrer die jemals auf diesem Server gespielt haben mit Ihrer Statistik.",
+  "show": "Anzeigen",
+  "50_last_laps": "50 letzte Runden",
+  "50_last_sessions": "50 letzte Sitzungen",
+  "top_10": "Top 10",
+  "third_place": "3. Platz",
+  "second_place": "2. Platz",
+  "first_place": "1. Platz",
+  "pole": "Poleposition",
+  "last_seen": "Zuletzt gesehen",
+  "incidents_victim": "Unfallopfer",
+  "incidents_caused": "Unfallverursacher",
+  "sessions_participated": "Sitzungen teilgenommen"
 }
