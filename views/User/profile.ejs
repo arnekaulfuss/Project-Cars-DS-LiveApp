@@ -11,26 +11,15 @@
           </div>
           <div class="col-sm-8">
             <ul class="list-group">
-              <li class="list-group-item"><b>Username:</b> <span class="text-right"><%= user.username %></span></li>
-              <li class="list-group-item"><b>Email:</b> <span class="text-right"><%= user.email %></span></li>
-              <li class="list-group-item"><b>Registred</b> <span class="text-right"><%= user.createdAt %></span></li>
               <li class="list-group-item">
-                <form action="/profile" method="POST" class="form-horizontal">
-                  <div class="form-group">
-                    <div class="col-sm-6">
-                      <b>Steam ID</b>
-                    </div>
-                    <div class="col-sm-4">
-                      <input type="text" class="form-control" id="steam_id" value="
-                      <% if(user.drivers.length > 0){ %><%= user.drivers[0].steam_id %><% } %>
-                      ">
-                    </div>
-                    <div class="col-sm-2"><input type="submit" value="<%= __('Update') %>" class="btn btn-primary" /></div>
-                  </div>
-                </form>
+                <b>Username:</b> <span class="text-right"><%= user.username %></span>
+              </li>
+              <li class="list-group-item">
+                <b>Email:</b> <span class="text-right"><%= user.email %></span>
               </li>
             </ul>
           </div>
+          <div class="col-sm-8" data-template="serverKeys" data-template-data="<%= JSON.stringify(user.serverKeys) %>"></div>
         </div>
         <hr>
         <% if(user.drivers) { %>

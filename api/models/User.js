@@ -33,9 +33,13 @@ var User = {
     steamAvatar: 'string',
     steamAvatarMedium: 'string',
     steamAvatarFull: 'string',
-    drivers:{
+    drivers: {
       collection: 'Driver',
       via: 'userAlias'
+    },
+    serverKeys: {
+      collection: 'ServerKey',
+      via: 'owner'
     }
   },
   beforeCreate: function (values, cb) {

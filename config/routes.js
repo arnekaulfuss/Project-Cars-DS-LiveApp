@@ -103,6 +103,9 @@ module.exports.routes = {
     '/updCars': 'ServerController.updateCars',
     '/admin/server': 'ServerController.admin',
 
+    'post /user/keys/add': 'UserController.addKey',
+    'post /user/keys/:id/destroy': 'UserController.destroyKey',
+
     /*==========  Auth  ==========*/
 
     // 'get /login': 'AuthController.login',
