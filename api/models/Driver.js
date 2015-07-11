@@ -69,7 +69,7 @@ module.exports = {
             via: 'driver'
         },
         avatar: 'string',
-        userAlias: {
+        user: {
           model: 'User'
         }
     }

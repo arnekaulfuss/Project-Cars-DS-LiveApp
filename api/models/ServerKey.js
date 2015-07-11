@@ -19,7 +19,7 @@ module.exports = {
       type: 'boolean',
       defaultsTo: true
     },
-    owner: {
+    user: {
       model: 'User'
     }
   },

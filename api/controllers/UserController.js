@@ -66,7 +66,7 @@
           return res.redirect('/profile');
         }
 
-        ServerKey.create({name: req.body.name, owner: req.session.me}).exec(function (err, key) {
+        ServerKey.create({name: req.body.name, user: req.session.me}).exec(function (err, key) {
           if (err) return res.negotiate(err);
           req.flash('info', "Added key")
           res.redirect('/profile');
