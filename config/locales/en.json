@@ -103,5 +103,11 @@
   "laps_done": "Laps done",
   "last_sessions": "Last Sessions",
   "last_users": "Last Users",
-  "not_implemented_yet": "not implemented yet"
+  "not_implemented_yet": "not implemented yet",
+  "server": "Server",
+  "listener": "Listener",
+  "not_running": "Not Running",
+  "run_shut_down_server_listener": "Run/Shut down Server Listener",
+  "start_listener": "Start the Listener",
+  "start_listener": "Stop the Listener"
 }

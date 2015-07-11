@@ -102,5 +102,11 @@
   "laps_done": "Runden gefahren",
   "last_sessions": "Letzte Sitzungen",
   "last_users": "Letzte Fahrer",
-  "not_implemented_yet": "noch nicht implementiert"
+  "not_implemented_yet": "noch nicht implementiert",
+  "server": "Server",
+  "listener": "Listener",
+  "not_running": "läuft nicht",
+  "run_shut_down_server_listener": "Starten / Stoppen des Server Listener",
+  "start_listener": "Starten des Listener",
+  "stop_listener": "Stoppen des Listener"
 }
