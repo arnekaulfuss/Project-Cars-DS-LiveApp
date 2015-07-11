@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header"><%= __('edit') %> <%- car.name %> <a class="btn btn-danger pull-right" href="/admin/tracks"><i class="fa fa-arrow-left"></i> Back to car list</a></h1>
+      <h1 class="page-header"><%= __('edit') %> <%- car.name %> <a class="btn btn-danger pull-right" href="/admin/tracks"><i class="fa fa-arrow-left"></i> <%= __('back_to_car_list') %></a></h1>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -14,32 +14,31 @@
           <div class="col-md-6">
             <form action="/admin/cars/<%- car.id %>" method="POST" class="form-horizontal" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="name"><%= __('views.admin.car.name') %>:</label>
+                <label for="name"><%= __('name') %>:</label>
                 <input type="text" name="name" class="form-control" value="<%- car.name %>"/>
               </div>
-              <% console.log(car) %>
               <div class="form-group">
-                <label for="brand">Brand:</label>
+                <label for="brand"><%= __('brand') %>:</label>
                 <input type="text" name="brand" class="form-control" value="<%- car.brand %>"/>
               </div>
               <div class="form-group">
-                <label for="HP">HP:</label>
+                <label for="HP"><%= __('horsepower_short') %>:</label>
                 <input type="text" name="HP" class="form-control" value="<%- car.HP %>"/>
               </div>
               <div class="form-group">
-                <label for="year">Year:</label>
+                <label for="year"><%= __('year') %>:</label>
                 <input type="text" name="year" class="form-control" value="<%- car.year %>"/>
               </div>
               <div class="form-group">
-                <label for="top_speed">Top speed:</label>
+                <label for="top_speed"><%= __('top_speed') %>:</label>
                 <input type="text" name="topSpeed" class="form-control" value="<%- car.topSpeed %>"/>
               </div>
               <div class="form-group">
-                <label for="thumbnail">Thumb:</label>
+                <label for="thumbnail"><%= __('thumbnail') %>:</label>
                 <input type="file" id="fileInput" name="thumbnail"/>
               </div>
               <div class="form-group">
-                <input type="submit"  id="car_btn_update" class="btn btn-primary btn-block" value="Update"/>
+                <input type="submit"  id="car_btn_update" class="btn btn-primary btn-block" value="<%= __('upload') %>"/>
               </div>
             </form>
           </div>
@@ -48,7 +47,7 @@
             <img src="<%- car.thumb %>" alt="car image" class="img-responsive"/>
             <% } else { %>
             <div class="not-uploaded">
-              No thumbnail uploaded !
+              <%= __('no_thumbnail_uploaded') %>
             </div>
             <% } %>
           </div>

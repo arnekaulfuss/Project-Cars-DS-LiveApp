@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Cars</h1>
+      <h1 class="page-header"><%= __('Cars') %></h1>
     </div>
   </div>
   <div class="row">
@@ -15,7 +15,7 @@
               <td><img src="<%- cars[i].thumb %>" alt="" width="35"/></td>
               <td><%- cars[i].name %></td>
               <td>
-                <a class="btn btn-danger pull-right" href="/admin/cars/edit/<%- cars[i].id %>">Edit</a>
+                <a class="btn btn-danger pull-right" href="/admin/cars/edit/<%- cars[i].id %>"><%= __('edit') %></a>
               </td>
             </tr>
             <% } %>

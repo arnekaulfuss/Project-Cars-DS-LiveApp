@@ -1,4 +1,17 @@
 {
-  "Welcome": "Willkommen",
-  "A brand new app.": "Eine neue App."
+  "cars": "Fahrzeuge",
+  "edit": "Bearbeiten",
+  "name": "Name",
+  "brand": "Marke",
+  "horsepower_short": "PS",
+  "year": "Jahr",
+  "top_speed": "max. Geschwindigkeit",
+  "thumbnail": "Vorschaubild",
+  "no_thumbnail_uploaded": "kein Vorschaubild hochgeladen!",
+  "back_to_track_list": "zurück zur Strecken liste",
+  "back_to_car_list": "zurück zur Fahrzeug liste",
+  "location": "Ort",
+  "distance": "Distanz",
+  "tracks": "Strecken",
+  "upload": "Hochladen"
 }
