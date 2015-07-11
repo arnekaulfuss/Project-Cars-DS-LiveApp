@@ -87,7 +87,6 @@
   "driver": "Driver",
   "true": "Yes",
   "false": "No",
-
   "username": "Username",
   "results": "Results",
   "incidents": "Incidents",
@@ -96,6 +95,13 @@
   "date": "Date",
   "time": "Time",
   "update": "Update",
-  "session": "Session"
-
+  "session": "Session",
+  "dashboard": "Dashboard",
+  "drivers_registred": "Drivers Registred",
+  "view_details": "View Details",
+  "sessions_saved": "Sessions Saved",
+  "laps_done": "Laps done",
+  "last_sessions": "Last Sessions",
+  "last_users": "Last Users",
+  "not_implemented_yet": "not implemented yet"
 }

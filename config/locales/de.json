@@ -87,7 +87,6 @@
   "driver": "Fahrer",
   "true": "Ja",
   "false": "Nein",
-
   "username": "Benutzername",
   "results": "Ergebnisse",
   "incidents": "Zwischenfälle",
@@ -95,5 +94,13 @@
   "date": "Datum",
   "time": "Zeit",
   "update": "Aktualisieren",
-  "session": "Sitzung"
+  "session": "Sitzung",
+  "dashboard": "Übersicht",
+  "drivers_registred": "Fahrer registriert",
+  "view_details": "Details anzeigen",
+  "sessions_saved": "Sitzungen gespeichert",
+  "laps_done": "Runden gefahren",
+  "last_sessions": "Letzte Sitzungen",
+  "last_users": "Letzte Fahrer",
+  "not_implemented_yet": "noch nicht implementiert"
 }
