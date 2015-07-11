@@ -81,5 +81,10 @@
   "delete": "Delete",
   "drivers": "Drivers",
   "laps": "Laps",
-  "created_at": "created at"
+  "created_at": "created at",
+  "count": "Count",
+  "lap_time": "Laptime",
+  "driver": "Driver",
+  "true": "Yes",
+  "false": "No"
 }

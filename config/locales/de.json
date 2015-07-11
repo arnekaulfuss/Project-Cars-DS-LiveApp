@@ -81,5 +81,10 @@
   "delete": "löschen",
   "drivers": "Fahrer",
   "laps": "Runden",
-  "created_at": "erstellt am"
+  "created_at": "erstellt am",
+  "count": "Gültig",
+  "lap_time": "Rundenzeit",
+  "driver": "Fahrer",
+  "true": "Ja",
+  "false": "Nein"
 }
