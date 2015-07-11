@@ -1,73 +1,100 @@
 # Installation
 
-This app requires a 64bit Debian/Ubuntu environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
+This app requires a 64 bit linux environment to run. If you're on OS X or Windows, I've included a vagrant file to easily spool up a 64bit Ubuntu vm.
 
-### Using vagrant
+## Create a VM (Only if not on a 64bit Debian/Ubuntu machine)
 [Install Vagrant](http://docs.vagrantup.com/v2/installation/index.html)
 
 [Install Virtualbox](https://www.virtualbox.org/wiki/Downloads) (you can also use VMWare)
 
-Clone the repo and install the vm
+Create and start the VM
 ```
-git clone <git repo> .
-cd Project-Cars-DS-LiveApp
+cd </my/project/location>
 vagrant up
 ```
 
-The server is installed with all necessary software. Log into the VM
+Login to the VM
 ```
 vagrant ssh
 ```
-
 It's worth noting that your code is shared from your host (OS X, Windows, etc) and placed in the `/vagrant` directory of the VM.
 
-Install app dependencies
+
+## Install app dependencies
 ```
 cd /vagrant
 npm install
 ```
 
-### Using your own Ubuntu/Debian 64bit machine
-
-Clone the repo and cd into it
-```
-git clone <git repo> .
-cd Project-Cars-DS-LiveApp
-```
-
-Update your server software (installs binaries and node dependencies)
-```
-sudo ./scripts/install_server_software.sh
-```
-
-Install app dependencies
-```
-npm install
-```
-
-### Updating your database credentials
-
-By default, the setup creates a mysql database with a root user and no password, and a pcars table. It's important that you do not expose port 3306 with the setup. If you would prefer to use a different user/database, you can edit ```config/connections.js``` with your database info
-
 # Usage
 
-### Starting the server
+## Launch the server
 
-Make sure you have port 80 and 1337 open on your server, or forwarded to your machine from your home router.
-
-#### Run in development mode, on port 1337
+Start the server with the devellopement environment spec. "debug  - not minified file - ...""
 ```
-npm run dev
+sails lift
 ```
 
-#### Run in production mode, on port 80.
-Note! This assumes you do not have any other applications on your server running on port 80. 
-If you have, something like Apache, or Nginx installed and would like to proxy traffic via those apps, you might not want to run the next command, as it updates iptables and will route all traffic to and from port 80 to the node app.
+Start the server with the production environment spec.  "No debug - minified file  -  ..."
 ```
-npm run prod
+sails lift --prod
 ```
 
-### Create an admin account
+
+You can configure by environment some server infos like:
+1. Port used
+2. log level
+3. models connection
+
+Create a database, like "pcars" and be sure your mysql user have all grant access to it, when you will lift the app all table will be created.
+
+Edit the file in: /config/connection.js with your database-infos into 'Mysql' object or if you want to use an other adaptater like mongoDB, don't forget to change the adaptater used into /config/models.js and /config/env/production.js
+
+
+> !!! IMPORTANT SECURITY  REPLACEMENT !!!
+
+Edit the file in /config/session.js, and change the secret security key
+
+- Clan/team website infos
+
+Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
+
+## Usage
+
+### Launch the server
+
+> !!! CLOSE THE PROJECT CARS DEDICATED SERVER FIRST, BEFORE LIFT !!!
+
+The better way to run the app, is like pcars dedicated server, with screen on linux:
+
+	screen
+	cd /Path/to/the/Project
+	sails lift --prod
+
+ - Press ctrl­+a  to detach from the screen.
+ - Press ctrl+­d to leave the screen
+
+command line:
+
+lift the server with the production environment spec.  " No debug - minified file  -  ...".
+```
+    sails lift --prod
+```
+
+lift the server with the development environment spec. "debug  - not minified file - ..."
+```
+    sails lift
+```
+
+You can configure by environment some server infos like:
+ 1. Port used
+ 2. log level
+ 3. models connection
+
+### First lift and admin account
+
+> If the 80 port is already used by "apache-..." try to lift the server
+> with another port
 
 - First go to: http://yourdomain.com:port_specified_in_environment/signup
 
@@ -85,14 +112,9 @@ For this first release, all account have acces to admin panel http://yourdomain.
 - Go to server and start the listener
 - Run the Project Cars dedicated server!
 
-### Personalize the site
+## What'is Events?
 
-Edit the file in /config/personnalConfig.js and change sitename/siteurl to your infos, and pagination limit if you want.
-
-
-
-# TODO
-### What are events?
+> NEED TO BE FIX
 
 The events were created, so that when the session that matches the specifications of it , all will be recorded associated with the event. This will ensure fair competition conditions when hotlap for example.
 
@@ -109,9 +131,9 @@ The events were created, so that when the session that matches the specification
 - DateProgression,
 - ForecastProgression
 
-### I don't love design can i modify it?
+## I don't love design can i modify it?
 
 You will find in the Assets folder all Js/Css/Fonts/Less/Images used and all pages files are into /views. Your are allow to do all you want.
 
 
-# Report bugs and features here [Project-cars forum thread](http://forum.projectcarsgame.com/showthread.php?33757-Project-Cars-Dedicated-Server-Live-App)
+PS: The app is still in beta, if you found a bug, report them here or in [Project-cars forum thread](http://forum.projectcarsgame.com/showthread.php?33757-Project-Cars-Dedicated-Server-Live-App)

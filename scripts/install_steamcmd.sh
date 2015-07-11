@@ -1,11 +1,6 @@
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 BASE_DIR="$( cd $SCRIPT_DIR && cd .. && pwd)"
-HOME_DIR="$( cd ~ && pwd )"
-STEAMCMD_DIR="$HOME_DIR/steamcmd"
-
-if [ ! -f "$STEAMCMD_DIR" ]; then
-  mkdir -p "$STEAMCMD_DIR"
-fi
+STEAMCMD_DIR="$BASE_DIR/steamcmd"
 
 if [ ! -f "$STEAMCMD_DIR/steamcmd.sh" ]; then
   wget "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" -O "$STEAMCMD_DIR/steamcmd.tar.gz"
@@ -13,16 +8,7 @@ if [ ! -f "$STEAMCMD_DIR/steamcmd.sh" ]; then
   rm "$STEAMCMD_DIR/steamcmd.tar.gz"
   chmod +x "$STEAMCMD_DIR/steamcmd.sh"
   chmod +x "$STEAMCMD_DIR/steam.sh"
-
-  echo "successfully installed steamcmd to home directory"
+  echo "successfully installed steamcmd"
 else
   echo "steamcmd is already installed"
 fi
-
-if [ -h "$BASE_DIR/steamcmd" ]; then
-  echo "unlinking steamcmd to cwd"
-  unlink "$BASE_DIR/steamcmd"
-fi
-
-ln -s "$STEAMCMD_DIR" "$BASE_DIR/steamcmd"
-echo "linked steamcmd to cwd"
