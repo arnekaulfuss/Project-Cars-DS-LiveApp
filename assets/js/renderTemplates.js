@@ -18,4 +18,4 @@
       $this.html(jst[templatePath]({data: $data['templateData']}));
     }
   });
-}(this['JST'], jQuery, _))
+}(JST, jQuery, _))
