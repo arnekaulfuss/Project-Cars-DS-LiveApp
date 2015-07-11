@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Sessions</h1>
+      <h1 class="page-header"><%= __('sessions') %></h1>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -12,12 +12,12 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
-                  <th>Track</th>
-                  <th>Group</th>
-                  <th>Drivers</th>
-                  <th>Laps</th>
-                  <th>CreatedAt</th>
+                  <th><%= __('name') %></th>
+                  <th><%= __('track') %></th>
+                  <th><%= __('group') %></th>
+                  <th><%= __('drivers') %></th>
+                  <th><%= __('laps') %></th>
+                  <th><%= __('created_at') %></th>
                   <th></th>
                 </tr>
               </thead>
@@ -31,7 +31,7 @@
                   <td><%- sessions[i].Drivers.length %></td>
                   <td><%- sessions[i].Laps.length %></td>
                   <td class="global--time"><%- sessions[i].createdAt %></td>
-                  <td><a class="btn btn-danger pull-right" href="/admin/sessions/<%- sessions[i].id %>">Delete</a></td>
+                  <td><a class="btn btn-danger pull-right" href="/admin/sessions/<%- sessions[i].id %>"><%= __('delete') %></a></td>
                 </tr>
                 <% } %>
               </tbody>

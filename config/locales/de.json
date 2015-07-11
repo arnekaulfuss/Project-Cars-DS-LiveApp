@@ -68,9 +68,18 @@
   "end": "Ende",
   "track": "Strecke",
   "select_track": "Wähle eine Strecke",
-  "group": "Group",
+  "group": "Gruppe",
   "select_group": "Wähle eine Gruppe",
   "car": "Fahrzeug",
   "select_car": "Wähle ein Fahrzeug",
-  "create": "erstellen"
+  "create": "erstellen",
+  "add": "Hinzugügen",
+  "back_to_event_list": "zurück zur Event liste",
+  "qualify_length": "Qualify Länge",
+  "practice_length": "Training Länge",
+  "sessions": "Sitzungen",
+  "delete": "löschen",
+  "drivers": "Fahrer",
+  "laps": "Runden",
+  "created_at": "erstellt am"
 }
