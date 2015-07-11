@@ -92,7 +92,7 @@
               </div>
             </div>
             <div class="col-md-12" style="margin-top:15px;">
-              <input type="submit" value="Get bestlaps" class="btn btn-danger pull-right" id="getBst"/>
+              <input type="submit" value="<%= __('search') %>" class="btn btn-danger pull-right" id="getBst"/>
             </div>
           </form>
         </div>
@@ -107,17 +107,17 @@
           <table class="table table-hover table-bst" id="bestlaps_results_table">
             <thead>
               <tr>
-                <td><%= __('name') %>Name</td>
-                <td><%= __('event') %>Event</td>
-                <td><%= __('group') %>Group</td>
-                <td><%= __('car') %>Car</td>
-                <td><%= __('track') %>Track</td>
-                <td><%= __('session') %>Session</td>
+                <td><%= __('name') %></td>
+                <td><%= __('event') %></td>
+                <td><%= __('group') %></td>
+                <td><%= __('car') %></td>
+                <td><%= __('track') %></td>
+                <td><%= __('session') %></td>
                 <td><%= __('sector') %> 1</td>
                 <td><%= __('sector') %> 2</td>
                 <td><%= __('sector') %> 3</td>
-                <td><%= __('lap_time') %>lap time</td>
-                <td><%= __('distance') %>distance</td>
+                <td><%= __('lap_time') %></td>
+                <td><%= __('distance') %></td>
               </tr>
             </thead>
             <tbody id="bst_target">
