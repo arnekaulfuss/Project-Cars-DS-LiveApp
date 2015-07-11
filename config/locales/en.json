@@ -1,5 +1,17 @@
 {
-	"Welcome": "Welcome",
-	"A brand new app.": "A brand new app.",
-    "Update": "Update"
+  "cars": "Cars",
+  "edit": "Edit",
+  "name": "Name",
+  "brand": "Brand",
+  "horsepower_short": "HP",
+  "year": "Year",
+  "top_speed": "Top speed",
+  "thumbnail": "Thumbnail",
+  "no_thumbnail_uploaded": "No thumbnail uploaded!",
+  "back_to_track_list": "Back to track list",
+  "back_to_car_list": "Back to car list",
+  "location": "Location",
+  "distance": "Distance",
+  "tracks": "tracks",
+  "upload": "Upload"
 }
