@@ -90,14 +90,14 @@ module.exports = function enableServer (sails) {
                   Session = null;
                   d.SessionState = 'Offline';
                   sails.sockets.broadcast('Live', 'SessionUpdater', {Session: d, Players: [], Connected: []});
-                  return sails.log('Connection refused');
+                  sails.log('Connection refused');
                 }
                 callback(null, data_status);
               })
             },
             Logs: function (callback) {
               client.get("api/log/range?offset=" + lastlog + "&count=100000", function (err, res, data_log) {
-                if (err && err.code == "ECONNREFUSED") return sails.log('Connection refused');
+                if (err && err.code == "ECONNREFUSED") sails.log('Connection refused');
                 callback(null, data_log);
               });
             }
