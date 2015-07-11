@@ -195,5 +195,10 @@
   "current_lap": "Current Lap",
   "last_lap": "Last Lap",
   "best_lap": "Bestlap",
-  "connected": "Connected"
+  "connected": "Connected",
+  "status": "Status",
+  "server_status": "Server Status",
+  "show_live": "Show Live",
+  "most_active": "Most Active",
+  "read_more": "Read More"
 }

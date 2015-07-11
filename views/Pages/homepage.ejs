@@ -35,7 +35,7 @@
               </p>
             </div>
             <div class="panel-footer">
-              <a class="btn btn-danger btn-block" href="/events/<%- events[i].id %>">Read More <i class="fa fa-arrow-right"></i></a>
+              <a class="btn btn-danger btn-block" href="/events/<%- events[i].id %>"><%= __('read_more') %> <i class="fa fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -45,32 +45,32 @@
         <div class="col-md-4">
           <div class="panel panel-default" id="home_status">
             <div class="panel-heading">
-              <h4><i class="fa fa-plug"></i> Server Status</h4>
+              <h4><i class="fa fa-plug"></i> <%= __('server_status') %></h4>
             </div>
             <div class="panel-body">
               <div id="home_server--status"></div>
-              <h5>Connected</h5>
+              <h5><%= __('connected') %></h5>
               <table class="table table-condensed">
                 <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Status</th>
+                  <th><%= __('name') %></th>
+                  <th><%= __('status') %></th>
                 </tr>
                 </thead>
                 <tbody id="home_server--connected">
                 </tbody>
               </table>
-              <a class="btn btn-danger btn-block" href="#" role="button">Show Live &raquo;</a>
+              <a class="btn btn-danger btn-block" href="#" role="button"><%= __('show_live') %> &raquo;</a>
             </div>
           </div>
           <div class="panel panel-default" id="home_most-active">
             <div class="panel-heading">
-              <h4><i class="fa fa-users"></i> Most Active</h4>
+              <h4><i class="fa fa-users"></i> <%= __('most_active') %></h4>
             </div>
             <div class="panel-body">
               <% for (var i in drivers) { %>
               <div class="col-md-8"><%- drivers[i].name %></div>
-              <div class="col-md-4"><%- drivers[i].laps.length %> laps</div>
+              <div class="col-md-4"><%- drivers[i].laps.length %> <%= __('laps') %></div>
               <% } %>
             </div>
           </div>

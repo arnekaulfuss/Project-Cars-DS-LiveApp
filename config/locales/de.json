@@ -192,5 +192,10 @@
   "current_lap": "aktuelle Runde",
   "last_lap": "letzte Runde",
   "best_lap": "beste Runde",
-  "connected": "Verbunden"
+  "connected": "Verbunden",
+  "status": "Status",
+  "server_status": "Server Status",
+  "show_live": "Live Anzeigen",
+  "most_active": "Am Aktivsten",
+  "read_more": "mehr Lesen"
 }
