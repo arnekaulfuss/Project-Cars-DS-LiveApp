@@ -198,5 +198,18 @@
   "show_live": "Live Anzeigen",
   "most_active": "Am Aktivsten",
   "read_more": "mehr Lesen",
-  "search": "suchen"
+  "search": "suchen",
+  "views": "Ansichten",
+  "event_stats": "Sitzungsstatistiken",
+  "groups_stats": "Gruppenstatistiken",
+  "cars_stats": "Fahrzeugstatistiken",
+  "tracks_stats": "Streckenstatistiken",
+  "podium": "Podium",
+  "drivers_stats": "Fahrerstatistiken",
+  "laps_valid": "Gewertete Runden",
+  "distance_travelled": "Distanz zurückgelegt",
+  "group_with_most_laps": "am meisten genutzte Gruppe",
+  "car_most_used": "am meisten genutztes Fahrzeug",
+  "global_stats": "Globale Statistik",
+  "stats_message": "Hier siesht du Statistiken über den ganzen Server. Weitere werden folgen!"
 }

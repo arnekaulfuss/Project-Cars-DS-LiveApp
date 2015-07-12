@@ -201,5 +201,18 @@
   "show_live": "Show Live",
   "most_active": "Most Active",
   "read_more": "Read More",
-  "search": "search"
+  "search": "search",
+  "views": "Views",
+  "event_stats": "Events stats",
+  "groups_stats": "Groups stats",
+  "cars_stats": "Cars Stats",
+  "tracks_stats": "Tracks stats",
+  "podium": "Podium",
+  "drivers_stats": "Drivers stats",
+  "laps_valid": "Laps valid",
+  "distance_travelled": "Distance travelled",
+  "group_with_most_laps": "Group with most Laps",
+  "car_most_used": "Car most used",
+  "global_stats": "Global stats",
+  "stats_message": "Here you will see some stats from the server. More stats will come soon!"
 }
