@@ -1,8 +1,8 @@
 <div class="jumbotron jumbotron-drivers">
   <div class="mask"></div>
   <div class="container content">
-    <h1>Drivers</h1>
-    <p>Here there are all the drivers that have been connected to the server, and their stats !</p>
+    <h1><%= __('drivers') %></h1>
+    <p><%= __('drivers_infotext') %></p>
   </div>
 </div>
 <div class="container">
@@ -14,11 +14,11 @@
           <thead>
           <tr>
             <th></th>
-            <th>Username</th>
-            <th>Laps</th>
-            <th>Sessions</th>
-            <th>Incidents</th>
-            <th>Last connection</th>
+            <th><%= __('username') %></th>
+            <th><%= __('laps') %></th>
+            <th><%= __('sessions') %></th>
+            <th><%= __('incidents') %></th>
+            <th><%= __('last_connection') %></th>
             <th></th>
           </tr>
           </thead>
@@ -32,7 +32,7 @@
             <td><%- drivers[i].incidents.length %></td>
             <td class="global--time"><%- drivers[i].updatedAt %></td>
             <td>
-              <a class="btn btn-danger" href="/driver/<%- drivers[i].id %>">Show</a>
+              <a class="btn btn-danger" href="/driver/<%- drivers[i].id %>"><%= __('show') %></a>
             </td>
           </tr>
           <% } %>

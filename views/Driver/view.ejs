@@ -30,7 +30,7 @@
               <img src="<%- driver.avatar %>" alt="driver avatar" width="215" height="215" class="thumbnail" style="display: block; margin: 0 auto; margin-bottom: 25px;"/>
               <% } else { %>
               <div class="not-uploaded">
-                No thumbnail uploaded !
+                <%= __('no_thumbnail_uploaded') %>
               </div>
               <% } %>
 
@@ -40,23 +40,23 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                     <span class="badge"><%- driver.sessions.length %></span>
-                    Sessions participated:
+                    <%= __('sessions_participated') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.lapsDone.length %></span>
-                    Laps done:
+                    <%= __('laps_done') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.incidents.length %></span>
-                    Incidents caused:
+                    <%= __('incidents_caused') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.collided.length %></span>
-                    Incidents victim:
+                    <%= __('incidents_victim') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge global--time"><%- driver.updatedAt %></span>
-                    Last seen:
+                    <%= __('last_seen') %>n:
                   </li>
                 </ul>
               </div>
@@ -64,23 +64,23 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                     <span class="badge"><%- driver.pole_count %></span>
-                    Pole:
+                    <%= __('pole') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.first_count %></span>
-                    First Place:
+                    <%= __('first_place') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.second_count %></span>
-                    Second Place:
+                    <%= __('second_place') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.third_count %></span>
-                    Third place:
+                    <%= __('third_place') %>:
                   </li>
                   <li class="list-group-item">
                     <span class="badge"><%- driver.top_10 %></span>
-                    Top 10:
+                    <%= __('top_10') %>:
                   </li>
                 </ul>
               </div>
@@ -96,16 +96,16 @@
     <div id="PlayerStat"></div>
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">50 last sessions played</div>
+        <div class="panel-heading"><%= __('50_last_sessions') %></div>
         <div class="panel-body">
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Track</th>
-                <th>Group</th>
-                <th>Driver</th>
+                <th><%= __('name') %></th>
+                <th><%= __('date') %></th>
+                <th><%= __('track') %></th>
+                <th><%= __('group') %></th>
+                <th><%= __('driver') %></th>
               </tr>
             </thead>
             <tbody>
@@ -125,17 +125,17 @@
     </div>
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">50 last Laps</div>
+        <div class="panel-heading"><%= __('50_last_laps') %></div>
         <div class="panel-body">
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Session</th>
-                <th>Car</th>
-                <th>Time</th>
-                <th>Count</th>
-                <th>Session</th>
+                <th><%= __('date') %></th>
+                <th><%= __('session') %></th>
+                <th><%= __('car') %></th>
+                <th><%= __('time') %></th>
+                <th><%= __('count') %></th>
+                <th><%= __('session') %></th>
               </tr>
             </thead>
             <tbody>
@@ -145,7 +145,7 @@
                 <td><%- driver.lapsDone[i].session.name %></td>
                 <td><%- driver.lapsDone[i].Car.name %></td>
                 <td class="admin_Driver--LapTime"><%- driver.lapsDone[i].LapTime %></td>
-                <td><%- driver.lapsDone[i].CountThisLapTimes %></td>
+                <td><% if (driver.lapsDone[i].CountThisLapTimes == 1) { %> <span class="text-success"><%= __('true') %></span> <% } else { %> <span class="text-danger"><%= __('false') %></span> <% } %></td>
                 <td><%- driver.lapsDone[i].SessionStage %></td>
               </tr>
               <% } %>

@@ -6,7 +6,7 @@
           <div id="server_infos">
             <div id="server_infos_wrapper">
               <div class="server_infos_data">
-                <h4 id="server_infos_data--status">Status: {{ SessionState }} </h4>
+                <h4 id="server_infos_data--status"><%= __('status') %>: {{ SessionState }} </h4>
                 <div class="col-md-8">
                   <div class="col-md-6">
                     <div class="panel panel-default panel-status">
@@ -14,8 +14,8 @@
                         <table class="table panel-status--table">
                           <thead>
                             <tr>
-                              <th>Name</th>
-                              <th>Joinable Status</th>
+                              <th><%= __('name') %></th>
+                              <th><%= __('joinable_status') %></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -34,8 +34,8 @@
                         <table class="table panel-combo--table">
                           <thead>
                             <tr>
-                              <th>Track</th>
-                              <th>Car Group</th>
+                              <th><%= __('track') %></th>
+                              <th><%= __('group') %></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -54,17 +54,17 @@
                         <table class="table panel-conditions--table">
                           <thead>
                             <tr>
-                              <th>Stage</th>
-                              <th>Connected</th>
-                              <th>Game date</th>
-                              <th>Date Progression</th>
-                              <th>Forecast Progession</th>
-                              <th>Flag rules</th>
-                              <th>Penalties rules</th>
-                              <th>Damage rules</th>
-                              <th>Drivers DNF</th>
-                              <th>Drivers DSQ</th>
-                              <th>Drivers finished</th>
+                              <th><%= __('stage') %></th>
+                              <th><%= __('connected') %></th>
+                              <th><%= __('game_date') %></th>
+                              <th><%= __('date_progression') %></th>
+                              <th><%= __('forecast_progression') %></th>
+                              <th><%= __('flag_rules') %></th>
+                              <th><%= __('penalties_ruels') %></th>
+                              <th><%= __('damage_rules') %></th>
+                              <th><%= __('drivers_dnf') %></th>
+                              <th><%= __('drivers_dsq') %></th>
+                              <th><%= __('drivers_finished') %></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -93,10 +93,10 @@
                       <table class="table panel-weather--table">
                         <thead class="panel-weather--thead">
                           <tr>
-                            <th>Slot 1</th>
-                            <th>Slot 2</th>
-                            <th>Slot 3</th>
-                            <th>Slot 4</th>
+                            <th><%= __('slot') %> 1</th>
+                            <th><%= __('slot') %> 2</th>
+                            <th><%= __('slot') %> 3</th>
+                            <th><%= __('slot') %> 4</th>
                           </tr>
                         </thead>
                         <tbody class="panel-weather--tbody">
@@ -115,12 +115,12 @@
                       <table class="table panel-length--table">
                         <thead>
                           <tr>
-                            <th>Practice 1</th>
-                            <th>Practice 2</th>
-                            <th>Qualify</th>
-                            <th>Warmup</th>
-                            <th>Race 1</th>
-                            <th>Race 2</th>
+                            <th><%= __('practice') %> 1</th>
+                            <th><%= __('practice') %> 2</th>
+                            <th><%= __('qualifying') %></th>
+                            <th><%= __('warmup') %></th>
+                            <th><%= __('race') %> 1</th>
+                            <th><%= __('race') %> 2</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -150,7 +150,7 @@
         <div class="col-md-6">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <h4><i class="fa fa-history"></i> Live events</h4>
+              <h4><i class="fa fa-history"></i> <%= __('live_events') %></h4>
             </div>
             <div id="live_log_wrapper" class="panel-body">
               <div id="live_log" class="col-md-12">
@@ -167,7 +167,7 @@
         <div class="col-md-6">
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <h4><i class="fa fa-users"></i> Connected</h4>
+              <h4><i class="fa fa-users"></i> <%= __('connected') %></h4>
             </div>
             <div id="live_connected_wrapper"  class="panel-body">
               <div id="live_connected" class="col-md-12">
@@ -190,7 +190,7 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4><i class="fa fa-list"></i> Server standing's</h4>
+            <h4><i class="fa fa-list"></i> <%= __('server_standings') %></h4>
           </div>
           <div class="panel-body">
             <div id="live_table">
@@ -198,17 +198,17 @@
                 <table class="table table-hover" >
                   <thead>
                     <tr>
-                      <td>Pos</td>
-                      <td>Name</td>
-                      <td>Car</td>
-                      <td>Category</td>
-                      <td>State</td>
-                      <td>Current Lap</td>
-                      <td>Sector 1</td>
-                      <td>Sector 2</td>
-                      <td>Sector 3</td>
-                      <td>Last lap</td>
-                      <td>Bestlap</td>
+                      <td><%= __('position_short') %></td>
+                      <td><%= __('name') %></td>
+                      <td><%= __('car') %></td>
+                      <td><%= __('category') %></td>
+                      <td><%= __('state') %></td>
+                      <td><%= __('current_lap') %></td>
+                      <td><%= __('sector') %> 1</td>
+                      <td><%= __('sector') %> 2</td>
+                      <td><%= __('sector') %> 3</td>
+                      <td><%= __('last_lap') %></td>
+                      <td><%= __('best_lap') %></td>
                     </tr>
                   </thead>
                   <tbody>

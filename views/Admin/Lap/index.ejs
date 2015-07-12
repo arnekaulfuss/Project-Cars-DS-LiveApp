@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Laps</h1>
+            <h1 class="page-header"><%= __('laps') %></h1>
         </div>
     </div>
     <div class="row">
@@ -13,12 +13,12 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Driver</th>
-                            <th>Track</th>
-                            <th>Group</th>
-                            <th>Count</th>
-                            <th>LapTime</th>
-                            <th>CreatedAt</th>
+                            <th><%= __('driver') %></th>
+                            <th><%= __('track') %></th>
+                            <th><%= __('group') %></th>
+                            <th><%= __('count') %></th>
+                            <th><%= __('lap_time') %></th>
+                            <th><%= __('created_at') %></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -29,10 +29,10 @@
                             <td><%- laps[i].owner.name %></td>
                             <td><%- laps[i].Track.name %></td>
                             <td><%- laps[i].group.name %></td>
-                            <td><% if (laps[i].CountThisLapTimes == 1) { %> <span class="text-success"><%- laps[i].CountThisLapTimes %></span> <% } else { %> <span class="text-danger"><%- laps[i].CountThisLapTimes %></span> <% } %></td>
+                            <td><% if (laps[i].CountThisLapTimes == 1) { %> <span class="text-success"><%= __('true') %></span> <% } else { %> <span class="text-danger"><%= __('false') %></span> <% } %></td>
                             <td class="ms--time"><%- laps[i].LapTime %></td>
                             <td class="global--time"><%- laps[i].createdAt %></td>
-                            <td><a class="btn btn-danger pull-right delete--lap" href="/admin/lap/<%- laps[i].id %>">Delete</a></td>
+                            <td><a class="btn btn-danger pull-right delete--lap" href="/admin/lap/<%- laps[i].id %>"><%= __('delete') %></a></td>
                         </tr>
                         <% } %>
                         </tbody>

@@ -1,10 +1,8 @@
-
-
 <div class="jumbotron jumbotron-stats">
   <div class="mask"></div>
   <div class="container content">
-    <h1>Stats</h1>
-    <p>Here you will see some stats from the server. More stats will come soon !</p>
+    <h1><%= __('stats') %></h1>
+    <p><%= __('stats_message') %></p>
   </div>
 </div>
 
@@ -14,17 +12,17 @@
       <div class="col-md-12">
         <div class="panel panel-default" id="global_stats">
           <div class="panel-heading">
-            <h4><i class="fa fa-database"></i> Global stats</h4>
+            <h4><i class="fa fa-database"></i> <%= __('global_stats') %></h4>
           </div>
           <div class="panel-body">
             <table class="table table-condensed">
               <thead>
-                <th>Laps valid</th>
-                <th>Distance travelled</th>
-                <th>Sessions</th>
-                <th>Events</th>
-                <th>Group with most Laps</th>
-                <th>Car most used</th>
+                <th><%= __('laps_valid') %></th>
+                <th><%= __('distance_travelled') %></th>
+                <th><%= __('sessions') %></th>
+                <th><%= __('events') %></th>
+                <th><%= __('group_with_most_laps') %></th>
+                <th><%= __('car_most_used') %></th>
               </thead>
               <tr>
                 <td><%- laps.global.counted %> / <%- laps.global.all %> <% var percent = (laps.global.counted/laps.global.all)*100;%> (<%- percent.toFixed(0)%>%)</td>
@@ -36,6 +34,7 @@
                 <td><%- events.length %></td>
                 <td><%
                   var GroupPlayed = 0;
+                  var group = null;
                   for(var i in groups) {
                     if (groups[i].laps.length > GroupPlayed) {
                       GroupPlayed = groups[i].laps.length;
@@ -49,6 +48,7 @@
                   </td>
                   <td><%
                     var played = 0;
+                    var car = null;
                     for(var i in cars) {
                       if (cars[i].used.length > played) {
                         played = cars[i].used.length;
@@ -70,23 +70,23 @@
           <div class="col-md-12">
             <div class="panel panel-danger" id="stats_panel_drivers">
               <div class="panel-heading">
-                <h4><i class="fa fa-user"></i> Drivers stats <span class="pull-right"><%- drivers.length %> Registred</span></h4>
+                <h4><i class="fa fa-user"></i> <%= __('drivers_stats') %> <span class="pull-right"><%- drivers.length %> <%= __('registred') %></span></h4>
               </div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
                     <th></th>
-                    <th>Driver name</th>
-                    <th>Laps</th>
-                    <th>Distance total</th>
-                    <th>Sessions</th>
-                    <th>Inc caused</th>
-                    <th>Inc suff.</th>
-                    <th>1st</th>
-                    <th>2nd</th>
-                    <th>3rd</th>
-                    <th>Podium</th>
-                    <th>Top 10</th>
+                    <th><%= __('driver') %></th>
+                    <th><%= __('laps') %></th>
+                    <th><%= __('distance') %></th>
+                    <th><%= __('session') %></th>
+                    <th><%= __('incidents_caused') %></th>
+                    <th><%= __('incidents') %></th>
+                    <th><%= __('first') %></th>
+                    <th><%= __('second') %></th>
+                    <th><%= __('third') %></th>
+                    <th><%= __('podium') %></th>
+                    <th><%= __('top_10') %></th>
                   </thead>
                   <tbody>
                     <% for(var i in drivers) { %>
@@ -120,15 +120,15 @@
           <div class="col-md-12">
             <div class="panel panel-danger" id="stats_panel_tracks">
               <div class="panel-heading">
-                <h4><i class="fa fa-map-marker"></i> Tracks stats <span class="pull-right"><%- tracks.length %></span></h4>
+                <h4><i class="fa fa-map-marker"></i> <%= __('tracks_stats') %> <span class="pull-right"><%- tracks.length %></span></h4>
               </div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
                     <th></th>
-                    <th>Track name</th>
-                    <th>Laps</th>
-                    <th>Sessions</th>
+                    <th><%= __('track') %></th>
+                    <th><%= __('laps') %></th>
+                    <th><%= __('sessions') %></th>
                   </thead>
                   <tbody>
                     <% for(var i in tracks) { %>
@@ -148,14 +148,14 @@
           <div class="col-md-12">
             <div class="panel panel-default" id="stats_panel_cars">
               <div class="panel-heading">
-                <h4><i class="fa fa-car"></i> Cars stats <span class="pull-right"><%- cars.length %></span></h4>
+                <h4><i class="fa fa-car"></i> <%= __('cars_stats') %> <span class="pull-right"><%- cars.length %></span></h4>
               </div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
                     <th></th>
-                    <th>Car name</th>
-                    <th>Laps</th>
+                    <th><%= __('car') %></th>
+                    <th><%= __('laps') %></th>
                   </thead>
                   <tbody>
                     <% for(var i in cars) { %>
@@ -173,13 +173,13 @@
           <div class="col-md-12">
             <div class="panel panel-danger" id="stats_panel_groups">
               <div class="panel-heading">
-                <h4><i class="fa fa-sitemap"></i> Groups stats <span class="pull-right"><%- groups.length %></span></h4>
+                <h4><i class="fa fa-sitemap"></i> <%= __('groups_stats') %> <span class="pull-right"><%- groups.length %></span></h4>
               </div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
-                    <th>name</th>
-                    <th>Sessions</th>
+                    <th><%= __('session') %></th>
+                    <th><%= __('sessions') %></th>
                   </thead>
                   <tbody>
                     <% for(var i in groups) { %>
@@ -200,34 +200,34 @@
       <div class="col-md-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h4><i class="fa fa-user"></i> Events stats <span class="pull-right"><%- events.length %> Registred</span></h4>
+            <h4><i class="fa fa-user"></i> <%= __('event_stats') %> <span class="pull-right"><%- events.length %> <%= __('registred') %></span></h4>
           </div>
           <div class="panel-body">
             <table class="table table-condensed" style="font-size:10px;">
               <thead>
                 <th></th>
-                <th>Name</th>
-                <th>Event start</th>
-                <th>Event ends</th>
-                <th>Laps Done</th>
-                <th>Track</th>
-                <th>Group</th>
-                <th>Car</th>
-                <th>Date Ingame</th>
-                <th>Damage</th>
-                <th>Tire wear</th>
-                <th>Fuel Usage</th>
-                <th>Penalties</th>
-                <th>Views</th>
-                <th>Time</th>
-                <th>Weather</th>
-                <th>Weather Slot 1</th>
-                <th>Weather Slot 2</th>
-                <th>Weather Slot 3</th>
-                <th>Weather Slot 4</th>
-                <th>Practice Length</th>
-                <th>Qualify Length</th>
-                <th>Race Length</th>
+                <th><%= __('name') %></th>
+                <th><%= __('start') %></th>
+                <th><%= __('stop') %></th>
+                <th><%= __('laps') %></th>
+                <th><%= __('track') %></th>
+                <th><%= __('group') %></th>
+                <th><%= __('car') %></th>
+                <th><%= __('date_ingame') %></th>
+                <th><%= __('damage') %></th>
+                <th><%= __('tire_wear') %></th>
+                <th><%= __('fuel') %></th>
+                <th><%= __('penalties') %></th>
+                <th><%= __('views') %></th>
+                <th><%= __('time') %></th>
+                <th><%= __('weather') %></th>
+                <th><%= __('weather') %> <%= __('slot') %> 1</th>
+                <th><%= __('weather') %> <%= __('slot') %> 2</th>
+                <th><%= __('weather') %> <%= __('slot') %> 3</th>
+                <th><%= __('weather') %> <%= __('slot') %> 4</th>
+                <th><%= __('practice_length') %></th>
+                <th><%= __('qualify_length') %></th>
+                <th><%= __('race_length') %></th>
               </thead>
               <% for(var i in events) { %>
               <tr>
@@ -261,4 +261,3 @@
         </div>
       </div>
     </div>
-

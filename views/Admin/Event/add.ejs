@@ -1,172 +1,171 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h4>Create a new event</h4>
+      <h4><%= __('create_new_event') %></h4>
     </div>
     <div class="panel-body">
       <div class="col-md-12">
         <form action="/admin/event/add" method="POST" class="form-horizontal" enctype="multipart/form-data">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="name">Name:</label>
+              <label for="name"><%= __('name') %>:</label>
               <input type="text" name="name" class="form-control"/>
             </div>
             <div class="form-group">
-              <label for="name">Server name:</label>
+              <label for="name"><%= __('server_name') %>:</label>
               <input type="text" name="servername" class="form-control"/>
             </div>
 
             <div class="form-group">
-              <label for="dateIngame">Date Ingame</label>
+              <label for="dateIngame"><%= __('date_ingame') %></label>
               <input type="date" name="dateIngame" class="form-control datepicker"/>
             </div>
             <div class="form-group">
-              <label for="timeIngame">Time Ingame</label>
+              <label for="timeIngame"><%= __('time_ingame') %></label>
               <input type="time" name="timeIngame" class="form-control timepicker"/>
             </div>
 
             <div class="form-group">
-              <label for="RaceLength">Race Length:</label>
+              <label for="RaceLength"><%= __('race_length') %>:</label>
               <input type="number" name="RaceLength" class="form-control"/>
             </div>
 
             <div class="form-group">
-              <label for="Flags">Flags:</label>
+              <label for="Flags"><%= __('flags') %>:</label>
               <select name="Flags" class="form-control" multiple="true">
-                <option value="1">AI Allowed</option>
-                <option value="2">Force identical vehicles</option>
-                <option value="4">Force identical setup</option>
-                <option value="8">Allow custom setup</option>
-                <option value="16">Force realistic driving aids</option>
-                <option value="32">ABS Allowed</option>
-                <option value="64">SC Allowed</option>
-                <option value="128">TC Allowed</option>
-                <option value="256">Force manual</option>
-                <option value="512">Rolling starts</option>
-                <option value="512">Rolling starts</option>
-                <option value="1024">Force same vehicle group</option>
-                <option value="2048">Force same track</option>
-                <option value="4096">Force track style</option>
-                <option value="8192">Force handling style</option>
-                <option value="16384">Force lobby name</option>
-                <option value="32768">Force game mode</option>
-                <option value="65536">Force game length desc.</option>
-                <option value="131072">Fill session with AI</option>
-                <option value="262144">Mechanical failures</option>
-                <option value="524288">Auto start engine</option>
+                <option value="1"><%= __('ai_allowed') %></option>
+                <option value="2"><%= __('force_identical_vehicles') %></option>
+                <option value="4"><%= __('force_identical_setup') %></option>
+                <option value="8"><%= __('allow_custom_setup') %></option>
+                <option value="16"><%= __('force_realisitc_driving_aids') %></option>
+                <option value="32"><%= __('abs_allowed') %></option>
+                <option value="64"><%= __('sc_allowed') %></option>
+                <option value="128"><%= __('tc_alloewd') %></option>
+                <option value="256"><%= __('force_manual') %></option>
+                <option value="512"><%= __('rolling_start') %></option>
+                <option value="1024"><%= __('force_same_vehicle_group') %></option>
+                <option value="2048"><%= __('force_same_track') %></option>
+                <option value="4096"><%= __('force_track_style') %></option>
+                <option value="8192"><%= __('force_handling_style') %></option>
+                <option value="16384"><%= __('force_lobby_name') %></option>
+                <option value="32768"><%= __('force_game_mode') %></option>
+                <option value="65536"><%= __('force_game_length_desc') %></option>
+                <option value="131072"><%= __('fill_session_with_ai') %></option>
+                <option value="262144"><%= __('mechanical_failures') %></option>
+                <option value="524288"><%= __('events') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="DamageType">Damage:</label>
+              <label for="DamageType"><%= __('damage') %>:</label>
               <select name="DamageType" class="form-control">
-                <option value="0">Off</option>
-                <option value="1">Visual Only</option>
-                <option value="2">Performance Impacting</option>
-                <option value="3">Full</option>
+                <option value="0"><%= __('off') %></option>
+                <option value="1"><%= __('visual_only') %></option>
+                <option value="2"><%= __('performance_impacting') %></option>
+                <option value="3"><%= __('full') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="TireWearType">Tire Wear:</label>
+              <label for="TireWearType"><%= __('tire_wear') %>:</label>
               <select name="TireWearType" class="form-control">
-                <option value="6">Standard</option>
-                <option value="7">Slow</option>
-                <option value="8">Off</option>
+                <option value="6"><%= __('standard') %></option>
+                <option value="7"><%= __('slow') %></option>
+                <option value="8"><%= __('off') %></option>
                 <option value="5">x2</option>
                 <option value="4">x3</option>
                 <option value="3">x4</option>
                 <option value="2">x5</option>
-                <option value="1">X6</option>
+                <option value="1">x6</option>
                 <option value="0">x7</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="FuelUsageType">Fuel Usage:</label>
+              <label for="FuelUsageType"><%= __('fuel_usage') %>:</label>
               <select name="FuelUsageType" class="form-control">
-                <option value="0">Standard</option>
-                <option value="1">Slow</option>
-                <option value="2">Off</option>
+                <option value="0"><%= __('standard') %></option>
+                <option value="1"><%= __('slow') %></option>
+                <option value="2"><%= __('off') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="PenaltiesType">Penalties:</label>
+              <label for="PenaltiesType"><%= __('penalties') %>:</label>
               <select name="PenaltiesType" class="form-control">
-                <option value="0">None</option>
-                <option value="1">Full</option>
+                <option value="0"><%= __('none') %></option>
+                <option value="1"><%= __('full') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="AllowedViews">Allowed Views:</label>
+              <label for="AllowedViews"><%= __('allowed_views') %>:</label>
               <select name="AllowedViews" class="form-control">
-                <option value="0">Any</option>
-                <option value="1">All</option>
-                <option value="2">Cockpit + Helmet</option>
-                <option value="3">Cockpit</option>
-                <option value="4">Helmet</option>
+                <option value="0"><%= __('any') %></option>
+                <option value="1"><%= __('all') %></option>
+                <option value="2"><%= __('cockpit_and_helmet') %></option>
+                <option value="3"><%= __('cockpit') %></option>
+                <option value="4"><%= __('helmet') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="DateProgression">Date Progression:</label>
+              <label for="DateProgression"><%= __('date_progression') %>:</label>
               <input type="number" name="DateProgression" class="form-control"/>
             </div>
             <div class="form-group">
-              <label for="ForecastProgression">Forecast Progression:</label>
+              <label for="ForecastProgression"><%= __('forecast_progression') %>:</label>
               <input type="number" name="ForecastProgression" class="form-control"/>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="WeatherSlot1">Weather Slot1:</label>
+              <label for="WeatherSlot1"><%= __('weather_slot') %> 1:</label>
               <select name="WeatherSlot1" class="form-control">
-                <option value="0"> Select a weather</option>
-                <option value="-934211870">Sunny</option>
+                <option value="0"><%= __('select_weather') %></option>
+                <option value="-934211870"><%= __('sunny') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="WeatherSlot2">Weather Slot2:</label>
+              <label for="WeatherSlot2"><%= __('weather_slot') %> 2:</label>
               <select name="WeatherSlot2" class="form-control">
-                <option value="0"> Select a weather</option>
-                <option value="-934211870">Sunny</option>
+                <option value="0"><%= __('select_weather') %></option>
+                <option value="-934211870"><%= __('sunny') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="WeatherSlot3">Weather Slot3:</label>
+              <label for="WeatherSlot3"><%= __('weather_slot') %> 3:</label>
               <select name="WeatherSlot3" class="form-control">
-                <option value="0"> Select a weather</option>
-                <option value="-934211870">Sunny</option>
+                <option value="0"><%= __('select_weather') %></option>
+                <option value="-934211870"><%= __('sunny') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="WeatherSlot4">Weather Slot4:</label>
+              <label for="WeatherSlot4"><%= __('weather_slot') %> 4:</label>
               <select name="WeatherSlot4" class="form-control">
-                <option value="0"> Select a weather</option>
-                <option value="-934211870">Sunny</option>
+                <option value="0"><%= __('select_weather') %></option>
+                <option value="-934211870"><%= __('sunny') %></option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="start">start:</label>
+              <label for="start"><%= __('start') %>:</label>
               <input type="date" name="start" class="form-control datepicker"/>
             </div>
 
             <div class="form-group">
-              <label for="end">end:</label>
+              <label for="end"><%= __('end') %>:</label>
               <input type="date" name="end" class="form-control datepicker"/>
             </div>
 
             <div class="form-group">
-              <label for="track">track:</label>
+              <label for="track"><%= __('track') %>:</label>
               <select name="track" id="track-form" class="form-control">
-                <option value="0"> Select a track</option>
+                <option value="0"><%= __('select_track') %></option>
                 <% for (var i=0; i<tracks.length; i++) { %>
                 <option value="<%= tracks[i].id %>"><%= tracks[i].name %></option>
                 <% } %>
@@ -174,9 +173,9 @@
             </div>
 
             <div class="form-group">
-              <label for="group">group:</label>
+              <label for="group"><%= __('group') %>:</label>
               <select name="group" id="group-form" class="form-control">
-                <option value="0"> Select a group</option>
+                <option value="0"><%= __('select_group') %></option>
                 <% for (var i=0; i<groups.length; i++) { %>
                 <option value="<%= groups[i].id %>"><%= groups[i].name %></option>
                 <% } %>
@@ -184,9 +183,9 @@
             </div>
 
             <div class="form-group">
-              <label for="car">Car:</label>
+              <label for="car"><%= __('car') %>:</label>
               <select name="car" id="car-form" class="form-control">
-                <option value="0"> Select a car</option>
+                <option value="0"><%= __('select_car') %></option>
                 <% for (var i=0; i<cars.length; i++) { %>
                 <option value="<%= cars[i].id %>"><%= cars[i].name %></option>
                 <% } %>
@@ -196,7 +195,7 @@
           <div class="form-group">
             <input type="file" id="fileInput" name="thumbnail"/>
           </div>
-          <input type="submit" value="Create" class="btn btn-primary btn-block" />
+          <input type="submit" value="<%= __('create') %>" class="btn btn-primary btn-block" />
         </form>
       </div>
     </div>

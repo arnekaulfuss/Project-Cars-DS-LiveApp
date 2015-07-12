@@ -5,22 +5,22 @@
         <div class="col-md-12" id="results" style="margin:25px 0 25px 0 ;">
           <div class="panel panel-danger" id="results_panel">
             <div class="panel-heading" id="results_panel-heading">
-              <h4>Results</h4>
+              <h4><%= __('results') %></h4>
             </div>
             <div class="panel-body" id="results_results_panel-body">
-              <h4><i class="fa fa-warning"></i> Results's loading file can be long depending on the size.</h4>
+              <h4><i class="fa fa-warning"></i> <%= __('results_loading_message') %></h4>
               <%- partial ('../partials/pagination.ejs') %>
               <table class="table table-hover table-res" id="results_table">
                 <thead>
                 <tr>
-                  <td>Date</td>
-                  <td>Name</td>
-                  <td>Event</td>
-                  <td>Group</td>
-                  <td>Track</td>
-                  <td>Drivers</td>
-                  <td>Incidents</td>
-                  <td>Show</td>
+                  <td><%= __('date') %></td>
+                  <td><%= __('name') %></td>
+                  <td><%= __('event') %></td>
+                  <td><%= __('group') %></td>
+                  <td><%= __('track') %></td>
+                  <td><%= __('drivers') %></td>
+                  <td><%= __('incidents') %></td>
+                  <td></td>
                 </tr>
                 </thead>
                 <tbody id="res_target">
@@ -33,7 +33,7 @@
                   <td class="res-track"><%- sessions[i].Track.name %></td>
                   <td class="res-drivers"><%- sessions[i].Drivers.length %></td>
                   <td class="res-incidents"><%- sessions[i].incidents.length %></td>
-                  <td><a href="/result/<%- sessions[i].id %>" class="btn btn-danger getResult">Show</a></td>
+                  <td><a href="/result/<%- sessions[i].id %>" class="btn btn-danger getResult"><%= __('show') %></a></td>
                 </tr>
                 <% } %>
                 </tbody>

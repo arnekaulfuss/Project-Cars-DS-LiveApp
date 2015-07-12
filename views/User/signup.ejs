@@ -1,17 +1,21 @@
-<h1>Signup</h1>
-<form action="/signup" method="post">
+<div class="site">
+  <div class="container">
+    <h1><%= __('your_password') %><%= __('signup') %></h1>
+    <form action="/signup" method="post">
 
-  <label for="username">What's your username?</label>
-  <input name="username" type="text"/>
-  <br/>
+      <label for="username"><%= __('whats_your_username') %></label>
+      <input name="username" type="text"/>
+      <br/>
 
-  <label for="email">What's your email?</label>
-  <input name="email" type="text"/>
-  <br/>
+      <label for="email"><%= __('whats_your_email') %></label>
+      <input name="email" type="text"/>
+      <br/>
 
-  <label for="password">Choose a Password</label>
-  <input name="password" type="password"/>
-  <br/>
+      <label for="password"><%= __('choose_password') %></label>
+      <input name="password" type="password"/>
+      <br/>
 
-  <input type="submit"/>
-</form>
+      <input type="submit" value="<%= __('signup') %>"/>
+    </form>
+  </div>
+</div>
