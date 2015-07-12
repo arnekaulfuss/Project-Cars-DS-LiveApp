@@ -64,6 +64,12 @@ module.exports = function enableServer (sails) {
       });
     },
 
+    /**
+    *
+    * This is way too procedural, and as such very hard to comprehend.
+    * Try not to add to this method, and instead refactor it.
+    *
+    **/
     start: function (req, res) {
       if (loopStatus !== null) {
         return sails.sockets.blast({
