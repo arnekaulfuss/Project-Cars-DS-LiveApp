@@ -86,18 +86,16 @@ module.exports = function enableServer (sails) {
           Status: function (callback) {
             client.get(api.status, function (err, res, data_status) {
               if (err && err.code == "ECONNREFUSED") {
-                var d = {};
                 Session = null;
-                d.SessionState = 'Offline';
-                sails.sockets.broadcast('Live', 'SessionUpdater', {Session: d, Players: [], Connected: []});
-                sails.log('Connection refused');
+                sails.sockets.broadcast('Live', 'SessionUpdater', {Session: {SessionState: 'Offline'}, Players: [], Connected: []});
+                return callback('Connection refused for Status');
               }
               callback(null, data_status);
             })
           },
           Logs: function (callback) {
             client.get("api/log/range?offset=" + lastlog + "&count=100000", function (err, res, data_log) {
-              if (err && err.code == "ECONNREFUSED") sails.log('Connection refused');
+              if (err && err.code == "ECONNREFUSED") return callback('Connection refused for Logs');
               callback(null, data_log);
             });
           }
@@ -106,6 +104,8 @@ module.exports = function enableServer (sails) {
 
           Status = results.Status;
           Logs = results.Logs;
+
+          if (!Status || !Logs) return sails.log("No server response");
 
           if (Status.result != "ok" || Logs.result != "ok") return sails.log("Server response not parsable");
 
@@ -118,110 +118,7 @@ module.exports = function enableServer (sails) {
             return sails.log(Status.response.attributes.SessionState)
           }
 
-
-          if ( Session === null ) {
-            if (Status.response.attributes.SessionState === "Lobby" || Status.response.attributes.SessionState === "Loading" || Status.response.attributes.SessionState === "None" || Status.response.attributes.SessionPhase === "PreCountDownSync") {
-              players = [];
-              Session = null;
-              async.series({
-                Track: function(callback){
-                  TrackDB.findOne({gameId: Status.response.attributes.TrackId}).exec(function(err,track){
-                    callback(null, track);
-                  });
-                },
-                Group: function(callback){
-                  GroupDB.findOne({gameId:Status.response.attributes.VehicleGroupId}).exec(function(err,group){
-                    callback(null, group);
-                  });
-                }
-              }, function (err, results){
-                Status.response.attributes.Track = results.Track;
-                Status.response.attributes.CarGroup = results.Group;
-                Status.response.attributes.name = Status.response.name;
-                sails.sockets.broadcast('Live', 'SessionUpdater', {Session: Status.response.attributes, Players: Status.response.participants, Connected: Status.response.members});
-              });
-            } else {
-              saved = 0;
-              Session = Status.response.attributes;
-              Session.name = Status.response.name;
-              async.series({
-                Track: function(callback) {
-                  TrackDB.findOne({gameId: Status.response.attributes.TrackId}).exec(function(err,track){
-                    callback(null, track);
-                  });
-                },
-                Group: function(callback) {
-                  GroupDB.findOne({gameId:Status.response.attributes.VehicleGroupId}).exec(function(err,group){
-                    callback(null, group);
-                  });
-                }
-              }, function (err, results){
-
-                Session.Track = results.Track;
-                Session.group = results.Group;
-                Session.name = Status.response.name;
-
-                EventDB.findOne({
-
-                  servername:Status.response.name,
-                  DamageType: Status.response.attributes.DamageType,
-                  TireWearType: Status.response.attributes.TireWearType,
-                  FuelUsageType: Status.response.attributes.FuelUsageType,
-                  AllowedViews : Status.response.attributes.AllowedViews,
-                  track : results.Track.id,
-                  group : results.Group.id,
-                  dateIngame : Status.response.attributes.DateYear + '-' + ("0" + (Status.response.attributes.DateMonth)).slice(-2) + '-' + ("0" + (Status.response.attributes.DateDay)).slice(-2) + ' ' + Status.response.attributes.DateHour + ':' + Status.response.attributes.DateMinute + ':00',
-                  DateProgression : Status.response.attributes.DateProgression,
-                  ForecastProgression : Status.response.attributes.ForecastProgression,
-                  WeatherSlot1 : Status.response.attributes.WeatherSlot1,
-                  WeatherSlot2 : Status.response.attributes.WeatherSlot2,
-                  WeatherSlot3 : Status.response.attributes.WeatherSlot3,
-                  WeatherSlot4 : Status.response.attributes.WeatherSlot4
-
-                }).exec(function(err, Event){
-
-                  var date = new Date();
-                  if (typeof Event != "undefined") {
-
-                    var eventDate = new Date(Event.end);
-
-                    if (eventDate >= date) {
-                      Session.Events = Event;
-                    }
-                  }
-
-                  ServerSessionDB.create(Session).exec(function (err, sessionStored) {
-                    Session.id = sessionStored.id;
-                    sails.log('New Session - Session id: ' + sessionStored.id);
-
-                    var minutes = date.getMinutes();
-
-                    if (minutes.length == 1) minutes = minutes > 9 ? minutes : '0' + minutes;
-
-                    fileResult = file + sessionStored.id + ".json";
-
-                    fs.outputJsonSync(fileResult, {
-                      Session: Session,
-                      Drivers: players,
-                      Results: {
-                        "Practice1": [],
-                        "Practice2": [],
-                        "Qualifying": [],
-                        "Warmup": [],
-                        "Race1": [],
-                        "Race2": []
-                      },
-                      Logs: []
-                    });
-
-                    sails.log("New Session File saved.");
-                    saved = 1;
-                    sails.sockets.broadcast('Live', 'SessionUpdater', {Session: Session, Players: Status.response.participants, Connected: Status.response.members});
-                  });
-                });
-              });
-            }
-          } else {
+          if (Session) {
             async.series({
               Track: function(callback){
                 TrackDB.findOne({gameId: Status.response.attributes.TrackId}).exec(function(err,track){
@@ -364,6 +261,7 @@ module.exports = function enableServer (sails) {
                   if (player.participant.attributes.IsPlayer === 1) {
                     SaveLap(player, CurrentLog, Session, SessionStage);
                   }
+
                   if (getByParticipantId(CurrentLog.participantid, Status.response.participants)) {
                     pushPlayerNewAttributes(getByParticipantId(CurrentLog.participantid, Status.response.participants), players);
                     pushPlayerLap(CurrentLog, players, SessionStage);
@@ -405,6 +303,7 @@ module.exports = function enableServer (sails) {
                   TotalTime: log.attributes.TotalTime,
                   FastestLapTime: log.attributes.FastestLapTime
                 };
+
                 ResultDB
                   .create(data)
                   .exec(function(err, result){
@@ -413,12 +312,7 @@ module.exports = function enableServer (sails) {
 
                 if (SessionStage == "Qualifying" && log.attributes.RacePosition === 1) {
                   driversDB.update(player.driver.id ,{pole_count: parseInt(player.driver.pole_count) +1}).exec(function(err, upd){
-                    if(err){
-                      console.log(err);
-                    } else {
-                      console.log("Pole count for driver: "+ player.driver.name + " updated");
-                    }
-
+                    console.log(err || ("Pole count for driver: "+ player.driver.name + " updated"));
                   });
                 }
 
@@ -450,18 +344,105 @@ module.exports = function enableServer (sails) {
                 filedata.Results[SessionStage].push(data);
                 fs.outputJsonSync(fileResult, filedata);
               }
-
-
-            }, function (err) {
-              sails.log(err);
-            });
+            }, sails.log);
 
             lastlog = Logs.response.count;
-          }
+          } else if (serverStartedNoSession(Status)) {
+            players = [];
+            Session = null;
+            async.series({
+              Track: function(callback){
+                TrackDB.findOne({gameId: Status.response.attributes.TrackId}).exec(function(err,track){
+                  callback(null, track);
+                });
+              },
+              Group: function(callback){
+                GroupDB.findOne({gameId:Status.response.attributes.VehicleGroupId}).exec(function(err,group){
+                  callback(null, group);
+                });
+              }
+            }, function (err, results){
+              Status.response.attributes.Track = results.Track;
+              Status.response.attributes.CarGroup = results.Group;
+              Status.response.attributes.name = Status.response.name;
+              sails.sockets.broadcast('Live', 'SessionUpdater', {Session: Status.response.attributes, Players: Status.response.participants, Connected: Status.response.members});
+            });
+          } else {
+            saved = 0;
+            Session = Status.response.attributes;
+            Session.name = Status.response.name;
+            async.series({
+              Track: function(callback) {
+                TrackDB.findOne({gameId: Status.response.attributes.TrackId}).exec(function(err,track){
+                  callback(null, track);
+                });
+              },
+              Group: function(callback) {
+                GroupDB.findOne({gameId:Status.response.attributes.VehicleGroupId}).exec(function(err,group){
+                  callback(null, group);
+                });
+              }
+            }, function (err, results){
 
+              Session.Track = results.Track;
+              Session.group = results.Group;
+              Session.name = Status.response.name;
+
+              EventDB.findOne({
+
+                servername:Status.response.name,
+                DamageType: Status.response.attributes.DamageType,
+                TireWearType: Status.response.attributes.TireWearType,
+                FuelUsageType: Status.response.attributes.FuelUsageType,
+                AllowedViews : Status.response.attributes.AllowedViews,
+                track : results.Track.id,
+                group : results.Group.id,
+                dateIngame : Status.response.attributes.DateYear + '-' + ("0" + (Status.response.attributes.DateMonth)).slice(-2) + '-' + ("0" + (Status.response.attributes.DateDay)).slice(-2) + ' ' + Status.response.attributes.DateHour + ':' + Status.response.attributes.DateMinute + ':00',
+                DateProgression : Status.response.attributes.DateProgression,
+                ForecastProgression : Status.response.attributes.ForecastProgression,
+                WeatherSlot1 : Status.response.attributes.WeatherSlot1,
+                WeatherSlot2 : Status.response.attributes.WeatherSlot2,
+                WeatherSlot3 : Status.response.attributes.WeatherSlot3,
+                WeatherSlot4 : Status.response.attributes.WeatherSlot4
+
+              }).exec(function(err, Event){
+
+                var date = new Date();
+                if (typeof Event != "undefined" && new Date(Event.end) >= date) Session.Events = Event;
+
+                ServerSessionDB.create(Session).exec(function (err, sessionStored) {
+                  Session.id = sessionStored.id;
+                  sails.log('New Session - Session id: ' + sessionStored.id);
+
+                  var minutes = date.getMinutes();
+
+                  if (minutes.length == 1) minutes = minutes > 9 ? minutes : '0' + minutes;
+
+                  fileResult = file + sessionStored.id + ".json";
+
+                  fs.outputJsonSync(fileResult, {
+                    Session: Session,
+                    Drivers: players,
+                    Results: {
+                      "Practice1": [],
+                      "Practice2": [],
+                      "Qualifying": [],
+                      "Warmup": [],
+                      "Race1": [],
+                      "Race2": []
+                    },
+                    Logs: []
+                  });
+
+                  sails.log("New Session File saved.");
+                  saved = 1;
+                  sails.sockets.broadcast('Live', 'SessionUpdater', {Session: Session, Players: Status.response.participants, Connected: Status.response.members});
+                });
+              });
+            });
+          }
         });
       }, 2000);
-
     },
 
     getLive: function(req, from) {
@@ -479,30 +460,26 @@ module.exports = function enableServer (sails) {
         } else {
           sails.sockets.emit(sockId, 'firstData', {Session: Session, Players: result, Connected: Connected});
         }
-
-      } );
-
-
+      });
     },
 
     stop: function (req, res) {
-      if (loopStatus === null) {
+      if (!loopStatus) {
         sails.sockets.blast({
           msg: 'Listener already stopped !',
           class:'alert-danger'
         });
-        sails.sockets.blast('ServerStatus', {msg:'Stopped', class:'text-danger'});
-
-      } else {
-        clearInterval(loopStatus);
-        console.log('Server stopped !');
-        sails.sockets.blast({
-          msg: 'Listener stopped !',
-          class:'alert-danger'
-        });
-        sails.sockets.blast('ServerStatus', {msg:'Stopped', class:'text-danger'});
-        loopStatus = null;
+        return sails.sockets.blast('ServerStatus', {msg:'Stopped', class:'text-danger'});
       }
+
+      clearInterval(loopStatus);
+      console.log('Server stopped !');
+      sails.sockets.blast({
+        msg: 'Listener stopped !',
+        class:'alert-danger'
+      });
+      sails.sockets.blast('ServerStatus', {msg:'Stopped', class:'text-danger'});
+      loopStatus = null;
     },
 
     kick: function (req, res, refId, Bantime) {
@@ -515,6 +492,7 @@ module.exports = function enableServer (sails) {
       var req = http.get(options, function (res) {
         return true
       });
+
       req.on('error', function (e) {
         console.log('problem with request: ' + e.message);
       });
@@ -540,8 +518,7 @@ module.exports = function enableServer (sails) {
               callback(null, data);
             });
           }
-        },
-        function(err, results) {
+        }, function(err, results) {
           console.log("debut des resultats");
 
           async.each(results.Groups.response.list, function(group, callback){
@@ -644,6 +621,13 @@ module.exports = function enableServer (sails) {
         return obj;
       }
     })[0]
+  }
+
+  function serverStartedNoSession (status) {
+    return status.response.attributes.SessionState === "Lobby" ||
+      status.response.attributes.SessionState === "Loading" ||
+      status.response.attributes.SessionState === "None" ||
+      status.response.attributes.SessionPhase === "PreCountDownSync";
   }
 
   function pushPlayerCut(cut, myArray, SessionStage) {
