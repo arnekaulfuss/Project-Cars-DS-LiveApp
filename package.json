@@ -54,7 +54,7 @@
     "packer": "cd packer && packer push -name tylerbre/pcars_ds_full template.json",
     "prod": "./scripts/setup_production.sh && npm run kill && pm2 start ./config/pm2/production.json",
     "kill": "pm2 kill",
-    "dev": "sails lift --silly",
+    "dev": "sails lift --verbose",
     "debug": "sails debug",
     "console": "sails console"
   },

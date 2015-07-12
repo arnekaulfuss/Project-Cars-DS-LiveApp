@@ -38,10 +38,14 @@ module.exports = function (grunt) {
       }
 
       write(server_path, server(pcarsOptions));
+      grunt.log.ok('server.cfg written.');
     });
 
     write(blacklist_path, blacklist);
     write(whitelist_path, whitelist);
+    // occasionally the request callback won't get called, but we must have a
+    // server.cfg or the app will not work properly
+    write(server_path, server(pcarsOptions));
 
     grunt.log.ok('server configs re-applied successfully, continuing.');
   });

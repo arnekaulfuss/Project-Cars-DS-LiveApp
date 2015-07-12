@@ -23,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network "forwarded_port", guest: 80, host: 80 # for prod
   config.vm.network :forwarded_port, guest: 1337, host: 1337 # sails
   config.vm.network :forwarded_port, guest: 8766, host: 8766 # steam
+  config.vm.network :forwarded_port, guest: 9000, host: 9000 # pcars_ds api
   config.vm.network :forwarded_port, guest: 27015, host: 27015 # pcars_ds
   config.vm.network :forwarded_port, guest: 27016, host: 27016 # pcars_ds
 

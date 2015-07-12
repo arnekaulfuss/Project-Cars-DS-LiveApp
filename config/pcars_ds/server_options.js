@@ -2,7 +2,7 @@ var appGlobals = require('../globals.js').globals;
 var _ = require('lodash');
 
 module.exports = {
-  name: _name(_name(_.camelCase(appGlobals.sitename))),
+  name: _name(_.camelCase(appGlobals.sitename)),
   password: '',
   maxPlayerCount: 64,
   bindIP: '', // your home ip
