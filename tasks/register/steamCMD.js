@@ -26,6 +26,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('pcars_ds:reapply_cfg', 're-apply\'s the configuration for the dedicated server', function () {
 
+    if (server_cfg_exists()) return grunt.log.ok('server config exists, skipping');
+
     var server    = _.template(read(server_template_path));
     var blacklist = read(blacklist_template_path);
     var whitelist = read(whitelist_template_path);
@@ -72,6 +74,10 @@ module.exports = function (grunt) {
 
   function steamcmd_is_installed () {
     return exists(path.resolve(__dirname, '../../steamcmd/steam.sh'));
+  }
+
+  function server_cfg_exists () {
+    return steamcmd_is_installed() && pcars_is_installed() && exists(path.resolve(__dirname, '../../steamcmd/pcars_ds/server.cfg'));
   }
 
   function pcars_is_installed () {
