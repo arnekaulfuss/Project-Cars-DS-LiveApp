@@ -1,17 +1,31 @@
-<div class="site">
-  <div class="container">
+<div class="container content-container">
+
+  <div class="col-sm-offset-2">
     <h1><%= __('login') %></h1>
-    <form action="/login" method="post" class="form-horizontal">
-
-      <label for="email"><%= __('your_email') %></label>
-      <input name="email" type="text" class="form-control"/>
-      <br/>
-
-      <label for="password"><%= __('your_password') %></label>
-      <input name="password" type="password" class="form-control"/>
-      <br/>
-
-      <input type="submit" value="<%= __('login') %>" />
-    </form>
   </div>
+
+  <form action="/login" method="post" class="form-horizontal">
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="inputEmail"><%= __('your_email') %></label>
+      <div class="col-sm-4">
+        <input class="form-control" id="inputEmail" name="email" type="email">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="inputPassword"><%= __('your_password') %></label>
+      <div class="col-sm-4">
+        <input class="form-control" id="inputPassword" name="password" type="password">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-4">
+        <button class="btn btn-success" type="submit"><%= __('login') %></button>
+      </div>
+    </div>
+
+  </form>
+
 </div>
