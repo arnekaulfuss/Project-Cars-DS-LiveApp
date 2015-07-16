@@ -100,10 +100,11 @@ You can configure by environment some server infos like:
 
 - Create an account and close the server with ctrl+c
 
-- Go to /config/route.js and comment lines:
-	`//'get /signup': { view: 'user/signup' },
-    //'post /signup': 'UserController.signup',
-	`
+- Go to config/personnalConfig.js and change the Value from allowSignup to "false":
+```
+allowSignup: false,
+```
+
 For this first release, all account have acces to admin panel http://yourdomain.com:port_specified_in_environment/login.
 *On near future, admin access will be granted with role rules.*
 

@@ -30,7 +30,8 @@ module.exports.policies = {
     UserController: {
         '*': 'isAuthenticated',
         login: true,
-        signup: true
+        signup: true,
+        showSignup: true
     },
     AdminController: {
         '*': 'isAuthenticated'

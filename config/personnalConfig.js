@@ -3,6 +3,7 @@ module.exports.personnalConfig = {
     sitename: "Your sitename",
     siteUrl: "http://Your-domaine.com",
     siteLogo50x: "/images/logo/logo50x50.png",
+    allowSignup: false,
     DsApiUrl : {
         protocol: 'http://',
         host: '127.0.0.1',

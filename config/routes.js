@@ -83,7 +83,7 @@ module.exports.routes = {
     'get /login': { view: 'User/login' },
     'post /login': 'UserController.login',
     //Comment signup routes after create admin account
-    'get /signup': { view: 'User/signup' },
+    'get /signup': 'UserController.showSignup',
     'post /signup': 'UserController.signup',
     'get /reset': 'UserController.pass',
     'post /reset': 'UserController.passwordReset',

@@ -118,6 +118,17 @@
     res.redirect('/');
   },
 
+  showSignup: function(req, res) {
+
+    if ( sails.config.personnalConfig.allowSignup === false ) {
+      res.redirect('/');
+
+    } else {
+      res.view('User/signup');
+
+    }
+
+  },
 
   /**
    * `UserController.signup()`
