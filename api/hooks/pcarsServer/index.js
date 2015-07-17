@@ -77,7 +77,7 @@ module.exports = function enableServer(sails) {
     },
     startListener: function (req, res) {
       if (loopStatus === null) {
-        var file = '../project-cars/LogResults/';
+        var file = sails.config.logResultsPath;
         var fileResult = null;
         var Logs;
         var log;
