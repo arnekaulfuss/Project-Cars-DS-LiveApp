@@ -653,18 +653,18 @@ module.exports = function enableServer(sails) {
           console.log('Impossible to update cars');
           return 'Error';
         } else {
-          async.each(data.response.list, function (car, callback) {
-            GroupDB.findOne({name: car.class}).exec(function (err, group) {
+            async.each(data.response.list, function (car, callback) {
+            GroupDB.findOne({ name: car.class }).exec(function (err, group) {
               CarDB.findOrCreate(
                 {
                   gameId: car.id,
                   name: car.name,
-                  class: group.id
+                  group: group.id
                 },
                 {
                   gameId: car.id,
                   name: car.name,
-                  class: group.id
+                  group: group.id
                 }
               ).exec(function (err, result) {
                   callback();
