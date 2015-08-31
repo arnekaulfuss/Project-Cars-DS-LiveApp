@@ -109,7 +109,7 @@
   "not_running": "Not Running",
   "run_shut_down_server_listener": "Run/Shut down Server Listener",
   "start_listener": "Start the Listener",
-  "start_listener": "Stop the Listener",
+  "stop_listener": "Stop the Listener",
   "toggle_navigation": "Toggle navigation",
   "home": "Home",
   "live": "Live",
