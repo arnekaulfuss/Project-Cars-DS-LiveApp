@@ -10,7 +10,7 @@
               <img src="<%- driver.avatar %>" alt="driver avatar" class="img-responsive"/>
               <% } else { %>
               <div class="not-uploaded">
-                No thumbnail uploaded !
+                <%= __('no_thumbnail_uploaded') %>
               </div>
               <% } %>
 
@@ -18,15 +18,15 @@
             <div class="col-md-8">
               <form action="/admin/driver/edit/<%- driver.id %>" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-group">
-                  <label for="name">Name:</label>
+                  <label for="name"><%= __('name') %>:</label>
                   <input type="text" name="name" class="form-control" value="<%- driver.name %>"/>
                 </div>
                 <div class="form-group">
-                  <label for="avatar">Thumb:</label>
+                  <label for="avatar"><%= __('thumbnail') %>:</label>
                   <input type="file" id="fileInput" name="avatar"/>
                 </div>
                 <div class="form-group">
-                  <input type="submit"  id="driver_btn_update" class="btn btn-danger btn-block" value="Update"/>
+                  <input type="submit"  id="driver_btn_update" class="btn btn-danger btn-block" value="<%= __('update') %>"/>
                 </div>
               </form>
             </div>
@@ -34,16 +34,16 @@
           </div>
           <div class="col-md-6">
             <div class="panel panel-default">
-              <div class="panel-heading">Sessions played</div>
+              <div class="panel-heading"><%= __('sessions_played') %></div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Date</th>
-                      <th>Track</th>
-                      <th>Group</th>
-                      <th>Driver</th>
+                      <th><%= __('name') %></th>
+                      <th><%= __('date') %></th>
+                      <th><%= __('track') %></th>
+                      <th><%= __('group') %></th>
+                      <th><%= __('driver') %></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -65,17 +65,17 @@
           </div>
           <div class="col-md-6">
             <div class="panel panel-default">
-              <div class="panel-heading">Laps</div>
+              <div class="panel-heading"><%= __('laps') %></div>
               <div class="panel-body">
                 <table class="table table-condensed">
                   <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>Session</th>
-                      <th>Car</th>
-                      <th>Time</th>
-                      <th>Count</th>
-                      <th>Session</th>
+                      <th><%= __('date') %></th>
+                      <th><%= __('session') %></th>
+                      <th><%= __('car') %></th>
+                      <th><%= __('time') %></th>
+                      <th><%= __('count') %></th>
+                      <th><%= __('session') %></th>
                     </tr>
                   </thead>
                   <tbody>

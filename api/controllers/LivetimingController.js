@@ -273,7 +273,7 @@ module.exports = {
             if (typeof result == "undefined") return res.notFound(undefined, '404');
 
             var filename = result.id+'.json';
-            var folder = '../project-cars/LogResults/';
+            var folder = sails.config.logResultsPath;
             fs.readJson(folder+filename, function (err, file) {
                 return res.view('Result/view',{
                     file: file,
@@ -288,7 +288,7 @@ module.exports = {
     resultsQuery: function (req, res) {
         var request = req.allParams();
         var filename = request.id+'.json';
-        var folder = '../project-cars/LogResults/';
+        var folder = sails.config.logResultsPath;
 
         fs.readJson(folder+filename, function (err, file) {
             res.json({file: file, Incidents:request.incidents});

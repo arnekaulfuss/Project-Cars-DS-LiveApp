@@ -11,7 +11,6 @@
   adminConnect: function(req, res) {
     var roomName = "Admin";
     sails.sockets.join(req.socket, roomName);
-    console.log("connected to :"+roomName);
   },
 
   dashboard: function (req, res) {

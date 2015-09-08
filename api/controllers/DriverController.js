@@ -57,6 +57,7 @@
           });
         }, function(err){
           record.lapsDone = result.laps;
+          res.locals.layout = 'Admin/layout';
           return res.view('Admin/Driver/edit',{
             driver: record
           });

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Drivers</h1>
+      <h1 class="page-header"><%= __('drivers') %></h1>
     </div>
     <div class="row">
       <div class="panel panel-default">
@@ -10,11 +10,11 @@
           <table class="table table-condensed">
             <thead>
               <tr>
-                <th>Username</th>
-                <th>Laps</th>
-                <th>Results</th>
-                <th>Incidents</th>
-                <th>Last connection</th>
+                <th><%= __('username') %></th>
+                <th><%= __('laps') %></th>
+                <th><%= __('results') %></th>
+                <th><%= __('incidents') %></th>
+                <th><%= __('last_connection') %></th>
                 <th></th>
               </tr>
             </thead>
@@ -27,7 +27,7 @@
                 <td><%- drivers[i].incidents.length %></td>
                 <td class="global--time"><%- drivers[i].updatedAt %></td>
                 <td>
-                  <a class="btn btn-danger pull-right" href="/admin/driver/edit/<%- drivers[i].id %>"><i class="fa fa-pencil"></i> </a>
+                  <a class="btn btn-danger pull-right" href="/admin/driver/edit/<%- drivers[i].id %>"><i class="fa fa-pencil"></i></a>
                 </td>
               </tr>
               <% } %>

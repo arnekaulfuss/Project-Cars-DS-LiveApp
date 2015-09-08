@@ -7,10 +7,9 @@ module.exports = {
   maxPlayerCount: 64,
   bindIP: '', // your home ip
   httpApiInterface: '127.0.0.1',
-  httpApiPort: 9000,
-  _name: _name,
-  _siteName: _.camelCase(appGlobals.sitename)
+  httpApiPort: 9000
 }
+<<<<<<< HEAD
 
 function _name (prefix) {
   return prefix + '-' + Math.round(Math.random() * 10000);

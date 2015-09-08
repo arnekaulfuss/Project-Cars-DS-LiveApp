@@ -1,7 +1,6 @@
 var fs = require('fs');
 var path = require('path');
 var _ = require('lodash');
-var request = require('request');
 
 var pcarsOptions = require('../../config/pcars_ds/server_options.js');
 var spawn = require('../../api/services/spawn.js');
@@ -31,7 +30,6 @@ module.exports = function (grunt) {
     var server    = _.template(read(server_template_path));
     var blacklist = read(blacklist_template_path);
     var whitelist = read(whitelist_template_path);
-
 
     request('http://ipinfo.io', function (e, res, data) {
       if (!e && res.statusCode == 200) {
