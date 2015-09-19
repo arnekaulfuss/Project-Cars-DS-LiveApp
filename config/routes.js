@@ -79,14 +79,7 @@ module.exports.routes = {
     '/event/:id': 'EventController.show',
     '/events': 'EventController.index',
     '/events/:page': 'EventController.index',
-    // user routes
-    'get /login': { view: 'User/login' },
-    'post /login': 'UserController.login',
-    //Comment signup routes after create admin account
-    'get /signup': 'UserController.showSignup',
-    'post /signup': 'UserController.signup',
-    'get /reset': 'UserController.pass',
-    'post /reset': 'UserController.passwordReset',
+    
     //
     '/welcome': { view: 'User/welcome' },
     'get /profile': 'UserController.profile',
@@ -107,8 +100,6 @@ module.exports.routes = {
     // Listener actions routes
     '/start': 'ServerController.start',
     '/stop': 'ServerController.stop',
-    '/upd': 'ServerController.updateTracksAndCar',
-    '/updCars': 'ServerController.updateCars',
     '/admin/server': 'ServerController.admin',
 
     'post /user/keys/add': 'UserController.addKey',
