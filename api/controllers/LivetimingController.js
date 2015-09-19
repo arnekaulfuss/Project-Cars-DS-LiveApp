@@ -275,6 +275,9 @@ module.exports = {
             var filename = result.id+'.json';
             var folder = sails.config.logResultsPath;
             fs.readJson(folder+filename, function (err, file) {
+
+                if (typeof file == "undefined") return res.notFound(undefined, '404');
+
                 return res.view('Result/view',{
                     file: file,
                     Incidents: result.incidents.length
