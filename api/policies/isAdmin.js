@@ -3,5 +3,5 @@ module.exports = function(req, res, next) {
 
   if (req.wantsJSON) return res.send(401);
 
-  res.redirect('/login');
+  res.redirect('/auth/steam');
 };

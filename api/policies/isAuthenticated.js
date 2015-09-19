@@ -22,5 +22,5 @@ module.exports = function(req, res, next) {
     msg: user.username + ' Connected'
   });
   // Otherwise if this is an HTML-wanting browser, do a redirect.
-  return res.redirect('/login');
+  return res.redirect('/auth/steam');
 };
