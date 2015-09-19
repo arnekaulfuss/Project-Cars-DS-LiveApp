@@ -1,4 +1,4 @@
-module.exports = function (length) {
+module.exports = function(length) {
   length = length || 5;
   var text = '';
   var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -16,4 +16,4 @@ module.exports = function (length) {
   }
 
   return text;
-}
+};

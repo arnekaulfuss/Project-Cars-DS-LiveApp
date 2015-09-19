@@ -1,7 +1,7 @@
-var path     = require('path')
-var url      = require('url')
-var passport = require('passport');
-var _        = require('lodash');
+var path = require('path'),
+    url = require('url'),
+    passport = require('passport'),
+    _ = require('lodash');
 
 /**
  * Passport Service
@@ -63,7 +63,7 @@ passport.protocols = require('./protocols');
  * @param {Object}   profile
  * @param {Function} next
  */
-passport.connect = function (req, query, profile, next) {
+passport.connect = function(req, query, profile, next) {
   var user = profile._json;
 
   // Get the authentication provider from the query.
@@ -83,7 +83,9 @@ passport.connect = function (req, query, profile, next) {
     return next(new Error('No steam name or steam ID'));
   }
 
-  User.findOrCreate({steamID: user.steamid}, user, function (e, user) {
+  User.findOrCreate({
+    steamID: user.steamid
+  }, user, function(e, user) {
     if (_.isArray(user)) user = user[0]; // :/
     next(e, user);
   });
@@ -99,10 +101,10 @@ passport.connect = function (req, query, profile, next) {
  * @param  {Object} req
  * @param  {Object} res
  */
-passport.endpoint = function (req, res) {
-  var strategies = sails.config.passport
-    , provider   = req.param('provider')
-    , options    = {};
+passport.endpoint = function(req, res) {
+  var strategies = sails.config.passport,
+    provider = req.param('provider'),
+    options = {};
 
   // If a provider doesn't exist for this endpoint, send the user back to the
   // login page
@@ -131,28 +133,25 @@ passport.endpoint = function (req, res) {
  * @param {Object}   res
  * @param {Function} next
  */
-passport.callback = function (req, res, next) {
-  var provider = req.param('provider', 'local')
-    , action   = req.param('action');
+passport.callback = function(req, res, next) {
+  var provider = req.param('provider', 'local'),
+    action = req.param('action');
 
   // Passport.js wasn't really built for local user registration, but it's nice
   // having it tied into everything else.
   if (provider === 'local' && action !== undefined) {
     if (action === 'register' && !req.user) {
       this.protocols.local.register(req, res, next);
-    }
-    else if (action === 'connect' && req.user) {
+    } else if (action === 'connect' && req.user) {
       this.protocols.local.connect(req, res, next);
-    }
-    else if (action === 'disconnect' && req.user) {
+    } else if (action === 'disconnect' && req.user) {
       this.disconnect(req, res, next);
-    }
-    else {
+    } else {
       next(new Error('Invalid action'));
     }
   } else {
     if (action === 'disconnect' && req.user) {
-      this.disconnect(req, res, next) ;
+      this.disconnect(req, res, next);
     } else {
       // The provider will redirect the user to this URL after approval. Finish
       // the authentication process by attempting to obtain an access token. If
@@ -185,17 +184,22 @@ passport.callback = function (req, res, next) {
  * http://passportjs.org/guide/providers/
  *
  */
-passport.loadStrategies = function () {
-  var self       = this
-    , strategies = sails.config.passport;
+passport.loadStrategies = function() {
+  var self = this,
+    strategies = sails.config.passport;
 
-  Object.keys(strategies).forEach(function (key) {
-    var options = { passReqToCallback: true }, Strategy;
+  Object.keys(strategies).forEach(function(key) {
+    var options = {
+        passReqToCallback: true
+      },
+      Strategy;
 
     if (key === 'local') {
       // Since we need to allow users to login using both usernames as well as
       // emails, we'll set the username field to something more generic.
-      _.extend(options, { usernameField: 'identifier' });
+      _.extend(options, {
+        usernameField: 'identifier'
+      });
 
       //Let users override the username and passwordField from the options
       _.extend(options, strategies[key].options || {});
@@ -214,8 +218,8 @@ passport.loadStrategies = function () {
       }
 
     } else {
-      var protocol = strategies[key].protocol
-        , callback = strategies[key].callback;
+      var protocol = strategies[key].protocol,
+        callback = strategies[key].callback;
 
       if (!callback) {
         callback = 'auth/' + key + '/callback';
@@ -233,8 +237,8 @@ passport.loadStrategies = function () {
 
         case 'openid':
           options.returnURL = url.resolve(baseUrl, callback);
-          options.realm     = baseUrl;
-          options.profile   = true;
+          options.realm = baseUrl;
+          options.profile = true;
           break;
       }
 
@@ -254,22 +258,22 @@ passport.loadStrategies = function () {
  * @param  {Object} req
  * @param  {Object} res
  */
-passport.disconnect = function (req, res, next) {
-  var user     = req.user
-    , provider = req.param('provider', 'local')
-    , query    = {};
+passport.disconnect = function(req, res, next) {
+  var user = req.user,
+    provider = req.param('provider', 'local'),
+    query = {};
 
   query.user = user.id;
   query[provider === 'local' ? 'protocol' : 'provider'] = provider;
 
-  Passport.findOne(query, function (err, passport) {
+  Passport.findOne(query, function(err, passport) {
     if (err) {
       return next(err);
     }
 
-    Passport.destroy(passport.id, function (error) {
+    Passport.destroy(passport.id, function(error) {
       if (err) {
-          return next(err);
+        return next(err);
       }
 
       next(null, user);
@@ -277,11 +281,11 @@ passport.disconnect = function (req, res, next) {
   });
 };
 
-passport.serializeUser(function (user, next) {
+passport.serializeUser(function(user, next) {
   next(null, user.id);
 });
 
-passport.deserializeUser(function (id, next) {
+passport.deserializeUser(function(id, next) {
   User.findOne(id, next);
 });
 

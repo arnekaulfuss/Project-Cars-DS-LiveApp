@@ -3,7 +3,7 @@ var promise = require('bluebird');
 var append = require('fs').appendFileSync;
 var path = require('path');
 
-module.exports = function (script, args, logFile) {
+module.exports = function(script, args, logFile) {
   return new promise(function(resolve, reject) {
     var subProcess = spawn(script, args);
     var response = '';
@@ -14,7 +14,7 @@ module.exports = function (script, args, logFile) {
     subProcess.stdout.on('data', updateResponse);
     subProcess.stderr.on('data', updateResponse);
 
-    subProcess.on('close', function (code, signal) {
+    subProcess.on('close', function(code, signal) {
       console.log('EXIT CODE: ' + code);
 
       if (code === 0) {
@@ -29,7 +29,7 @@ module.exports = function (script, args, logFile) {
 
     /*==========  ...  ==========*/
 
-    function updateResponse (data) {
+    function updateResponse(data) {
       var hasData = data && data.length;
       if (!hasData) return;
 
@@ -40,7 +40,7 @@ module.exports = function (script, args, logFile) {
       }
     }
 
-    function convertResponse () {
+    function convertResponse() {
       try {
         return JSON.parse(response);
       } catch (e) {
