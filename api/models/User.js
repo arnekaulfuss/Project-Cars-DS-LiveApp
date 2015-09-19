@@ -1,80 +1,64 @@
-/**
- * User.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/#!documentation/models
- */
-
-bcrypt = require('bcrypt-nodejs');
-
-module.exports = {
-    attributes: {
-       username: {
-            type: 'string',
-            required: true,
-            size: 50
-        },
-        email: {
-            type: 'email',
-            unique: true,
-            required: true
-        },
-        password: {
-            type: 'string',
-            required: true
-        }
+var User = {
+  // Enforce model schema in the case of schemaless databases
+  schema: true,
+  attributes: {
+    username  : {
+      type: 'string',
+      unique: true,
+      index: true,
+      size: 50
     },
-
-
-    /**
-     * Create a new user using the provided inputs,
-     * but encrypt the password first.
-     *
-     * @param  {Object}   inputs
-     *                     • name     {String}
-     *                     • email    {String}
-     *                     • password {String}
-     * @param  {Function} cb
-     */
-
-    signup: function (inputs, cb) {
-        bcrypt.hash(inputs.password, null, null, function(err, hash) {
-            User.create({
-                username: inputs.username,
-                email: inputs.email,
-                password: hash
-            })
-                .exec(cb);
-        });
+    email: {
+      type: 'email',
+      unique: true,
+      index: true
     },
-
-    passwordReset: function(inputs, cb) {
-        bcrypt.hash(inputs.passwordNew, null, null, function(err, hash) {
-            User.update({
-                username: inputs.username
-            }, {
-                password: hash
-            }).exec(cb);
-        });
+    admin: {
+      type: 'boolean',
+      defaultsTo: false
     },
-
-
-    /**
-     * Check validness of a login using the provided inputs.
-     * But encrypt the password first.
-     *
-     * @param  {Object}   inputs
-     *                     • email    {String}
-     *                     • password {String}
-     * @param  {Function} cb
-     */
-
-    attemptLogin: function (inputs, cb) {
-            User.findOne({
-                email: inputs.email
-            })
-                .exec(cb);
+    steamID: {
+      type: 'string',
+      index: true
+    },
+    steamUserName: {
+      type: 'string',
+      index: true
+    },
+    steamPrimaryClanID: 'string',
+    steamRealName: 'string',
+    steamLocCountryCode: 'string',
+    steamLocStateCode: 'string',
+    steamLocCityID: 'integer',
+    steamAvatar: 'string',
+    steamAvatarMedium: 'string',
+    steamAvatarFull: 'string',
+    drivers: {
+      collection: 'Driver',
+      via: 'user'
+    },
+    serverKeys: {
+      collection: 'ServerKey',
+      via: 'user'
     }
-
-
+  },
+  beforeCreate: function (values, cb) {
+    //
+    values.username            = values.personaname;
+    values.steamID             = values.steamid;
+    values.steamPrimaryClanID  = values.primaryclanid;
+    values.steamUserName       = values.personaname;
+    values.steamRealName       = values.realname;
+    values.steamLocCountryCode = values.loccountrycode;
+    values.steamLocStateCode   = values.locstatecode;
+    values.steamLocCityID      = values.loccityid;
+    values.steamAvatar         = values.avatar;
+    values.steamAvatarMedium   = values.avatarmedium;
+    values.steamAvatarFull     = values.avatarfull;
+    cb();
+  }
 };
+
+
+module.exports = User;
+

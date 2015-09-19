@@ -25,8 +25,8 @@ module.exports.policies = {
   * access)                                                                  *
   *                                                                          *
   ***************************************************************************/
-
-    '*': true,
+    // '*': [ 'passport', /* your auth dependant policies go here */ ],
+    '*': true, // ?
     UserController: {
         '*': 'isAuthenticated',
         login: true,
@@ -34,16 +34,34 @@ module.exports.policies = {
         showSignup: true
     },
     AdminController: {
-        '*': 'isAuthenticated'
+        '*': 'isAuthenticated',
+    },
+    DriverController: {
+      adminIndex: 'isAdmin',
+      edit: 'isAdmin',
+      update: 'isAdmin'
+    },
+    EventController: {
+      indexAdmin: 'isAdmin',
+      add: 'isAdmin',
+      create: 'isAdmin',
+      edit: 'isAdmin',
+      update: 'isAdmin'
+    },
+    SessionsController: {
+      '*': 'isAdmin'
+    },
+    LapController: {
+      '*': 'isAdmin'
     },
     CarController: {
-        '*': 'isAuthenticated'
+        '*': 'isAdmin'
     },
     GroupController: {
-        '*': 'isAuthenticated'
+        '*': 'isAdmin'
     },
     TrackController: {
-        '*': 'isAuthenticated'
+        '*': 'isAdmin'
     },
     ServerController: {
         '*': 'isAuthenticated'

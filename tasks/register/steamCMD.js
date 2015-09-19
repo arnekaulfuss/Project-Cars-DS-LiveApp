@@ -25,13 +25,27 @@ module.exports = function (grunt) {
 
   grunt.registerTask('pcars_ds:reapply_cfg', 're-apply\'s the configuration for the dedicated server', function () {
 
+    if (server_cfg_exists()) return grunt.log.ok('server config exists, skipping');
+
     var server    = _.template(read(server_template_path));
     var blacklist = read(blacklist_template_path);
     var whitelist = read(whitelist_template_path);
 
-    write(server_path, server(pcarsOptions));
+    request('http://ipinfo.io', function (e, res, data) {
+      if (!e && res.statusCode == 200) {
+        data = JSON.parse(data);
+        pcarsOptions.name = pcarsOptions._name([data.country, _.camelCase(data.region), pcarsOptions._siteName].join('-'))
+      }
+
+      write(server_path, server(pcarsOptions));
+      grunt.log.ok('server.cfg written.');
+    });
+
     write(blacklist_path, blacklist);
     write(whitelist_path, whitelist);
+    // occasionally the request callback won't get called, but we must have a
+    // server.cfg or the app will not work properly
+    write(server_path, server(pcarsOptions));
 
     grunt.log.ok('server configs re-applied successfully, continuing.');
   });
@@ -58,6 +72,10 @@ module.exports = function (grunt) {
 
   function steamcmd_is_installed () {
     return exists(path.resolve(__dirname, '../../steamcmd/steam.sh'));
+  }
+
+  function server_cfg_exists () {
+    return steamcmd_is_installed() && pcars_is_installed() && exists(path.resolve(__dirname, '../../steamcmd/pcars_ds/server.cfg'));
   }
 
   function pcars_is_installed () {

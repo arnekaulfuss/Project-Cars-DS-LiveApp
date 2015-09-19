@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "Project Cars Live App",
+    "host": "localhost",
+    "port": 1337,
+    "protocol": "http://",
+    "url": "http://localhost:1337"
+  },
+  "db": {
+    "user": "root",
+    "password": "",
+    "database": "pcars",
+    "host": "localhost",
+    "port": 3306
+  },
+  "ds": {
+    "host": "localhost",
+    "port": 9000,
+    "protocol": "http://"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "steam": {
+    "_comm": "only set if different than app.url",
+    "realm": null
+  }
+}

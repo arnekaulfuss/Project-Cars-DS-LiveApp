@@ -14,16 +14,21 @@
         page: req.param('page') || 1,
         limit: sails.config.personnalConfig.pagination.drivers.admin.limit
       }).populateAll().exec(function (err, drivers){
-        console.log(res.locals.layout);
+        sails.log(res.locals.layout);
+
         var view = 'Driver/index';
         var href = '/drivers/';
-        if (res.locals.layout){view = 'Admin/Driver/index'; href= '/admin/drivers/'};
+
+        if (res.locals.layout) {
+          view = 'Admin/Driver/index';
+          href = '/admin/drivers/'
+        }
         return res.view(view, {
           drivers: drivers,
           pagination: {
             page: req.param('page') || 1,
             href: href,
-            count: Math.round((count / sails.config.personnalConfig.pagination.drivers.admin.limit))
+            count: Math.round(count / sails.config.personnalConfig.pagination.drivers.admin.limit)
           }
         });
       });
@@ -62,7 +67,7 @@
   },
 
   update: function (req, res, next) {
-
+    res.locals.layout = 'Admin/layout';
     var dirname = 'images/drivers';
     var fileName = req.param('id');
     var reqFile = req.file('avatar');
@@ -72,27 +77,31 @@
       maxBytes: 10000000,
       saveAs: fileName+'.jpg'
     },function whenDone(err, uploadedFiles) {
-      if (err) return res.negotiate(err);
+      if (err) {
+        req.flash('error', 'Couldn\'t upload file.')
+        return res.redirect('back');
+      }
 
       var data = {
         name: req.param('name')
       };
+
       // If no files were uploaded, respond with an error.
       if (uploadedFiles.length > 0){
-        data.avatar = '/'+dirname+'/'+fileName+'.jpg';
+        data.avatar = '/' + dirname + '/' + fileName + '.jpg';
       }
+
       //console.log(uploadedFiles);
       Driver.update(req.param('id'), data).exec(function(err, car) {
         if (err) {
-          res.redirect('/admin/drivers');
+          req.flash('error', err);
+          return res.redirect('/admin/drivers');
         }
-        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
-          return res.view('Admin/Driver/index',{
-            drivers: records,
-            msg: 'Driver updated!'
-          });
-        });
 
+        Driver.find().populateAll().sort('name ASC').exec(function(error, records) {
+          req.flash('info', 'Driver updated!');
+          res.redirect('/admin/drivers');
+        });
       });
     });
   },

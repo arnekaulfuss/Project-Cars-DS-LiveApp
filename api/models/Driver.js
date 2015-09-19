@@ -10,9 +10,16 @@ module.exports = {
         steam_id: {
             type: 'string',
             required: true,
+            index: true,
             size: 50
         },
+        steamID: function () {
+          return this.steam_id;
+        },
         name: 'string',
+        username: function () {
+          return this.username;
+        },
         pole_count: {
             defaultsTo:0,
             type: 'integer'
@@ -61,6 +68,9 @@ module.exports = {
             collection: 'result',
             via: 'driver'
         },
-        avatar: 'string'
+        avatar: 'string',
+        user: {
+          model: 'User'
+        }
     }
 };

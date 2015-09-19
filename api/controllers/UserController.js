@@ -4,66 +4,27 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+ var _ = require('lodash');
 
  module.exports = {
 
-  /**
-   * `UserController.login()`
-   */
-  login: function (req, res) {
-
-    // See `api/responses/login.js`
-    res.login({
-      email: req.param('email'),
-      password: req.param('password'),
-      successRedirect: '/',
-      invalidRedirect: '/login'
-    });
-  },
-  pass: function (req, res) {
-    res.view('User/passwordReset', {
-      admin:true
-    });
-  },
-
-  // not really sure what's going on here
-  passwordReset: function (req, res) {
-    if (!req.isSocket) return res.badRequest();
-
-    var socketId = sails.sockets.id(req.socket);
-    User.findOne(req.session.me).exec(function(err, user){
-      if (err) return res.negotiate(err);
-
-      if (req.param('passwordNew') != req.param('passwordNew2')) {
-        sails.sockets.emit(socketId, 'message', {msg: 'New Password 1 and 2 don\'t match', class: "alert-danger"});
-        return res.json(500, { msg: 'New Password 1 and 2 don\'t match' });
-      }
-
-      if (req.method === "POST") {
-        User.passwordReset({
-          username: user.username,
-          passwordNew: req.param('passwordNew')
-        }, function (err, user) {
-          sails.sockets.emit(socketId, 'message', {msg: 'Password successfully updated', class: "alert-success"});
-          res.json(200, { msg: 'Password successfully updated' });
-        });
-      }
-
-    });
-  },
 
   profile: function (req, res) {
 
-    User.findOne(req.session.me).exec(function(err, user){
-      if (err) return res.negotiate(err);
+    User
+      .findOne(req.session.me)
+      .populate('drivers')
+      .populate('serverKeys')
+      .exec(function(err, user){
+        if (err) return res.negotiate(err);
 
-      res.view('User/profile', {
-        user: user,
-        flash: {
-          content:''
-        }
+        res.view('User/profile', {
+          user: user,
+          flash: {
+            content:''
+          }
+        });
       });
-    });
   },
 
   update: function (req, res, next) {
@@ -95,6 +56,50 @@
     });
   },
 
+  addKey: function (req, res) {
+    User
+      .findOne(req.session.me)
+      .populate('serverKeys')
+      .exec(function (err, user) {
+        if (user.serverKeys.length > 5) {
+          req.flash('error', "Cannot add key. Delete an existing key to add a new one.")
+          return res.redirect('/profile');
+        }
+
+        ServerKey.create({name: req.body.name, user: req.session.me}).exec(function (err, key) {
+          if (err) return res.negotiate(err);
+          req.flash('info', "Added key")
+          res.redirect('/profile');
+        });
+      });
+  },
+
+  destroyKey: function (req, res) {
+    var id = req.param('id');
+    User
+      .findOne(req.session.me)
+      .populate('serverKeys')
+      .exec(function (err, user) {
+        var match = false;
+        user.serverKeys.forEach(function (key) {
+          if (key.id == id) match = true;
+        });
+
+        if (!match) {
+          req.flash('error', "Cannot delete key")
+          sails.log("Cannot delete key");
+          return res.redirect('/profile');
+        }
+
+        ServerKey.destroy(id).exec(function (err) {
+          if (err) return res.negotiate(err);
+
+          req.flash('info', "Key Removed")
+          res.redirect('/profile');
+        });
+      });
+  },
+
   /**
    * `UserController.logout()`
    */
@@ -105,16 +110,13 @@
       class: 'alert-danger'
     });
 
-    // "Forget" the user from the session.
-    // Subsequent requests from this user agent will NOT have `req.session.me`.
-    req.session.me = null;
+    req.session.me = req.session.user = null;
 
     // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
     // send a simple response letting the user agent know they were logged out
     // successfully.
     if (req.wantsJSON) return res.ok('Logged out successfully!');
 
-    // Otherwise if this is an HTML-wanting browser, do a redirect.
     res.redirect('/');
   },
 

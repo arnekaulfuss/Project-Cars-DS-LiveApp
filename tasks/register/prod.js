@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
 	grunt.registerTask('prod', [
+    'pcars_ds:start',
 		'compileAssets',
 		'concat',
 		'uglify',
