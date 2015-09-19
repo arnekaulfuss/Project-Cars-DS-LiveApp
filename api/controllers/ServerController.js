@@ -8,16 +8,16 @@
 
 module.exports = {
 
-    start: function (req, res) {
-        sails.hooks.pcarsserver.start();
-    },
+  start: function(req, res) {
+    sails.hooks.pcarsserver.start();
+  },
 
-    stop: function (req, res) {
-        sails.hooks.pcarsserver.stop();
-    },
+  stop: function(req, res) {
+    sails.hooks.pcarsserver.stop();
+  },
 
-    admin: function(req, res) {
-      res.locals.layout = 'Admin/layout';
-        return res.view('Admin/server', {});
-    }
+  admin: function(req, res) {
+    res.locals.layout = 'Admin/layout';
+    return res.view('Admin/server', {});
+  }
 };

@@ -7,17 +7,17 @@
  */
 
 
- module.exports = {
+module.exports = {
 
   index: function(req, res) {
     res.locals.layout = 'Admin/layout';
 
-    ServerSession.count(function(err, count){
+    ServerSession.count(function(err, count) {
       ServerSession.find().sort("createdAt DESC").paginate({
         page: req.param('page') || 1,
         limit: sails.config.personnalConfig.pagination.sessions.admin.limit
-      }).populateAll().exec(function (err, sessions){
-        return res.view('Admin/Session/index',{
+      }).populateAll().exec(function(err, sessions) {
+        return res.view('Admin/Session/index', {
           sessions: sessions,
           pagination: {
             page: req.param('page') || 1,
@@ -34,24 +34,32 @@
     if (!req.param('id')) return next();
 
     async.series({
-      laps: function (callback) {
-        Lap.destroy({session: parseInt(req.param('id'))}).exec(function(err, results){
+      laps: function(callback) {
+        Lap.destroy({
+          session: parseInt(req.param('id'))
+        }).exec(function(err, results) {
           callback(null, results);
         });
       },
-      Session: function (callback) {
-        ServerSession.destroy({id: parseInt(req.param('id'))}).exec(function(err, results){
+      Session: function(callback) {
+        ServerSession.destroy({
+          id: parseInt(req.param('id'))
+        }).exec(function(err, results) {
           callback(null, results);
         });
       },
-      Result: function (callback) {
-        Result.destroy({sessions: parseInt(req.param('id'))}).exec(function(err, results){
+      Result: function(callback) {
+        Result.destroy({
+          sessions: parseInt(req.param('id'))
+        }).exec(function(err, results) {
           callback(null, results);
         });
       }
-    }, function (err, result) {
-      ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, sessions){
-        return res.view('Admin/Session/index',{ sessions: sessions });
+    }, function(err, result) {
+      ServerSession.find().sort('createdAt DESC').populateAll().exec(function(err, sessions) {
+        return res.view('Admin/Session/index', {
+          sessions: sessions
+        });
       });
     });
   }

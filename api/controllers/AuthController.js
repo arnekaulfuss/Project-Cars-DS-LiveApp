@@ -22,10 +22,10 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
-  logout: function (req, res) {
+  logout: function(req, res) {
     var user = req.session;
     sails.sockets.blast({
-      msg: user.username+' Disconnected',
+      msg: user.username + ' Disconnected',
       class: 'alert-danger'
     });
 
@@ -49,7 +49,7 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
-  provider: function (req, res) {
+  provider: function(req, res) {
     passport.endpoint(req, res);
   },
 
@@ -69,8 +69,8 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
-  callback: function (req, res) {
-    passport.callback(req, res, function (err, user, challenges, statuses) {
+  callback: function(req, res) {
+    passport.callback(req, res, function(err, user, challenges, statuses) {
 
       if (err || !user) return tryAgain(challenges);
 
@@ -79,11 +79,11 @@ var AuthController = {
       res.redirect('/welcome');
     });
 
-    function tryAgain (err) {
+    function tryAgain(err) {
 
       var flashError = req.flash('error')[0];
 
-      if (err && !flashError ) {
+      if (err && !flashError) {
         req.flash('error', 'Error.Passport.Generic');
       } else if (flashError) {
         req.flash('error', flashError);

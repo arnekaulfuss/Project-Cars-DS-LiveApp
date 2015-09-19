@@ -6,21 +6,21 @@
  */
 
 
- module.exports = {
+module.exports = {
 
-  index: function (req, res) {
+  index: function(req, res) {
     res.locals.layout = 'Admin/layout';
 
-    Car.count(function (err, count) {
+    Car.count(function(err, count) {
       Car.find().sort('name ASC').paginate({
         page: req.param('page') || 1,
         limit: sails.config.personnalConfig.pagination.cars.admin.limit
-      }).exec(function (err, cars) {
-        return res.view('Admin/Car/index',{
+      }).exec(function(err, cars) {
+        return res.view('Admin/Car/index', {
           cars: cars,
           pagination: {
             page: req.param('page') || 1,
-            href:'/admin/cars/',
+            href: '/admin/cars/',
             count: Math.round((count / sails.config.personnalConfig.pagination.cars.admin.limit))
           }
         });
@@ -28,14 +28,18 @@
     });
   },
 
-  edit: function (req, res) {
+  edit: function(req, res) {
     res.locals.layout = 'Admin/layout';
-    console.log('Method: '+req.method);
-    console.log('Body: '+req.body);
+    console.log('Method: ' + req.method);
+    console.log('Body: ' + req.body);
 
     if (req.method != "POST") {
-      return Car.findOne({id: req.param('id')}).exec(function (error, record) {
-        return res.view('Admin/Car/edit', {car: record});
+      return Car.findOne({
+        id: req.param('id')
+      }).exec(function(error, record) {
+        return res.view('Admin/Car/edit', {
+          car: record
+        });
       });
     }
 
@@ -46,8 +50,8 @@
     reqFile.upload({
       dirname: '../public/images/cars',
       maxBytes: 10000000,
-      saveAs: fileName+'.jpg'
-    }, function (err, uploadedFiles) {
+      saveAs: fileName + '.jpg'
+    }, function(err, uploadedFiles) {
       if (err) return res.negotiate(err);
 
       var data = {
@@ -59,13 +63,13 @@
       };
 
       // If no files were uploaded, respond with an error.
-      if (uploadedFiles.length > 0) data.thumb = '/'+dirname+'/'+fileName+'.jpg';
+      if (uploadedFiles.length > 0) data.thumb = '/' + dirname + '/' + fileName + '.jpg';
 
       //console.log(uploadedFiles);
       Car.update(req.param('id'), data).exec(function(err, car) {
         if (err) return res.redirect('/admin/cars');
         Car.find().sort('name ASC').exec(function(error, records) {
-          return res.view('Admin/Car/index',{
+          return res.view('Admin/Car/index', {
             cars: records,
             msg: 'Car Updated!'
           });
