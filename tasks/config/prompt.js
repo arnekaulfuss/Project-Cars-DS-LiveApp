@@ -52,21 +52,6 @@ module.exports = function(grunt) {
             type: 'input',
             default: 'http://',
             message: 'App port'
-          }, {
-            config: 'local.ds.host',
-            type: 'input',
-            default: 'localhost',
-            message: 'Host (URL) of the dedicated server'
-          }, {
-            config: 'local.ds.port',
-            type: 'input',
-            default: '9000',
-            message: 'Dedicated server port'
-          }, {
-            config: 'local.steam.realm',
-            type: 'input',
-            default: 'Defaults to your app protocol/url/port (http://eracing.fr:1337)',
-            message: 'Steam API return url'
           }
         ],
         then: function () {
@@ -80,11 +65,6 @@ module.exports = function(grunt) {
           grunt.config.set('local.app.host', '');
           grunt.config.set('local.app.port', '');
           grunt.config.set('local.app.protocol', '');
-
-          grunt.config.set('local.ds.host', '');
-          grunt.config.set('local.ds.port', '');
-
-          grunt.config.set('local.steam.realm', '');
 
           fs.writeFileSync(path.resolve(__dirname, '../../local.json'), JSON.stringify({
             local: grunt.config('local')
