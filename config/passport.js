@@ -24,8 +24,6 @@ module.exports.passport = {
     protocol: 'openid',
     strategy: require('passport-steam').Strategy,
     options: {
-      returnURL: 'http://localhost:1337/auth/steam/callback',
-      realm: 'http://localhost:1337/',
       apiKey: '39AA26D4A9FBAE08C174DF4CE58FF3E0'
     }
   }
