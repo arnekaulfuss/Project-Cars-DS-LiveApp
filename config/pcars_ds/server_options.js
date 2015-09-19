@@ -8,9 +8,8 @@ module.exports = {
   bindIP: '', // your home ip
   httpApiInterface: '127.0.0.1',
   httpApiPort: 9000
-}
-<<<<<<< HEAD
+};
 
-function _name (prefix) {
+function _name(prefix) {
   return prefix + '-' + Math.round(Math.random() * 10000);
 }
