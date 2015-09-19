@@ -39,6 +39,8 @@
 #
 ################################################
 
+config/env/development.js
+config/env/production.js
 config/local.js
 config/connections.js
 steamcmd
@@ -122,3 +124,4 @@ npm-debug.log
 nbproject
 .idea
 .node_history
+.remote-sync.json
