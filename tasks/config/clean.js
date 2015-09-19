@@ -11,10 +11,10 @@
  */
 module.exports = function(grunt) {
 
-	grunt.config.set('clean', {
-		dev: ['.tmp/public/fonts/**', '.tmp/public/js/**', '.tmp/public/font/**', '.tmp/public/style/**', '!.tmp/public/images/**', '.tmp/public/templates/**'],
-		build: ['www']
-	});
+  grunt.config.set('clean', {
+    dev: ['.tmp/public/fonts/**', '.tmp/public/js/**', '.tmp/public/font/**', '.tmp/public/style/**', '!.tmp/public/images/**', '.tmp/public/templates/**'],
+    build: ['www']
+  });
 
-	grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 };

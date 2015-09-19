@@ -1,3 +1,3 @@
-module.exports = function (grunt) {
-	grunt.registerTask('default', ['prompt', 'pcars_ds:start', 'compileAssets', 'linkAssets', 'watch']);
+module.exports = function(grunt) {
+  grunt.registerTask('default', ['prompt', 'compileAssets', 'linkAssets', 'watch']);
 };
