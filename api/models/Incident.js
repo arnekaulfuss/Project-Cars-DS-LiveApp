@@ -6,16 +6,16 @@
  */
 
 module.exports = {
-    attributes: {
-        sessions: {
-            model: 'serversession'
-        },
-        collider : {
-            model: 'driver'
-        },
-        collided: {
-            model :'driver'
-        },
-        CollisionMagnitude: 'integer'
-    }
+  attributes: {
+    sessions: {
+      model: 'serversession'
+    },
+    collider: {
+      model: 'driver'
+    },
+    collided: {
+      model: 'driver'
+    },
+    CollisionMagnitude: 'integer'
+  }
 };

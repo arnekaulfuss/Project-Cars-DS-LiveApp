@@ -2,7 +2,7 @@ var User = {
   // Enforce model schema in the case of schemaless databases
   schema: true,
   attributes: {
-    username  : {
+    username: {
       type: 'string',
       unique: true,
       index: true,
@@ -42,23 +42,22 @@ var User = {
       via: 'user'
     }
   },
-  beforeCreate: function (values, cb) {
+  beforeCreate: function(values, cb) {
     //
-    values.username            = values.personaname;
-    values.steamID             = values.steamid;
-    values.steamPrimaryClanID  = values.primaryclanid;
-    values.steamUserName       = values.personaname;
-    values.steamRealName       = values.realname;
+    values.username = values.personaname;
+    values.steamID = values.steamid;
+    values.steamPrimaryClanID = values.primaryclanid;
+    values.steamUserName = values.personaname;
+    values.steamRealName = values.realname;
     values.steamLocCountryCode = values.loccountrycode;
-    values.steamLocStateCode   = values.locstatecode;
-    values.steamLocCityID      = values.loccityid;
-    values.steamAvatar         = values.avatar;
-    values.steamAvatarMedium   = values.avatarmedium;
-    values.steamAvatarFull     = values.avatarfull;
+    values.steamLocStateCode = values.locstatecode;
+    values.steamLocCityID = values.loccityid;
+    values.steamAvatar = values.avatar;
+    values.steamAvatarMedium = values.avatarmedium;
+    values.steamAvatarFull = values.avatarfull;
     cb();
   }
 };
 
 
 module.exports = User;
-

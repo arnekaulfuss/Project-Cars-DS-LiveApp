@@ -6,20 +6,20 @@
  */
 
 module.exports = {
-    attributes: {
-        name: 'string',
-        gameId: 'integer',
-        brand: 'string',
-        HP: 'string',
-        year: 'string',
-        top_speed: 'integer',
-        used: {
-            collection: 'lap',
-            via: 'Car'
-        },
-        group: {
-            model:'Group'
-        },
-        thumb: 'string'
-    }
+  attributes: {
+    name: 'string',
+    gameId: 'integer',
+    brand: 'string',
+    HP: 'string',
+    year: 'string',
+    top_speed: 'integer',
+    used: {
+      collection: 'lap',
+      via: 'Car'
+    },
+    group: {
+      model: 'Group'
+    },
+    thumb: 'string'
+  }
 };

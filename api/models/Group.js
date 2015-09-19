@@ -6,20 +6,20 @@
  */
 
 module.exports = {
-    attributes: {
-        name: 'string',
-        gameId: 'integer',
-        cars: {
-            collection: 'car',
-            via: 'group'
-        },
-        laps: {
-            collection: 'lap',
-            via: 'group'
-        },
-        sessions: {
-            collection: 'serversession',
-            via: 'group'
-        }
+  attributes: {
+    name: 'string',
+    gameId: 'integer',
+    cars: {
+      collection: 'car',
+      via: 'group'
+    },
+    laps: {
+      collection: 'lap',
+      via: 'group'
+    },
+    sessions: {
+      collection: 'serversession',
+      via: 'group'
     }
+  }
 };

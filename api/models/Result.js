@@ -6,21 +6,21 @@
  */
 
 module.exports = {
-    attributes: {
-        sessions: {
-            model: 'serversession'
-        },
-        SessionStage: 'string',
-        driver : {
-            model: 'driver'
-        },
-        car: {
-            model :'car'
-        },
-        RacePosition: 'integer',
-        Lap: 'integer',
-        State: 'string',
-        TotalTime: 'integer',
-        FastestLapTime: 'integer'
-    }
+  attributes: {
+    sessions: {
+      model: 'serversession'
+    },
+    SessionStage: 'string',
+    driver: {
+      model: 'driver'
+    },
+    car: {
+      model: 'car'
+    },
+    RacePosition: 'integer',
+    Lap: 'integer',
+    State: 'string',
+    TotalTime: 'integer',
+    FastestLapTime: 'integer'
+  }
 };

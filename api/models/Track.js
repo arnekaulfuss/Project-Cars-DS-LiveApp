@@ -6,19 +6,19 @@
  */
 
 module.exports = {
-    attributes: {
-        name: 'string',
-        gameId: 'integer',
-        thumb: 'string',
-        distance: 'integer',
-        location: 'string',
-        laps : {
-            collection: 'lap',
-            via: 'Track'
-        },
-        sessions: {
-            collection: 'serversession',
-            via: 'Track'
-        }
+  attributes: {
+    name: 'string',
+    gameId: 'integer',
+    thumb: 'string',
+    distance: 'integer',
+    location: 'string',
+    laps: {
+      collection: 'lap',
+      via: 'Track'
+    },
+    sessions: {
+      collection: 'serversession',
+      via: 'Track'
     }
+  }
 };

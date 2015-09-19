@@ -6,38 +6,38 @@
  */
 
 module.exports = {
-    attributes: {
-        Car: {
-            model: 'Car'
-        },
-        Track: {
-            model: 'Track'
-        },
-        LiveryId: 'integer',
-        RacePosition: 'integer',
-        CurrentLap: 'integer',
-        Sector1Time: 'integer',
-        Sector2Time: 'integer',
-        Sector3Time: 'integer',
-        DistanceTravelled: 'integer',
-        CountThisLapTimes: 'boolean',
-        LapTime: 'integer',
-        SessionStage: 'string',
-        owner: {
-            model: 'driver'
-        },
-        session: {
-            model: 'ServerSession'
-        },
-        group: {
-            model: 'group'
-        },
-        Events: {
-            model: 'event'
-        }
+  attributes: {
+    Car: {
+      model: 'Car'
     },
-
-    findGroupedByDrivers : function (opts, cb) {
-
+    Track: {
+      model: 'Track'
+    },
+    LiveryId: 'integer',
+    RacePosition: 'integer',
+    CurrentLap: 'integer',
+    Sector1Time: 'integer',
+    Sector2Time: 'integer',
+    Sector3Time: 'integer',
+    DistanceTravelled: 'integer',
+    CountThisLapTimes: 'boolean',
+    LapTime: 'integer',
+    SessionStage: 'string',
+    owner: {
+      model: 'driver'
+    },
+    session: {
+      model: 'ServerSession'
+    },
+    group: {
+      model: 'group'
+    },
+    Events: {
+      model: 'event'
     }
+  },
+
+  findGroupedByDrivers: function(opts, cb) {
+
+  }
 };
