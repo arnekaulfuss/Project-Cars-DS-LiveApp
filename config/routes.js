@@ -21,104 +21,105 @@
  */
 
 module.exports.routes = {
-    //Base route
-    '/': 'PagesController.home',
+  //Base route
+  '/': 'PagesController.home',
 
-    /***************************************************************************
-     *                                                                          *
-     * Admin END ROUTES                                                         *
-     *                                                                          *
-     ***************************************************************************/
+  /***************************************************************************
+   *                                                                          *
+   * Admin END ROUTES                                                         *
+   *                                                                          *
+   ***************************************************************************/
 
-    // Admin base routes
-    '/admin' : 'AdminController.dashboard',
-    '/adminConnect': 'AdminController.adminConnect',
+  // Admin base routes
+  '/admin': 'AdminController.dashboard',
+  '/adminConnect': 'AdminController.adminConnect',
 
-    // Admin Drivers routes
-    '/admin/drivers': 'DriverController.adminIndex',
-    '/admin/drivers/:page': 'DriverController.adminIndex',
-    'get /admin/driver/edit/:id': 'DriverController.edit',
-    'post /admin/driver/edit/:id': 'DriverController.update',
-    // Cars Admin routes
-    '/admin/cars': 'CarController.index',
-    '/admin/cars/:page': 'CarController.index',
-    '/admin/cars/edit/:id': 'CarController.edit',
-    // Events Admin routes
-    '/admin/events': 'EventController.indexAdmin',
-    '/admin/events/:page': 'EventController.indexAdmin',
-    'get /admin/event/add': 'EventController.add',
-    'post /admin/event/add': 'EventController.create',
-    'get /admin/event/edit/:id': 'EventController.edit',
-    'post /admin/event/edit/:id': 'EventController.update',
-    // Track Admin routes
-    '/admin/tracks': 'TrackController.index',
-    '/admin/tracks/:page': 'TrackController.index',
-    'get /admin/track/:id': 'TrackController.edit',
-    'post /admin/track/:id': 'TrackController.update',
-    // Sessions Admin routes
-    '/admin/sessions': 'SessionsController.index',
-    '/admin/sessions/:page': 'SessionsController.index',
-    '/admin/sessions/:id': 'SessionsController.delete',
+  // Admin Drivers routes
+  '/admin/drivers': 'DriverController.adminIndex',
+  '/admin/drivers/:page': 'DriverController.adminIndex',
+  'get /admin/driver/edit/:id': 'DriverController.edit',
+  'post /admin/driver/edit/:id': 'DriverController.update',
 
-    // Laps Admin routes
-    '/admin/laps': 'LapController.adminIndex',
-    '/admin/laps/:page': 'LapController.adminIndex',
-    '/admin/lap/:id': 'LapController.delete',
+  // Cars Admin routes
+  '/admin/cars': 'CarController.index',
+  '/admin/cars/:page': 'CarController.index',
+  '/admin/cars/edit/:id': 'CarController.edit',
 
-    /***************************************************************************
-     *                                                                          *
-     * FRONT END ROUTES                                                         *
-     *                                                                          *
-     ***************************************************************************/
+  // Events Admin routes
+  '/admin/events': 'EventController.indexAdmin',
+  '/admin/events/:page': 'EventController.indexAdmin',
+  'get /admin/event/add': 'EventController.add',
+  'post /admin/event/add': 'EventController.create',
+  'get /admin/event/edit/:id': 'EventController.edit',
+  'post /admin/event/edit/:id': 'EventController.update',
 
-    //Driver front routes
-    '/drivers': 'DriverController.index',
-    '/drivers/:page': 'DriverController.index',
-    '/driver/:id': 'DriverController.view',
-    //Events front routes
-    '/event/:id': 'EventController.show',
-    '/events': 'EventController.index',
-    '/events/:page': 'EventController.index',
-    
-    //
-    '/welcome': { view: 'User/welcome' },
-    'get /profile': 'UserController.profile',
-    'post /profile': 'UserController.update',
+  // Track Admin routes
+  '/admin/tracks': 'TrackController.index',
+  '/admin/tracks/:page': 'TrackController.index',
+  'get /admin/track/:id': 'TrackController.edit',
+  'post /admin/track/:id': 'TrackController.update',
+  // Sessions Admin routes
+  '/admin/sessions': 'SessionsController.index',
+  '/admin/sessions/:page': 'SessionsController.index',
+  '/admin/sessions/:id': 'SessionsController.delete',
 
-    // livetiming views routes
-    'get /live': { view: 'Livetiming/live' },
+  // Laps Admin routes
+  '/admin/laps': 'LapController.adminIndex',
+  '/admin/laps/:page': 'LapController.adminIndex',
+  '/admin/lap/:id': 'LapController.delete',
 
-    '/bestlaps' : 'LivetimingController.bestlapsView',
-    'get /bst': 'LivetimingController.bestlapsQuery',
+  /***************************************************************************
+   *                                                                          *
+   * FRONT END ROUTES                                                         *
+   *                                                                          *
+   ***************************************************************************/
 
-    '/results' : 'LivetimingController.resultsIndex',
-    '/results/:page' : 'LivetimingController.resultsIndex',
-    '/result/:id' : 'LivetimingController.resultsView',
-    'get /res': 'LivetimingController.resultsQuery',
-    'get /getLiveData': 'LivetimingController.getLiveData',
-    '/stats': 'LivetimingController.stats',
-    // Listener actions routes
-    '/start': 'ServerController.start',
-    '/stop': 'ServerController.stop',
-    '/admin/server': 'ServerController.admin',
+   // Wellcome
+  '/welcome': {
+    view: 'User/welcome'
+  },
 
-    'post /user/keys/add': 'UserController.addKey',
-    'post /user/keys/:id/destroy': 'UserController.destroyKey',
+  //Driver front routes
+  '/drivers': 'DriverController.index',
+  '/drivers/:page': 'DriverController.index',
+  '/driver/:id': 'DriverController.view',
 
-    /*==========  Auth  ==========*/
+  //Events front routes
+  '/event/:id': 'EventController.show',
+  '/events': 'EventController.index',
+  '/events/:page': 'EventController.index',
 
-    // 'get /login': 'AuthController.login',
-    'get /logout': 'AuthController.logout',
-    // 'get /register': 'AuthController.register',
+  // Profile
+  'get /profile': 'UserController.profile',
+  'post /profile': 'UserController.update',
 
-    // 'post /auth/local': 'AuthController.callback',
-    // 'post /auth/local/:action': 'AuthController.callback',
+  // livetiming views routes
+  'get /live': {
+    view: 'Livetiming/live'
+  },
 
-    'get /auth/:provider': 'AuthController.provider',
-    'get /auth/:provider/callback': 'AuthController.callback',
-    // 'get /auth/:provider/login': 'AuthController.login',
+  '/bestlaps': 'LivetimingController.bestlapsView',
+  'get /bst': 'LivetimingController.bestlapsQuery',
 
+  '/results': 'LivetimingController.resultsIndex',
+  '/results/:page': 'LivetimingController.resultsIndex',
+  '/result/:id': 'LivetimingController.resultsView',
+  'get /res': 'LivetimingController.resultsQuery',
+  'get /getLiveData': 'LivetimingController.getLiveData',
+  '/stats': 'LivetimingController.stats',
 
+  // Listener actions routes
+  '/start': 'ServerController.start',
+  '/stop': 'ServerController.stop',
+  '/admin/server': 'ServerController.admin',
 
+  // Server API Key
+  'post /user/keys/add': 'UserController.addKey',
+  'post /user/keys/:id/destroy': 'UserController.destroyKey',
+
+  // Auth
+  'get /logout': 'AuthController.logout',
+  'get /auth/:provider': 'AuthController.provider',
+  'get /auth/:provider/callback': 'AuthController.callback',
 
 };
