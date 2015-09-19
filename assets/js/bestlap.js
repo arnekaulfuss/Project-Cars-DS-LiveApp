@@ -63,7 +63,7 @@
 function msToMinsAndSec(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(3);
-    if (minutes == 0) {
+    if (minutes === 0) {
         return (seconds < 10 ? '0' : '') + seconds;
     }
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds ;

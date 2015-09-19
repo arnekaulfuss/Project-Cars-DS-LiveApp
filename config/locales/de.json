@@ -192,6 +192,7 @@
   "current_lap": "aktuelle Runde",
   "last_lap": "letzte Runde",
   "best_lap": "beste Runde",
+  "bestlaps_infotext": "Hier kannst du nach den besten Runden des jeweiligen Rundkurses oder Fahrzeugs suchen.",
   "connected": "Verbunden",
   "status": "Status",
   "server_status": "Server Status",

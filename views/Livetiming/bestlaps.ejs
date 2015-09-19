@@ -1,12 +1,16 @@
-<div class="container-fluid" id="bestlaps_wrapper">
-  <div class="row">
+<div class="jumbotron jumbotron-bestlaps">
+  <div class="mask"></div>
+  <div class="container content">
     <h1><%= __('bestlaps') %></h1>
+    <p><%= __('bestlaps_infotext') %></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
     <div class="col-md-12" id="track_target">
       <div class="panel panel-primary" id="track_infos">
         <div class="panel-body">
-          <div class="col-md-6">
-            <img src="{{ thumb }}" alt="track-image" width="250" height="200"/>
-          </div>
           <div class="col-md-6">
             <table class="table">
               <tbody>

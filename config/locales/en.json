@@ -195,6 +195,7 @@
   "current_lap": "Current Lap",
   "last_lap": "Last Lap",
   "best_lap": "Bestlap",
+  "bestlaps_infotext": "Here you can search for the fastest Laps.",
   "connected": "Connected",
   "status": "Status",
   "server_status": "Server Status",
