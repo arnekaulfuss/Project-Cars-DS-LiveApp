@@ -12,36 +12,22 @@
 
 module.exports = {
 
-  models: {
-    connection: 'Mysql'
-  },
-
-  port: 1337,
-
-  log: {
-    level: "info"
-  },
-
   connections: {
 
-    Mysql: {
+    MysqlServer: {
       adapter: 'sails-mysql',
-      host: 'localhost',
-      user: 'pcars',
-      password: 'B2mtsf447YCBBSA6',
-      database: 'pcars'
+      host: 'YOUR_MYSQL_SERVER_HOSTNAME_OR_IP_ADDRESS',
+      user: 'YOUR_MYSQL_USER',
+      password: 'YOUR_MYSQL_PASSWORD',
+      database: 'YOUR_MYSQL_DB'
     }
 
   },
 
-  session: {
-    secret: 'ab3c37c30aa80156ab468047012c0c1a'
-  },
-
   personnalConfig: {
 
-    sitename: "noNameWEB hosted by surtic86",
-    siteUrl: "http://game.nonameweb.ch:1337",
+    sitename: "Your Site Name",
+    siteUrl: "http://localhost:1337",
     siteLogo50x: "/images/logo/logo50x50.png",
 
     logResultsPath: 'LogResults/',
@@ -54,6 +40,24 @@ module.exports = {
       port: '9000'
     }
 
-  }
+  },
+
+  session: {
+    secret: 'ab3c37c30aa80156ab468047012c0c1a',
+  },
+
+  /**
+   * For advanced users only
+   */
+  port: 1337,
+
+  log: {
+   level: "info"
+  },
+
+  models: {
+    connection: 'MysqlServer'
+  },
+
 
 };

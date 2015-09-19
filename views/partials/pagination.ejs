@@ -1,8 +1,8 @@
 <div class="text-center">
-    <% if ( pagination.count > 0 ) { %>
+    <% if ( typeof pagination != 'undefined' && pagination.count > 0 ) { %>
     <nav>
         <ul class="pagination">
-            <li <% if (pagination.page <= 1) {%> class="disabled" <% } %> >
+            <li <% if ( pagination.page <= 1) {%> class="disabled" <% } %> >
             <a href="<%- pagination.href %><%-(parseInt(pagination.page) -1) %>" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
