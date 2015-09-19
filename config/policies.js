@@ -34,7 +34,7 @@ module.exports.policies = {
         showSignup: true
     },
     AdminController: {
-        '*': 'isAuthenticated',
+        '*': 'isAdmin',
     },
     DriverController: {
       adminIndex: 'isAdmin',
