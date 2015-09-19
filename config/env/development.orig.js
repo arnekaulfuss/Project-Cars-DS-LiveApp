@@ -32,8 +32,6 @@ module.exports = {
 
     logResultsPath: 'LogResults/',
 
-    allowSignup: false,
-
     DsApiUrl: {
       protocol: 'http://',
       host: '127.0.0.1',

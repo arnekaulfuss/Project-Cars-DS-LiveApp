@@ -4,7 +4,6 @@ module.exports.personnalConfig = {
     siteUrl: "http://Your-domaine.com",
     siteLogo50x: "/images/logo/logo50x50.png",
     logResultsPath: '../project-cars/LogResults/',
-    allowSignup: false,
     DsApiUrl : {
         protocol: 'http://',
         host: '127.0.0.1',
