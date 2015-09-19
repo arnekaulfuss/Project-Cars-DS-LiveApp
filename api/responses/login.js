@@ -9,64 +9,64 @@
  */
 
 module.exports = function login(inputs) {
-    inputs = inputs || {};
+  inputs = inputs || {};
 
-    // Get access to `req` and `res`
-    var req = this.req;
-    var res = this.res;
+  // Get access to `req` and `res`
+  var req = this.req;
+  var res = this.res;
 
-    // Look up the user
-    User.attemptLogin({
-        email: inputs.email
-    }, function (err, user) {
-        if (err) return res.negotiate(err);
+  // Look up the user
+  User.attemptLogin({
+    email: inputs.email
+  }, function(err, user) {
+    if (err) return res.negotiate(err);
 
 
-        if (!user) {
+    if (!user) {
 
-            // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-            // send a 200 response letting the user agent know the login was successful.
-            // (also do this if no `invalidRedirect` was provided)
-            if (req.wantsJSON || !inputs.invalidRedirect) {
-                return res.badRequest('Invalid username');
-            }
-            // Otherwise if this is an HTML-wanting browser, redirect to /login.
-            return res.redirect(inputs.invalidRedirect);
+      // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+      // send a 200 response letting the user agent know the login was successful.
+      // (also do this if no `invalidRedirect` was provided)
+      if (req.wantsJSON || !inputs.invalidRedirect) {
+        return res.badRequest('Invalid username');
+      }
+      // Otherwise if this is an HTML-wanting browser, redirect to /login.
+      return res.redirect(inputs.invalidRedirect);
+    }
+    var password = inputs.password;
+    var hasher = require('bcrypt-nodejs');
+    hasher.compare(password, user.password, function(err2, res2) {
+      if (res2 === true) {
+        // "Remember" the user in the session
+        // Subsequent requests from this user agent will have `req.session.me` set.
+        req.session.me = user.id;
+        req.session.username = user.username;
+
+        // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+        // send a 200 response letting the user agent know the login was successful.
+        // (also do this if no `successRedirect` was provided)
+        if (req.wantsJSON || !inputs.successRedirect) {
+          return res.ok();
         }
-        var password = inputs.password;
-        var hasher = require('bcrypt-nodejs');
-        hasher.compare(password, user.password, function(err2, res2) {
-                if (res2 === true) {
-                    // "Remember" the user in the session
-                    // Subsequent requests from this user agent will have `req.session.me` set.
-                    req.session.me = user.id;
-                    req.session.username = user.username;
-
-                    // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-                    // send a 200 response letting the user agent know the login was successful.
-                    // (also do this if no `successRedirect` was provided)
-                    if (req.wantsJSON || !inputs.successRedirect) {
-                        return res.ok();
-                    }
-                    sails.sockets.blast({
-                        msg: user.username+' Connected',
-                        class: 'alert-success'
-                    });
-                    // Otherwise if this is an HTML-wanting browser, redirect to /.
-                    return res.redirect(inputs.successRedirect);
-                } else {
-                    // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
-                    // send a 200 response letting the user agent know the login was successful.
-                    // (also do this if no `invalidRedirect` was provided)
-                    if (req.wantsJSON || !inputs.invalidRedirect) {
-                        return res.badRequest('Invalid password');
-                    }
-                    // Otherwise if this is an HTML-wanting browser, redirect to /login.
-                    return res.redirect(inputs.invalidRedirect);
-                }
-            });
-
+        sails.sockets.blast({
+          msg: user.username + ' Connected',
+          class: 'alert-success'
+        });
+        // Otherwise if this is an HTML-wanting browser, redirect to /.
+        return res.redirect(inputs.successRedirect);
+      } else {
+        // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+        // send a 200 response letting the user agent know the login was successful.
+        // (also do this if no `invalidRedirect` was provided)
+        if (req.wantsJSON || !inputs.invalidRedirect) {
+          return res.badRequest('Invalid password');
+        }
+        // Otherwise if this is an HTML-wanting browser, redirect to /login.
+        return res.redirect(inputs.invalidRedirect);
+      }
     });
+
+  });
 
 };
 
@@ -99,6 +99,3 @@ module.exports = function login(inputs) {
 // • unexpected server error => call `res.negotiate()`
 //                              (see `sailsjs.org/#/documentation` for more info on what
 //                               `res.negotiate()` does)
-
-
-
