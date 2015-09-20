@@ -524,6 +524,8 @@ module.exports = function enableServer(sails) {
 
     if (log.name === "Impact") {
       player = getPlayerByParticipantId(log.participantid, players);
+      var driver1 = player ? player.driver : 0;
+
       pushPlayerIncident(CurrentLog, players, SessionStage);
 
       if (log.attributes.OtherParticipantId < 0) {
@@ -539,7 +541,7 @@ module.exports = function enableServer(sails) {
       IncidentDB
         .create({
           sessions: Session.id,
-          collider: player.driver,
+          collider: driver1,
           collided: driver2,
           CollisionMagnitude: log.attributes.CollisionMagnitude
         })
