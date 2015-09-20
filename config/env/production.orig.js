@@ -57,4 +57,13 @@ module.exports = {
     connection: 'MysqlServer'
   },
 
+  passport: {
+      steam: {
+          options: {
+              returnURL: 'http://localhost:1337/auth/steam/callback',
+              realm: 'http://localhost:1337/'
+          }
+      }
+  }
+
 };
