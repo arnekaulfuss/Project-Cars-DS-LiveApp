@@ -1,7 +1,8 @@
 # Project Cars DS Live App
 
 ## Warning
-Don't use is for Production it's heavy in development!
+If you are looking for a "ready to use" and "hassle-free" statistic tool ... THIS IS NOT FOR YOU!
+This is not intended to be used in an production environment, because it is in an early state of development / redesign.
 
 ## Description
 With this App you can watch the Lap Times **Live** online and all Races will get stored on the Database for future evaluations.
@@ -9,21 +10,23 @@ With this App you can watch the Lap Times **Live** online and all Races will get
 ## Installation
 
 ### Prerequisites
-* NodeJS
+* working pCARS dedicated server
+* working NodeJS installation
+* basic knowledge of your server environment
 
 ### Download
-Download the ZIP from GitHub and Upload / Unpack it to your Server.
+* Download the ZIP from GitHub and upload / unpack it to your server.
+* Execute "npm install" in your LiveApp folder to fetch the needed node packages.
 
-Execute this Command in your LiveApp Folder.
 ```
 npm install
 ```
 
 ### Configuration
-Configure the LiveApp config/env/production.js
+Configure the LiveApp by editing the file "config/env/production.js"
 
 ## Usage
-Start the app with
+Start the app in production mode with:
 
 ```
 sails lift --prod
@@ -42,7 +45,9 @@ sails lift
 ```
 
 ### What are Events?
-// TODO
+Events are a NOT YET FUNCTIONAL part of the project.
+The idea is having summary of a series of races matching specific predefined adjustments.
+This is intended to be the basis for racing league statistics.
 
 ### Does it have multi Server Support?
-No but it is planned
+NO, not yet but it is work in progress.
