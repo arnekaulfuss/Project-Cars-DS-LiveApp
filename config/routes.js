@@ -74,11 +74,6 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-   // Wellcome
-  '/welcome': {
-    view: 'User/welcome'
-  },
-
   //Driver front routes
   '/drivers': 'DriverController.index',
   '/drivers/:page': 'DriverController.index',
@@ -112,10 +107,6 @@ module.exports.routes = {
   '/start': 'ServerController.start',
   '/stop': 'ServerController.stop',
   '/admin/server': 'ServerController.admin',
-
-  // Server API Key
-  'post /user/keys/add': 'UserController.addKey',
-  'post /user/keys/:id/destroy': 'UserController.destroyKey',
 
   // Auth
   'get /logout': 'AuthController.logout',

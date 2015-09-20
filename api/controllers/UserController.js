@@ -12,7 +12,6 @@ module.exports = {
     User
       .findOne(req.session.me)
       .populate('drivers')
-      .populate('serverKeys')
       .exec(function(err, user) {
         if (err) return res.negotiate(err);
 
@@ -58,53 +57,6 @@ module.exports = {
         });
       }
     });
-  },
-
-  addKey: function(req, res) {
-    User
-      .findOne(req.session.me)
-      .populate('serverKeys')
-      .exec(function(err, user) {
-        if (user.serverKeys.length > 5) {
-          req.flash('error', "Cannot add key. Delete an existing key to add a new one.");
-          return res.redirect('/profile');
-        }
-
-        ServerKey.create({
-          name: req.body.name,
-          user: req.session.me
-        }).exec(function(err, key) {
-          if (err) return res.negotiate(err);
-          req.flash('info', "Added key");
-          res.redirect('/profile');
-        });
-      });
-  },
-
-  destroyKey: function(req, res) {
-    var id = req.param('id');
-    User
-      .findOne(req.session.me)
-      .populate('serverKeys')
-      .exec(function(err, user) {
-        var match = false;
-        user.serverKeys.forEach(function(key) {
-          if (key.id == id) match = true;
-        });
-
-        if (!match) {
-          req.flash('error', "Cannot delete key");
-          sails.log("Cannot delete key");
-          return res.redirect('/profile');
-        }
-
-        ServerKey.destroy(id).exec(function(err) {
-          if (err) return res.negotiate(err);
-
-          req.flash('info', "Key Removed");
-          res.redirect('/profile');
-        });
-      });
   },
 
   /**

@@ -76,7 +76,7 @@ var AuthController = {
 
       req.session.me = user.id;
       req.session.user = user;
-      res.redirect('/welcome');
+      res.redirect('User/profile');
     });
 
     function tryAgain(err) {

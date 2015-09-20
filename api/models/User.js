@@ -8,11 +8,6 @@ var User = {
       index: true,
       size: 50
     },
-    email: {
-      type: 'email',
-      unique: true,
-      index: true
-    },
     admin: {
       type: 'boolean',
       defaultsTo: false
@@ -35,10 +30,6 @@ var User = {
     steamAvatarFull: 'string',
     drivers: {
       collection: 'Driver',
-      via: 'user'
-    },
-    serverKeys: {
-      collection: 'ServerKey',
       via: 'user'
     }
   },
