@@ -20,17 +20,8 @@
                                 <span class="text-right"><%= user.createdAt %></span>
                             </li>
                             <li class="list-group-item">
-                                <form action="/profile" class="form-horizontal" method="POST">
-                                    <div class="form-group">
-                                        <div class="col-sm-2">
-                                            <b><%= __('steam_id') %></b>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input class="form-control" id="steam_id" type="text" value="<% if(user.driver !== undefined){ %><%= user.driver[0].steam_id %><% } %>">
-                                        </div>
-                                        <div class="col-sm-2"><input class="btn btn-primary" type="submit" value="<%= __('update') %>"/></div>
-                                    </div>
-                                </form>
+                                <b><%= __('steam_id') %></b>
+                                <span class="text-right"><%= user.steamID %></span>
                             </li>
                         </ul>
                     </div>

@@ -86,7 +86,6 @@ module.exports.routes = {
 
   // Profile
   'get /profile': 'UserController.profile',
-  'post /profile': 'UserController.update',
 
   // livetiming views routes
   'get /live': {

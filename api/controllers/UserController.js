@@ -24,41 +24,6 @@ module.exports = {
       });
   },
 
-  update: function(req, res, next) {
-    User.findOne(req.session.me).exec(function(err, user) {
-      if (err) return res.negotiate(err);
-
-      if (user.driver.length !== 0) {
-        Driver.update({
-          user: user.id
-        }, {
-          steam_id: req.param('steam_id')
-        }).exec(function(err, driver) {
-          res.view('User/profile', {
-            user: user,
-            flash: {
-              content: "Driver updated",
-              flashClass: "success"
-            }
-          });
-        });
-      } else {
-        user.driver.add({
-          steam_id: req.param('steam_id')
-        });
-        user.save(function(err, user) {
-          res.view('User/profile', {
-            user: user,
-            flash: {
-              content: "Driver updated",
-              flashClass: "success"
-            }
-          });
-        });
-      }
-    });
-  },
-
   /**
    * `UserController.logout()`
    */
