@@ -43,8 +43,7 @@
     "sails-mysql": "~0.10.2",
     "sails-postgresql": "^0.10.15",
     "skipper-disk": "^0.5.4",
-"validator": "^3.41.2"
-
+    "validator": "^3.41.2"
   },
   "scripts": {
     "dev": "sails lift --verbose",

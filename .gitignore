@@ -42,7 +42,13 @@
 config/env/development.js
 config/env/production.js
 config/local.js
+node_modules
+**/bin/Debug/
+**/bin/Release/
+obj
+.ntvs_analysis.dat
 log
+*.njsproj
 *.box
 *.pid
 *.sql*
