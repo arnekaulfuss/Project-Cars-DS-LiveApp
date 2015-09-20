@@ -29,29 +29,27 @@
                 <hr>
                 <% if(user.drivers) { %>
                     <div class="row">
-                        <% if(user.driver !== undefined){ %>
-                            <h3><%= __('driver_profile') %></h3>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="race_count"><%= __('race') %>:</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" disabled id="race_count" type="text" value="<%= user.drivers[0].race_count %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="pole_count"><%= __('pole') %>:</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" disabled id="pole_count" type="text" value="<%= user.drivers[0].pole_count %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="bestlaps_count"><%= __('bestlaps') %>:</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" disabled id="bestlaps_count" type="text" value="<%= user.drivers[0].bestlaps_count %>">
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %>
+                          <h3><%= __('driver_profile') %></h3>
+                          <div class="col-sm-12">
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="race_count"><%= __('race') %>:</label>
+                                  <div class="col-sm-10">
+                                      <input class="form-control" disabled id="race_count" type="text" value="<%= user.drivers[0].race_count %>">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="pole_count"><%= __('pole') %>:</label>
+                                  <div class="col-sm-10">
+                                      <input class="form-control" disabled id="pole_count" type="text" value="<%= user.drivers[0].pole_count %>">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="col-sm-2 control-label" for="bestlaps_count"><%= __('bestlaps') %>:</label>
+                                  <div class="col-sm-10">
+                                      <input class="form-control" disabled id="bestlaps_count" type="text" value="<%= user.drivers[0].bestlaps_count %>">
+                                  </div>
+                              </div>
+                          </div>
                     </div>
                 <% } %>
             </div>
