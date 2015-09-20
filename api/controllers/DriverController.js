@@ -21,7 +21,7 @@ module.exports = {
 
         if (res.locals.layout) {
           view = 'Admin/Driver/index';
-          href = '/admin/drivers/'
+          href = '/admin/drivers/';
         }
         return res.view(view, {
           drivers: drivers,

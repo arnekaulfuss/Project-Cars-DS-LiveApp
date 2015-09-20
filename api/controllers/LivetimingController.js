@@ -102,7 +102,7 @@ module.exports = {
 
             Lap.find(LapConditions).exec(function(err, record) {
               if (record.length > 0) {
-                if (record[0].LapTime != null) {
+                if (record[0].LapTime !== null) {
 
                   Lap.findOne({
                     LapTime: record[0].LapTime
@@ -180,7 +180,7 @@ module.exports = {
               result.distanceTravelled = result.distanceTravelled + lap.DistanceTravelled;
               callback3();
             });
-            callback2()
+            callback2();
           });
 
           callback(null, results);
