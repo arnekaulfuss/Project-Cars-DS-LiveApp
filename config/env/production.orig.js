@@ -30,7 +30,7 @@ module.exports = {
     siteUrl: "http://localhost:1337",
     siteLogo50x: "/images/logo/logo50x50.png",
 
-    logResultsPath: 'LogResults/',
+    logResultsPath: 'data/results/',
 
     DsApiUrl: {
       protocol: 'http://',

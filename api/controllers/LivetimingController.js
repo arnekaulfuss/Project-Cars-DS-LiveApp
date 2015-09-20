@@ -277,7 +277,8 @@ module.exports = {
       if (typeof result == "undefined") return res.notFound(undefined, '404');
 
       var filename = result.id + '.json';
-      var folder = sails.config.logResultsPath;
+      var folder = sails.config.personnalConfig.logResultsPath;
+
       fs.readJson(folder + filename, function(err, file) {
 
         if (typeof file == "undefined") return res.notFound(undefined, '404');
@@ -295,7 +296,7 @@ module.exports = {
   resultsQuery: function(req, res) {
     var request = req.allParams();
     var filename = request.id + '.json';
-    var folder = sails.config.logResultsPath;
+    var folder = sails.config.personnalConfig.logResultsPath;
 
     fs.readJson(folder + filename, function(err, file) {
       res.json({
