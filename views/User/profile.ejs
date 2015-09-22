@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <hr>
-                <% if(user.drivers) { %>
+                <% if(user.drivers && typeof user.drivers[0] !== 'undefined' ) { %>
                     <div class="row">
                           <h3><%= __('driver_profile') %></h3>
                           <div class="col-sm-12">
