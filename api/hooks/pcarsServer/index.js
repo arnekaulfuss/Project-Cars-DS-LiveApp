@@ -1,27 +1,13 @@
-module.exports = function enableServer(sails) {
-
-  var LiveConfig = sails.config.personnalConfig.DsApiUrl;
+module.exports = function pcarsServer(sails) {
 
   //load dependencies
   var http = require('http');
   var request = require('request-json');
-  var client = request.createClient(LiveConfig.protocol + LiveConfig.host + ":" + LiveConfig.port);
-  var Sails = require('sails');
+  var Sails = require('sails'); // Why the upper case 'S' is this even used/necessary?
   var fs = require('fs-extra');
+  var util = require('util');
 
-
-  //Initalize vars for Models
-  var usersDB = null;
-  var CarDB = null;
-  var TrackDB = null;
-  var lapsDB = null;
-  var driversDB = null;
-  var ServerSessionDB = null;
-  var ResultDB = null;
-  var IncidentDB = null;
-  var GroupDB = null;
-  var EventDB = null;
-  var lastlog = 0;
+  // Constants (Should be UPER CASE?)
   var api = {
     status: "api/session/status?attributes&members&participants",
     cars: {
@@ -31,145 +17,79 @@ module.exports = function enableServer(sails) {
     tracks: "api/list/tracks",
     kick: "api/session/kick",
     log: {
-      last: "api/log/range?offset=" + lastlog + "&count=100000",
+      last: "api/log/range?offset=%d&count=100000",
       full: "api/log/range?offset&count=1000000"
     }
   };
-  //Define global variables
-  var loopStatus = null; // If null no Relation to Project Cars  Http DS Api
+
+  //Define global variables (should be private member vars)
+  var LiveConfig = sails.config.personnalConfig.DsApiUrl;
+  var client = request.createClient(LiveConfig.protocol + LiveConfig.host + ":" + LiveConfig.port); // TODO move this to init/start code
+  var connectionInterval = null;
+  var pollInterval = null;
+  var lastlog = 0;
+
+  // The uggly stuff that cause race conditons
   var Session = null;
-  var session_ready = false;
+  var session_ready = false;  // a simple hack to fix one of the race conditons
   var players = [];
   var Status = {};
-
   var saved = 0;
   var fileResult, Logs, log, player;
 
   return {
 
-    initialize: function(cb) {
-      sails.on('hook:orm:loaded', function() {
-        // initialize models
-        // this is breaking `sails console`
-        usersDB = sails.models.user;
-        lapsDB = sails.models.lap;
-        driversDB = sails.models.driver;
-        ServerSessionDB = sails.models.serversession;
-        CarDB = sails.models.car;
-        TrackDB = sails.models.track;
-        GroupDB = sails.models.group;
-        EventDB = sails.models.event;
-        ResultDB = sails.models.result;
-        IncidentDB = sails.models.incident;
-
-        return cb();
-      });
-    },
-
-    /**
-     *
-     * This is way too procedural, and as such very hard to comprehend.
-     * Try not to add to this method, and instead refactor it.
-     *
-     **/
-
-    start: function() {
-      var thisHook = this;
-      client.get(api.status, function(err, res, data) {
-        if (err) {
-          if (err.code == "ECONNREFUSED") {
-            sails.sockets.blast({
-              msg: 'Pcars DS is not running',
-              class: 'alert-danger'
-            });
-          }
-        } else {
-          thisHook.updateTracksAndGroup();
-          thisHook.startListener();
-        }
-      });
-    },
-
-    startListener: function() {
-      if (loopStatus !== null) {
-        return sails.sockets.blast({
+    start: function(interval, errorCallback, connectionCallback) {
+      if (connectionInterval !== null) {
+        sails.sockets.blast({
           msg: 'Listener already running !',
           class: 'alert-info'
         });
+        return;
       }
 
-      sails.sockets.blast({
-        msg: 'Listener Launched',
-        class: 'alert-success'
-      });
-      sails.log("Server start!");
-
-      loopStatus = setInterval(function() {
-        poll_server();
-      }, 2000);
+      connectionInterval = setInterval(function() {
+        client.get(api.status, function(err, res, data) {
+          if (err) {
+            console.log('Could not connect to ProjectCARS Dedicated Server')
+            console.log(err)
+          } else {
+            clearInterval(connectionInterval);
+            connectionInterval = null;
+            connectionCallback()
+            startPolling(interval);
+          }
+        });
+      }, 10000);
     },
 
+    stop: function() {
+      clearInterval(connectionInterval);
+      connectionInterval = null;
+      clearInterval(pollInterval);
+      pollInterval = null;
 
-    getLive: function(req, from) {
-      var sockId = req;
-      var Connected = [];
-      if (Status.length > 0) {
-        Connected = Status.response.members;
-      }
-
-      async.sortBy(players, function(x, callback) {
-        callback(null, x.GridPosition);
-      }, function(err, result) {
-        if (from === 'home') {
-          sails.sockets.emit(sockId, 'homeData', {
-            Session: Session,
-            Players: result,
-            Connected: Connected,
-            Status: Status
-          });
-        } else {
-          sails.sockets.emit(sockId, 'firstData', {
-            Session: Session,
-            Players: result,
-            Connected: Connected
-          });
-        }
-      });
-    },
-
-    stop: function(req, res) {
-      if (!loopStatus) {
-        sails.sockets.blast({
-          msg: 'Listener already stopped !',
-          class: 'alert-danger'
-        });
-        return sails.sockets.blast('ServerStatus', {
-          msg: 'Stopped',
-          class: 'text-danger'
-        });
-      }
-
-      clearInterval(loopStatus);
       console.log('Server stopped !');
       sails.sockets.blast({
         msg: 'Listener stopped !',
         class: 'alert-danger'
       });
+
+
       sails.sockets.blast('ServerStatus', {
         msg: 'Stopped',
         class: 'text-danger'
       });
-      loopStatus = null;
     },
 
-    kick: function(req, res, refId, Bantime) {
+    kick: function(refId, Bantime) {
       var options = {
         hostname: host,
         port: port,
         path: api.kick.link + '?' + refId + '&' + Bantime
       };
 
-      req = http.get(options, function(res) {
+      var req = http.get(options, function(res) {
         return true;
       });
 
@@ -178,100 +98,32 @@ module.exports = function enableServer(sails) {
       });
     },
 
-    updateTracksAndGroup: function(callback) {
-      var thisHook = this;
-      async.series({
-          Groups: function(callback) {
-            client.get(api.cars.group, function(err, res, data) {
-              callback(null, data);
-            });
-          },
-          Tracks: function(callback) {
-            client.get(api.tracks, function(err, res, data) {
-              callback(null, data);
-            });
-          }
-        },
-        function(err, results) {
-          if (typeof results.Groups == 'undefined' && typeof results.Tracks == 'undefined') {
-            sails.sockets.blast({
-              msg: 'Is the PCARS dedicated server running?',
-              class: 'alert-danger'
-            });
-            console.log('Is the PCARS dedicated server running?');
-            return callback;
-          } else {
-            async.each(results.Groups.response.list, function(group, callback) {
-              GroupDB.findOrCreate({
-                gameId: group.value
-              }, {
-                gameId: group.value,
-                name: group.name
-              }).exec(function(err, result) {
-                callback();
-              });
-            }, function(err) {
-              if (err) {
-                console.log("Error an Group update");
-              } else {
-                thisHook.updateCars();
-              }
-
-            });
-            async.each(results.Tracks.response.list, function(track, callback) {
-              TrackDB.findOrCreate({
-                gameId: track.id
-              }, {
-                gameId: track.id,
-                name: track.name
-              }).exec(function(err, result) {
-                callback();
-              });
-            });
-            console.log('Track and Group updated');
-          }
-        }
-      );
+    // Move code to own files, just warp public API here ?
+    // TODO: error handling
+    getTracks: function(callback) {
+      client.get(api.tracks, function(err, res, data) {
+        callback(data);
+      });
     },
 
-    updateCars: function() {
+    getVehicleClasses: function(callback) {
+      client.get(api.cars.group, function(err, res, data) {
+        callback(data);
+      });
+    },
+
+    getVehicles: function(callback) {
       client.get(api.cars.list, function(err, res, data) {
-        if (err) {
-          sails.sockets.blast({
-            msg: 'Impossible to update cars',
-            class: 'alert-danger'
-          });
-          console.log('Impossible to update cars');
-          return 'Error';
-        } else {
-          async.each(data.response.list, function(car, callback) {
-            GroupDB.findOne({
-              name: car.class
-            }).exec(function(err, group) {
-              if (group) {
-                CarDB.findOrCreate({
-                  gameId: car.id,
-                  name: car.name,
-                  group: group.id
-                }, {
-                  gameId: car.id,
-                  name: car.name,
-                  group: group.id
-                }).exec(function(err, result) {
-                  callback();
-                });
-              } else {
-                console.log('Cannot find class: ' + car.class + ' for car: ' + car.name);
-                callback();
-              }
-            });
-          });
-          console.log('Cars updated');
-        }
+        callback(data);
       });
     }
 
   };
+
+
+  function startPolling(interval) {
+    pollInterval = setInterval(poll_server, interval);
+  }
 
 
   function poll_server() {
@@ -298,7 +150,7 @@ module.exports = function enableServer(sails) {
         });
       },
       Logs: function(callback) {
-        client.get("api/log/range?offset=" + lastlog + "&count=100000", function(err, res, data_log) {
+        client.get(util.format(api.log.last, lastlog), function(err, res, data_log) {
           if (err && err.code == "ECONNREFUSED") return callback('Connection refused for Logs');
           callback(null, data_log);
         });
@@ -863,44 +715,4 @@ module.exports = function enableServer(sails) {
   }
 
 
-  function SaveLap(player, currentlog, Session, SessionStage) {
-    lapsDB.create({
-      Car: player.car,
-      Track: Session.Track,
-      LiveryId: player.member.attributes.LiveryId,
-      RacePosition: currentlog.attributes.RacePosition,
-      CurrentLap: currentlog.attributes.Lap,
-      Sector1Time: currentlog.attributes.Sector1Time,
-      Sector2Time: currentlog.attributes.Sector2Time,
-      Sector3Time: currentlog.attributes.Sector3Time,
-      DistanceTravelled: currentlog.attributes.DistanceTravelled,
-      CountThisLapTimes: currentlog.attributes.CountThisLapTimes,
-      LapTime: currentlog.attributes.LapTime,
-      SessionStage: SessionStage,
-      session: Session,
-      owner: player.driver,
-      group: player.car.group,
-      //Events: Session.Events
-    }).exec(function(err, lapstored) {
-      if (err) {
-        console.log('Lap error:' + err);
-      } else {
-        /*if (Session.Events.length > 0) {
-        lapstored.Events.add(Session.Events);
-        lapstored.save(function(err, res){
-        if (err) {
-        console.log("Err add Event to lap");
-        console.log(err);
-      } else {
-      console.log("Event added to lap");
-    }
-  });
-
-  }*/
-
-        console.log('Lap ' + lapstored.CurrentLap + ' by: ' + player.driver.name);
-      }
-
-    });
-  }
 };

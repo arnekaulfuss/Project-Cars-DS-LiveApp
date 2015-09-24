@@ -9,11 +9,11 @@
 module.exports = {
 
   start: function(req, res) {
-    sails.hooks.pcarsserver.start();
+    pcarsds.start();
   },
 
   stop: function(req, res) {
-    sails.hooks.pcarsserver.stop();
+    pcarsds.stop();
   },
 
   admin: function(req, res) {

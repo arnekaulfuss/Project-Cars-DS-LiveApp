@@ -11,11 +11,11 @@ module.exports = {
 
   getLiveData: function(req, res) {
     if (req.param('from')) {
-      sails.hooks.pcarsserver.getLive(req.socket, req.param('from'));
+      pcarsds.getLive(req.socket, req.param('from'));
     } else {
       var roomName = "Live";
       sails.sockets.join(req.socket, roomName);
-      sails.hooks.pcarsserver.getLive(req.socket);
+      pcarsds.getLive(req.socket);
     }
 
 
